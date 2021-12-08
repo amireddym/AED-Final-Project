@@ -6,6 +6,7 @@
 package businesslogic.cityOfficial;
 
 import businesslogic.ModificationInfo;
+import businesslogic.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,19 @@ public class CityOfficialDirectory extends ModificationInfo{
 
     public void setCityOfficials(List<CityOfficial> cityOfficials) {
         this.cityOfficials = cityOfficials;
+    }
+
+    public User isUserCityOfficial(String userName, String password) {
+        
+        if(!getCityOfficials().isEmpty()) {
+            for(CityOfficial cityOfficial:getCityOfficials()) {
+                if(cityOfficial.getUserName().equals(userName) && cityOfficial.getPassword().equals(password)) {
+                    return cityOfficial;
+                }
+            }
+        }
+        
+        return null;
     }
     
 }

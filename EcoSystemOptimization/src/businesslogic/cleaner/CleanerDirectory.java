@@ -6,6 +6,7 @@
 package businesslogic.cleaner;
 
 import businesslogic.ModificationInfo;
+import businesslogic.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,20 @@ public class CleanerDirectory extends ModificationInfo{
 
     public void setCleaners(List<Cleaner> cleaners) {
         this.cleaners = cleaners;
+    }
+
+    public User isUserCleaner(String userName, String password) {
+        
+        if(!getCleaners().isEmpty()) {
+            
+            for(Cleaner cleaner:getCleaners()) {
+                if(cleaner.getUserName().equals(userName) && cleaner.getPassword().equals(password)) {
+                    return cleaner;
+                }
+            }
+        }
+        
+        return null;
     }
     
 }

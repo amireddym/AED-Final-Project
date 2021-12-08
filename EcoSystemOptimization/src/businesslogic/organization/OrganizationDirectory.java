@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class OrganizationDirectory extends ModificationInfo{
     
-    private List<Organization> departments = new ArrayList<>();
+    private List<Organization> organizations = new ArrayList<>();
 
-    public OrganizationDirectory(List<Organization> departments, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
+    public OrganizationDirectory(List<Organization> organizations, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
         super(createdDate, lastUpdatedDate, createdBy, modifiedBy);
-        this.departments = departments;
+        this.organizations = organizations;
     }
 
     public OrganizationDirectory(Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
@@ -30,13 +30,13 @@ public class OrganizationDirectory extends ModificationInfo{
     public OrganizationDirectory() {
         super(new Date(), new Date(), "SysAdmin", "SysAdmin");
     }
-    
-    public List<Organization> getDepartments() {
-        return departments;
+
+    public List<Organization> getOrganizations() {
+        return organizations;
     }
 
-    public void setDepartments(List<Organization> departments) {
-        this.departments = departments;
+    public void setOrganizations(List<Organization> organizations) {
+        this.organizations = organizations;
     }
     
 }
