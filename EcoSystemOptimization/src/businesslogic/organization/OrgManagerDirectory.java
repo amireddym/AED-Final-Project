@@ -6,6 +6,7 @@
 package businesslogic.organization;
 
 import businesslogic.ModificationInfo;
+import businesslogic.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +38,20 @@ public class OrgManagerDirectory extends ModificationInfo{
 
     public void setOrgManagers(List<OrgManager> orgManagers) {
         this.orgManagers = orgManagers;
+    }
+
+    public User isUserOrgManager(String userName, String password) {
+        
+        if(!getOrgManagers().isEmpty()) {
+            
+            for(OrgManager orgManager:getOrgManagers()) {
+                if(orgManager.getUserName().equals(userName) && orgManager.getPassword().equals(password)) {
+                    return orgManager;
+                }
+            }
+        }
+        
+        return null;
     }
     
 }

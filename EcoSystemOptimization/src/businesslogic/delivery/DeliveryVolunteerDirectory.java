@@ -6,6 +6,7 @@
 package businesslogic.delivery;
 
 import businesslogic.ModificationInfo;
+import businesslogic.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +38,20 @@ public class DeliveryVolunteerDirectory extends ModificationInfo{
 
     public void setDeliveryVolunteers(List<DeliveryVolunteer> deliveryVolunteers) {
         this.deliveryVolunteers = deliveryVolunteers;
+    }
+
+    public User isUserDeliveryVolunteer(String userName, String password) {
+        
+        if(!getDeliveryVolunteers().isEmpty()) {
+            
+            for(DeliveryVolunteer deliveryVolunteer:getDeliveryVolunteers()) {
+                if(deliveryVolunteer.getUserName().equals(userName) && deliveryVolunteer.getPassword().equals(password)) {
+                    return deliveryVolunteer;
+                }
+            }
+        }
+        
+        return null;
     }
     
 }
