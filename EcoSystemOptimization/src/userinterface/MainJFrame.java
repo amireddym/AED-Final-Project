@@ -7,6 +7,9 @@ package userinterface;
 
 import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
+import businesslogic.JPanelManager;
+import businesslogic.User;
+import java.awt.CardLayout;
 
 /**
  *
@@ -18,12 +21,12 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     
-    private EcoSystem system;
+    private EcoSystem ecoSystem;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     
     public MainJFrame() {
         initComponents();
-        system = dB4OUtil.retrieveSystem();
+        ecoSystem = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
     }
 
@@ -135,9 +138,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(loginJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(logoutJButton)
-                .addGap(122, 122, 122)
+                .addGap(110, 110, 110)
                 .addComponent(signUpJButton)
                 .addContainerGap(173, Short.MAX_VALUE))
         );
@@ -179,15 +182,40 @@ public class MainJFrame extends javax.swing.JFrame {
         char[] passwordChars = jPasswordField.getPassword();
         String password = String.valueOf(passwordChars);
         
+        User userLogged = null;
         
+        if(!ecoSystem.getSysAdminsDirectory().getSysAdmins().isEmpty()){
+            
+            userLogged = ecoSystem.getSysAdminsDirectory().isUserSysAdmin(userName, password);
+            if(userLogged!=null) {
+                CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+                userProcessJPanel.add("SysAdminHomePanel",JPanelManager.getSysAdminHomePanel());
+                cardLayout.next(userProcessJPanel);
+                clearLoginPanels();
+                return;
+            }
+                        
+        }
         
-        
+
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void signUpJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpJButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_signUpJButtonActionPerformed
 
+    private void clearLoginPanels() {
+        
+        userNameJTextField.setText("");
+        passwordJLabel.setText("");
+        userNameJTextField.setEnabled(false);
+        passwordJLabel.setEnabled(false);
+        loginJButton.setEnabled(false);
+        logoutJButton.setEnabled(true);
+        signUpJButton.setEnabled(false);
+        
+    }
+    
     /**
      * @param args the command line arguments
      */

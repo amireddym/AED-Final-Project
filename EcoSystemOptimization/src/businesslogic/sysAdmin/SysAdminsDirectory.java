@@ -5,6 +5,7 @@
  */
 package businesslogic.sysAdmin;
 
+import businesslogic.User;
 import java.util.List;
 
 /**
@@ -21,6 +22,20 @@ public class SysAdminsDirectory {
 
     public void setSysAdmins(List<SysAdmin> sysAdmins) {
         this.sysAdmins = sysAdmins;
+    }
+
+    public User isUserSysAdmin(String userName, String password) {
+        
+        if(!getSysAdmins().isEmpty()){
+            
+            for(SysAdmin sysAdmin:getSysAdmins()) {
+                if(sysAdmin.getUserName().equals(userName) && sysAdmin.getPassword().equals(password)) {
+                    return sysAdmin;
+                }
+            }
+        }
+        
+        return null;
     }
     
 }
