@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.ngoManagersWorkArea;
+package userinterface.orgManagersWorkArea;
 
 /**
  *
  * @author manojreddy
  */
-public class NgoManagerHomeJPanel extends javax.swing.JPanel {
+public class OrgManagerHomeJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form NgoManagerHomeJPanel
      */
-    public NgoManagerHomeJPanel() {
+    public OrgManagerHomeJPanel() {
         initComponents();
     }
 

@@ -6,8 +6,12 @@
 package businesslogic.organization;
 
 import businesslogic.ModificationInfo;
+import businesslogic.delivery.DeliveryVolunteerDirectory;
+import businesslogic.donor.Donation;
 import businesslogic.enums.OrganizationType;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -26,6 +30,10 @@ public class Organization extends ModificationInfo{
     private String email;
     
     private OrgManagerDirectory orgManagerDirectory = new OrgManagerDirectory();
+    
+    private DeliveryVolunteerDirectory deliveryVolunteerDirectory = new DeliveryVolunteerDirectory();
+    
+    private List<Donation> donations = new ArrayList<>();
 
     public Organization(String organizationName, OrganizationType organizationType, String address, String phoneNo, String email, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
         super(createdDate, lastUpdatedDate, createdBy, modifiedBy);
@@ -82,6 +90,22 @@ public class Organization extends ModificationInfo{
 
     public void setOrgManagerDirectory(OrgManagerDirectory orgManagerDirectory) {
         this.orgManagerDirectory = orgManagerDirectory;
+    }
+
+    public DeliveryVolunteerDirectory getDeliveryVolunteerDirectory() {
+        return deliveryVolunteerDirectory;
+    }
+
+    public void setDeliveryVolunteerDirectory(DeliveryVolunteerDirectory deliveryVolunteerDirectory) {
+        this.deliveryVolunteerDirectory = deliveryVolunteerDirectory;
+    }
+
+    public List<Donation> getDonations() {
+        return donations;
+    }
+
+    public void setDonations(List<Donation> donations) {
+        this.donations = donations;
     }
     
 }

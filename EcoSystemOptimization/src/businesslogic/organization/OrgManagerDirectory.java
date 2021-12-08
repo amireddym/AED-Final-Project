@@ -6,7 +6,6 @@
 package businesslogic.organization;
 
 import businesslogic.ModificationInfo;
-import com.db4o.collections.ArrayList4;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

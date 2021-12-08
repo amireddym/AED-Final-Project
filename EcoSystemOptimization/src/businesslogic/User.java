@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author manojreddy
  */
-public class UserAccount extends ModificationInfo{
+public class User extends ModificationInfo{
     
     private String name;
 
@@ -30,7 +30,7 @@ public class UserAccount extends ModificationInfo{
     
     private String profilePic;
 
-    public UserAccount(String name, String phoneNo, String email, String address, String userName, String password, UserRole userRole, String profilePic, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
+    public User(String name, String phoneNo, String email, String address, String userName, String password, UserRole userRole, String profilePic, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
         super(createdDate, lastUpdatedDate, createdBy, modifiedBy);
         this.name = name;
         this.phoneNo = phoneNo;
@@ -105,10 +105,5 @@ public class UserAccount extends ModificationInfo{
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
-    
-    
-    
-    
-    
     
 }

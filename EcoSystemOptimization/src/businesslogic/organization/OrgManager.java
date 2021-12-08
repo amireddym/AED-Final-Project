@@ -5,10 +5,18 @@
  */
 package businesslogic.organization;
 
+import businesslogic.User;
+import businesslogic.enums.UserRole;
+import java.util.Date;
+
 /**
  *
  * @author manojreddy
  */
-public class OrgManager {
+public class OrgManager extends User{
+    
+    public OrgManager(String name, String phoneNo, String email, String address, String userName, String password, UserRole userRole, String profilePic, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
+        super(name, phoneNo, email, address, userName, password, userRole, profilePic, createdDate, lastUpdatedDate, createdBy, modifiedBy);
+    }
     
 }

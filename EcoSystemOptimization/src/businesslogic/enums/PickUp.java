@@ -14,17 +14,18 @@ import java.util.stream.Stream;
  *
  * @author manojreddy
  */
-public enum UserRole {
+public enum PickUp {
     
-    SystemAdmin,Donor,DeliveryVounteer,CityOfficial,OrgManager,Cleaner;
+    Home,FoodBank;
     
-    public static List<String> getUserRolesList(){
+    public static List<String> getPickUpList(){
        
-        return Stream.of(UserRole.values()).map(UserRole::name).collect(Collectors.toList());
+        return Stream.of(PickUp.values()).map(PickUp::name).collect(Collectors.toList());
     }
     
-    public static String[] getUserRolesArray() {
+    public static String[] getPickUpArray() {
         
-        return Arrays.stream(UserRole.values()).map(UserRole::name).toArray(String[]::new);
-    }
+        return Arrays.stream(PickUp.values()).map(PickUp::name).toArray(String[]::new);
+    } 
+    
 }

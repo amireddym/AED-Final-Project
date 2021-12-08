@@ -23,6 +23,8 @@ public class CityNetwork extends ModificationInfo{
     private CityOfficialDirectory cityOfficialsDirectory = new CityOfficialDirectory();
     
     private CleanerDirectory cleanersDirectory = new CleanerDirectory();
+    
+    private FoodBankDirectory foodBankDirectory = new FoodBankDirectory();
 
     public CityNetwork(CityName cityName, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
         super(createdDate, lastUpdatedDate, createdBy, modifiedBy);

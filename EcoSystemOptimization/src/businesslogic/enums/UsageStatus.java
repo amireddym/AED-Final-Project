@@ -14,17 +14,18 @@ import java.util.stream.Stream;
  *
  * @author manojreddy
  */
-public enum UserRole {
+public enum UsageStatus {
     
-    SystemAdmin,Donor,DeliveryVounteer,CityOfficial,OrgManager,Cleaner;
+    New,Used,Old,Recycleable;
     
-    public static List<String> getUserRolesList(){
+    public static List<String> getUsageStatusList(){
        
-        return Stream.of(UserRole.values()).map(UserRole::name).collect(Collectors.toList());
+        return Stream.of(UsageStatus.values()).map(UsageStatus::name).collect(Collectors.toList());
     }
     
-    public static String[] getUserRolesArray() {
+    public static String[] getUsageStatusArray() {
         
-        return Arrays.stream(UserRole.values()).map(UserRole::name).toArray(String[]::new);
-    }
+        return Arrays.stream(UsageStatus.values()).map(UsageStatus::name).toArray(String[]::new);
+    } 
+    
 }
