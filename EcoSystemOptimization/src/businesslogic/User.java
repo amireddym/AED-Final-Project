@@ -105,5 +105,10 @@ public class User extends ModificationInfo{
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
     
 }

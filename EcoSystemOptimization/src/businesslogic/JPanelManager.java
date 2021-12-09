@@ -19,9 +19,9 @@ import userinterface.systemAdminsWorkArea.SysAdminHomeJPanel;
  */
 public class JPanelManager {
     
-    public static JPanel getSysAdminHomePanel() {
+    public static JPanel getSysAdminHomePanel(JPanel userProcessJpanel, EcoSystem ecoSystem, User userLogged) {
         
-        return new SysAdminHomeJPanel();
+        return new SysAdminHomeJPanel(userProcessJpanel, ecoSystem, userLogged);
     }
     
     public static JPanel getCityOfficialHomePanel() {
