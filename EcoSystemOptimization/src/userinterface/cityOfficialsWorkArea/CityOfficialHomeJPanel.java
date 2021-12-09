@@ -5,17 +5,31 @@
  */
 package userinterface.cityOfficialsWorkArea;
 
+import businesslogic.CityNetwork;
+import businesslogic.EcoSystem;
+import businesslogic.User;
+import javax.swing.JPanel;
+
 /**
  *
  * @author manojreddy
  */
 public class CityOfficialHomeJPanel extends javax.swing.JPanel {
+    
+    JPanel userProcessContainer;
+    EcoSystem ecoSystem;
+    User userAccount;
+    CityNetwork cityNetwork;
 
     /**
      * Creates new form CityOfficialHomeJPanel
      */
-    public CityOfficialHomeJPanel() {
+    public CityOfficialHomeJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, User userLogged, CityNetwork cityNetwork) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.ecoSystem=ecoSystem;
+        this.userAccount=userLogged;
+        this.cityNetwork=cityNetwork;
     }
 
     /**
@@ -27,19 +41,64 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        createNewBankbtn = new javax.swing.JButton();
+        manageCleanerbtn = new javax.swing.JButton();
+        createNewOrganizationbtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        createNewBankbtn.setText("Create New Bank");
+        createNewBankbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewBankbtnActionPerformed(evt);
+            }
+        });
+
+        manageCleanerbtn.setText("Manage Cleaners");
+
+        createNewOrganizationbtn.setText("Create New Organization");
+
+        jLabel1.setText("Image");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(401, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createNewOrganizationbtn)
+                    .addComponent(manageCleanerbtn)
+                    .addComponent(createNewBankbtn))
+                .addGap(126, 126, 126))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(createNewBankbtn)
+                .addGap(18, 18, 18)
+                .addComponent(manageCleanerbtn)
+                .addGap(18, 18, 18)
+                .addComponent(createNewOrganizationbtn)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void createNewBankbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewBankbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createNewBankbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createNewBankbtn;
+    private javax.swing.JButton createNewOrganizationbtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton manageCleanerbtn;
     // End of variables declaration//GEN-END:variables
 }

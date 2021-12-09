@@ -222,7 +222,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         userLogged = cityNetwork.getCityOfficialsDirectory().isUserCityOfficial(userName,password);
                         if(userLogged!=null) {
                             CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                            userProcessJPanel.add("CityOfficalHomePanel", JPanelManager.getCityOfficialHomePanel());
+                            userProcessJPanel.add("CityOfficalHomePanel", JPanelManager.getCityOfficialHomePanel(userProcessJPanel,ecoSystem,userLogged,cityNetwork));
                             cardLayout.next(userProcessJPanel);
                             clearLoginPanels();
                             return;
