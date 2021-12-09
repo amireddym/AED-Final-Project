@@ -11,7 +11,11 @@ package businesslogic.helper;
  */
 public class ValidateInputs {
     
-
+    public static boolean isNameValid(String name){        
+        if(name.matches("^[a-zA-Z]+$")){
+            return true;
+        }return false;
+    }
     
     public static boolean isUsernameValid(String username){        
         if(username.matches("^[a-zA-Z0-9]+$")){
@@ -47,7 +51,7 @@ public class ValidateInputs {
 //    -----------------------------------------------------------------------------------
 
     public static boolean isPasswordValid(String password){
-        if(!password.isEmpty() && password.matches("^[a-zA-Z0-9]+$")){
+        if(!password.isEmpty() && password.matches("^[a-zA-Z0-9]+$")){  //"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$"
             return true;
         }return false;
     }
