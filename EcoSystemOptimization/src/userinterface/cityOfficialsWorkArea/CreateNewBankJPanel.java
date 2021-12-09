@@ -8,6 +8,7 @@ import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.FoodBank;
 import businesslogic.User;
+import java.awt.CardLayout;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -66,6 +67,11 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
         });
 
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -125,6 +131,14 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
          }
         
     }//GEN-LAST:event_addbtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
       private boolean isDataEnteredValid() {
         if(!nameJTextField.getText().isEmpty() && nameJTextField.getText().matches("^[a-zA-Z0-9 ]+$") 
                &&!locationJTextField.getText().isEmpty()){
