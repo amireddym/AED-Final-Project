@@ -9,9 +9,15 @@ import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
 import businesslogic.enums.UserRole;
+import java.awt.Image;
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -26,12 +32,15 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private User userAccount;
     private CityNetwork cityNetwork;
+    //add default image
+    private String imagepath;
     public CreateNewCleanerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, User userAccount, CityNetwork cityNetwork) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecoSystem = ecoSystem;
         this.userAccount  = userAccount;
         this.cityNetwork = cityNetwork;
+        picHolderjLabel.setSize(126, 139);
     }
 
     /**
@@ -50,7 +59,7 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        picHolderjLabel = new javax.swing.JLabel();
         uploadbtn = new javax.swing.JButton();
         nametxt = new javax.swing.JTextField();
         phoneNumbertxt = new javax.swing.JTextField();
@@ -75,9 +84,14 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("Password:");
 
-        jLabel8.setText("<Image>");
+        picHolderjLabel.setText("<Image>");
 
         uploadbtn.setText("Upload");
+        uploadbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadbtnActionPerformed(evt);
+            }
+        });
 
         savebtn.setText("Save");
         savebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +118,7 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(52, 52, 52))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -154,7 +168,7 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
                             .addComponent(emailIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -184,12 +198,12 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
             String name = nametxt.getText();
             String userName = usernametxt.getText();
             String address=addresstxt.getText();
-            String image="";
+            
             String password = passwordtxt.getText();
             String email = emailIdtxt.getText();
             String phoneNo = phoneNumbertxt.getText();
 
-            Cleaner cleaner = new Cleaner(name, phoneNo, email, address,userName, password, UserRole.Cleaner,image,
+            Cleaner cleaner = new Cleaner(name, phoneNo, email, address,userName, password, UserRole.Cleaner,imagepath,
                 new Date(), new Date(), userAccount.getName(), userAccount.getName());
             cityNetwork.getCleanersDirectory().getCleaners().add(cleaner);
 
@@ -199,6 +213,22 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error! Please enter valid values");
         }
     }//GEN-LAST:event_savebtnActionPerformed
+
+    private void uploadbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbtnActionPerformed
+        // TODO add your handling code here:
+        
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("/"));
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Jpeg format", "jpeg"));
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Jpg format", "jpg"));
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Png format", "png"));
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            imagepath = selectedFile.getAbsolutePath();
+            setPhoto(imagepath);
+        }
+    }//GEN-LAST:event_uploadbtnActionPerformed
    
        private boolean isDataEnteredValid() {
         if(nametxt.getText().matches("^[a-zA-Z0-9 ']+$") && usernametxt.getText().matches("^[a-zA-Z0-9]+$") && 
@@ -220,7 +250,20 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
         passwordtxt.setText("");
         emailIdtxt.setText("");
         phoneNumbertxt.setText("");
+        setDefaultPhoto();
         
+    }
+    
+    //have to make changes
+     private void setDefaultPhoto() {
+        
+       // setPhoto(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
+    }
+
+    private void setPhoto(String imagePath) {
+        ImageIcon photo = new ImageIcon(imagePath);
+        Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
+        picHolderjLabel.setIcon(new ImageIcon(photoResized));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -234,10 +277,10 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField nametxt;
     private javax.swing.JTextField passwordtxt;
     private javax.swing.JTextField phoneNumbertxt;
+    private javax.swing.JLabel picHolderjLabel;
     private javax.swing.JButton savebtn;
     private javax.swing.JButton uploadbtn;
     private javax.swing.JTextField usernametxt;

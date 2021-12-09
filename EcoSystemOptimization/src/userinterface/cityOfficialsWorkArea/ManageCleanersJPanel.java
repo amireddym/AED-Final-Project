@@ -69,8 +69,8 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         managecleanerstbl = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        nameHolderjLabel = new javax.swing.JLabel();
+        picHolderjLabel = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
         updatebtn = new javax.swing.JButton();
         deletebtn = new javax.swing.JButton();
@@ -100,9 +100,9 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         jLabel1.setText("Manage Cleaners");
 
-        jLabel2.setText("<Name>");
+        nameHolderjLabel.setText("<Name>");
 
-        jLabel3.setText("<Profile Pic>");
+        picHolderjLabel.setText("<Profile Pic>");
 
         addBtn.setText("Create New Cleaner");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -151,8 +151,8 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))
+                            .addComponent(nameHolderjLabel)
+                            .addComponent(picHolderjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
@@ -168,9 +168,9 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(nameHolderjLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(picHolderjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
@@ -223,10 +223,10 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backbtn;
     private javax.swing.JButton deletebtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable managecleanerstbl;
+    private javax.swing.JLabel nameHolderjLabel;
+    private javax.swing.JLabel picHolderjLabel;
     private javax.swing.JButton updatebtn;
     // End of variables declaration//GEN-END:variables
 }
