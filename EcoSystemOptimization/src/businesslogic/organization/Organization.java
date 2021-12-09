@@ -29,19 +29,23 @@ public class Organization extends ModificationInfo{
     
     private String email;
     
+    private String organizationImage;
+    
     private OrgManagerDirectory orgManagerDirectory = new OrgManagerDirectory();
     
     private DeliveryVolunteerDirectory deliveryVolunteerDirectory = new DeliveryVolunteerDirectory();
     
     private List<Donation> donations = new ArrayList<>();
 
-    public Organization(String organizationName, OrganizationType organizationType, String address, String phoneNo, String email, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
+    public Organization(String organizationName, OrganizationType organizationType, String address, String phoneNo, String email, 
+            String organizationImage, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
         super(createdDate, lastUpdatedDate, createdBy, modifiedBy);
         this.organizationName = organizationName;
         this.organizationType = organizationType;
         this.address = address;
         this.phoneNo = phoneNo;
         this.email = email;
+        this.organizationImage = organizationImage;
     }
     
     public String getOrganizationName() {
@@ -106,6 +110,14 @@ public class Organization extends ModificationInfo{
 
     public void setDonations(List<Donation> donations) {
         this.donations = donations;
+    }
+
+    public String getOrganizationImage() {
+        return organizationImage;
+    }
+
+    public void setOrganizationImage(String organizationImage) {
+        this.organizationImage = organizationImage;
     }
     
 }

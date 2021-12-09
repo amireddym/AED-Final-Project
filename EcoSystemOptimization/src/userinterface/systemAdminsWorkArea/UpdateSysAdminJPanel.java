@@ -68,8 +68,8 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
     
     private void setPhoto(String profilePic) {
         
-        if(profilePic.equals(Constants.DEFAULT_IMAGE_PATH)) {
-            ImageIcon photo = new ImageIcon(Paths.get(Constants.DEFAULT_IMAGE_PATH).toAbsolutePath().toString());
+        if(profilePic.equals(Constants.DEFAULT_PROFILE_IMAGE_PATH)) {
+            ImageIcon photo = new ImageIcon(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
             Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
             picHolderjLabel.setIcon(new ImageIcon(photoResized));
             return;
@@ -247,7 +247,7 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
                             .addComponent(addressjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50)
                         .addComponent(updatejButton)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

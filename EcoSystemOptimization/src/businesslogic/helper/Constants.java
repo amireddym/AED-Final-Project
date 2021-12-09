@@ -11,6 +11,7 @@ package businesslogic.helper;
  */
 public class Constants {
     
-    public static String DEFAULT_IMAGE_PATH = "";
+    public static String DEFAULT_PROFILE_IMAGE_PATH = "";
+    public static String DEFAULT_ORGANIZATION_IMAGE_PATH = "";
     
 }
