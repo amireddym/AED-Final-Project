@@ -255,7 +255,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 userLogged = ecoSystem.getDonorsDirectory().isUserDonor(userName, password);
                 if(userLogged!=null) {
                     CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                    userProcessJPanel.add("DonorHomePanel",JPanelManager.getDonorHomePanel());
+                    userProcessJPanel.add("DonorHomePanel",JPanelManager.getDonorHomePanel(userProcessJPanel, ecoSystem, userLogged));
                     cardLayout.next(userProcessJPanel);
                     clearLoginPanels();
                     return;
@@ -342,7 +342,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-        userProcessJPanel.add("SignUpPanel", new SignUpJPanel(userProcessJPanel, ecoSystem));
+        userProcessJPanel.add("SignUpPanel", new SignUpJPanel(userProcessJPanel, ecoSystem, dB4OUtil));
         cardLayout.next(userProcessJPanel);
         
     }//GEN-LAST:event_signUpJButtonActionPerformed

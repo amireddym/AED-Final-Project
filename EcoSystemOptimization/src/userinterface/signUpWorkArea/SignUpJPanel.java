@@ -5,6 +5,7 @@
  */
 package userinterface.signUpWorkArea;
 
+import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
 import businesslogic.donor.Donor;
 import businesslogic.enums.UserRole;
@@ -31,13 +32,15 @@ public class SignUpJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private ImageIcon iconPic;
     private String photoPath;
+    private DB4OUtil dB4OUtil;
     /**
      * Creates new form SignUpJPanel
      */
-    public SignUpJPanel(JPanel userProcessJPanel, EcoSystem ecoSystem) {
+    public SignUpJPanel(JPanel userProcessJPanel, EcoSystem ecoSystem, DB4OUtil dB4OUtil) {
         initComponents();
         this.userProcessJPanel = userProcessJPanel;
         this.ecoSystem = ecoSystem;
+        this.dB4OUtil = dB4OUtil;
     }
     
 
@@ -211,6 +214,8 @@ public class SignUpJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessJPanel.getLayout();
         userProcessJPanel.remove(this);
         layout.previous(userProcessJPanel);
+        
+        dB4OUtil.storeSystem(ecoSystem);
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnattachpicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnattachpicActionPerformed

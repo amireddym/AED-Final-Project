@@ -34,9 +34,9 @@ public class JPanelManager {
         return new OrgManagerHomeJPanel();
     }
     
-    public static JPanel getDonorHomePanel() {
+    public static JPanel getDonorHomePanel(JPanel userProcessJpanel, EcoSystem ecoSystem, User userLogged) {
         
-        return new DonorHomeJPanel();
+        return new DonorHomeJPanel(userProcessJpanel, ecoSystem, userLogged);
     }
     
     public static JPanel getDeliveryVolunteerHomePanel() {
