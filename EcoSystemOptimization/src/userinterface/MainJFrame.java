@@ -13,6 +13,7 @@ import businesslogic.User;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
+import javax.swing.JPanel;
 import userinterface.signUpWorkArea.SignUpJPanel;
 
 /**
@@ -193,6 +194,13 @@ public class MainJFrame extends javax.swing.JFrame {
         jPasswordField.setText("");
         signUpJButton.setEnabled(true);
         
+        userProcessJPanel.removeAll();
+        JPanel blankPanel = new JPanel();
+        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+        userProcessJPanel.add("BlankPanel", blankPanel);
+        cardLayout.next(userProcessJPanel);
+        
+        dB4OUtil.storeSystem(ecoSystem);
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
@@ -210,7 +218,7 @@ public class MainJFrame extends javax.swing.JFrame {
             userLogged = ecoSystem.getSysAdminsDirectory().isUserSysAdmin(userName, password);
             if(userLogged!=null) {
                 CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                userProcessJPanel.add("SysAdminHomePanel",JPanelManager.getSysAdminHomePanel());
+                userProcessJPanel.add("SysAdminHomePanel",JPanelManager.getSysAdminHomePanel(userProcessJPanel, ecoSystem, userLogged));
                 cardLayout.next(userProcessJPanel);
                 clearLoginPanels();
                 return;
