@@ -12,6 +12,7 @@ import businesslogic.JPanelManager;
 import businesslogic.User;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
+import java.awt.event.KeyEvent;
 import userinterface.signUpWorkArea.SignUpJPanel;
 
 /**
@@ -93,6 +94,12 @@ public class MainJFrame extends javax.swing.JFrame {
         signUpJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUpJButtonActionPerformed(evt);
+            }
+        });
+
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldKeyPressed(evt);
             }
         });
 
@@ -327,10 +334,16 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-        userProcessJPanel.add("SignUpPanel", new SignUpJPanel());
+        userProcessJPanel.add("SignUpPanel", new SignUpJPanel(userProcessJPanel, ecoSystem));
         cardLayout.next(userProcessJPanel);
         
     }//GEN-LAST:event_signUpJButtonActionPerformed
+
+    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            loginJButton.doClick();
+        }
+    }//GEN-LAST:event_jPasswordFieldKeyPressed
 
     private void clearLoginPanels() {
         
