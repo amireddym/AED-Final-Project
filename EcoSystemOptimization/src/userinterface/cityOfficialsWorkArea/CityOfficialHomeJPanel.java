@@ -8,6 +8,7 @@ package userinterface.cityOfficialsWorkArea;
 import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -45,60 +46,67 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         manageCleanerbtn = new javax.swing.JButton();
         createNewOrganizationbtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        createNewBankbtn.setForeground(new java.awt.Color(0, 102, 102));
         createNewBankbtn.setText("Create New Bank");
         createNewBankbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createNewBankbtnActionPerformed(evt);
             }
         });
+        add(createNewBankbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 270, 60));
 
+        manageCleanerbtn.setForeground(new java.awt.Color(0, 102, 102));
         manageCleanerbtn.setText("Manage Cleaners");
+        manageCleanerbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageCleanerbtnActionPerformed(evt);
+            }
+        });
+        add(manageCleanerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 270, 60));
 
+        createNewOrganizationbtn.setForeground(new java.awt.Color(0, 102, 102));
         createNewOrganizationbtn.setText("Create New Organization");
+        createNewOrganizationbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewOrganizationbtnActionPerformed(evt);
+            }
+        });
+        add(createNewOrganizationbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 270, 60));
 
         jLabel1.setText("Image");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 50, 80, 80));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(401, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createNewOrganizationbtn)
-                    .addComponent(manageCleanerbtn)
-                    .addComponent(createNewBankbtn))
-                .addGap(126, 126, 126))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(createNewBankbtn)
-                .addGap(18, 18, 18)
-                .addComponent(manageCleanerbtn)
-                .addGap(18, 18, 18)
-                .addComponent(createNewOrganizationbtn)
-                .addContainerGap(103, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bgimage.jpg"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 380));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createNewBankbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewBankbtnActionPerformed
         // TODO add your handling code here:
+         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("Create new Food Bank", new CreateNewBankJPanel(userProcessContainer, userAccount,
+            ecoSystem, cityNetwork));
+        cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_createNewBankbtnActionPerformed
+
+    private void createNewOrganizationbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewOrganizationbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createNewOrganizationbtnActionPerformed
+
+    private void manageCleanerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCleanerbtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_manageCleanerbtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createNewBankbtn;
     private javax.swing.JButton createNewOrganizationbtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manageCleanerbtn;
     // End of variables declaration//GEN-END:variables
 }
