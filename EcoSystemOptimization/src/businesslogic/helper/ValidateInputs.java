@@ -22,6 +22,24 @@ import javax.swing.JOptionPane;
  */
 public class ValidateInputs {
     
+    public static boolean isDataValid(EcoSystem ecosystem, String username, String email, String phoneNo, String password){
+        if(isUsernameValid(ecosystem, username)){
+            if(isEmailValid(ecosystem, email)){
+                if(isPhoneNumberValid(ecosystem, phoneNo)){
+                    if(isPasswordValid(ecosystem, password)){
+                        return true;
+                    }
+                }
+            }
+        }return false;
+    }
+    
+    
+//    -----------------------------------------------------------------------------------
+//    -----------------------------------------------------------------------------------
+  
+    
+    
     public static boolean isUsernameValid(EcoSystem ecosystem, String username){
         
         if(username.matches("^[a-zA-Z0-9]+$")){
@@ -91,7 +109,10 @@ public class ValidateInputs {
         return false;
     }
     
+    
 //    -----------------------------------------------------------------------------------
+//    -----------------------------------------------------------------------------------
+    
     
     public static boolean isEmailValid(EcoSystem ecosystem, String email){
         
@@ -162,6 +183,97 @@ public class ValidateInputs {
         
         return false;
     }
+
+
+
+//    -----------------------------------------------------------------------------------
+//    -----------------------------------------------------------------------------------
+
+    public static boolean isPhoneNumberValid(EcoSystem ecosystem, String phoneNo){
+        
+        if(!phoneNo.isEmpty() && phoneNo.matches("^[0-9]+$") && phoneNo.length()==10){
+            if(checkPhoneNoAlreadyExists(ecosystem, phoneNo)){
+                JOptionPane.showMessageDialog(null, "!Error! Phonenumber already registered");
+                return false;
+            }else{
+                return true;
+            }
+        }
+        
+        else{
+            JOptionPane.showMessageDialog(null, "!Error! Phonenumber format is incorrect");
+            return false;
+        }
+    }
     
+    
+    public static boolean checkPhoneNoAlreadyExists(EcoSystem ecoSystem, String phoneNo) {
+        for(SysAdmin sysadmin : ecoSystem.getSysAdminsDirectory().getSysAdmins()){
+            if (sysadmin.getPhoneNo().contentEquals(phoneNo)){
+                return true;
+            }
+        }
+        
+        for(Donor donor : ecoSystem.getDonorsDirectory().getDonors()){
+            if (donor.getPhoneNo().contentEquals(phoneNo)){
+                return true;
+            }
+        }
+        
+        for(CityNetwork citynetwork : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
+            for(CityOfficial cityofficial : citynetwork.getCityOfficialsDirectory().getCityOfficials()){
+                if(cityofficial.getPhoneNo().contentEquals(phoneNo)){
+                    return true;
+                }
+            }
+        }
+        
+        for(CityNetwork citynetwork : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
+            for(Cleaner cleaner : citynetwork.getCleanersDirectory().getCleaners()){
+                if(cleaner.getPhoneNo().contentEquals(phoneNo)){
+                    return true;
+                }
+            }
+        }
+        
+        for(CityNetwork citynetwork : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
+            for(Organization org : citynetwork.getDepartmentDirectory().getDepartments()){
+                for(OrgManager orgmanager : org.getOrgManagerDirectory().getOrgManagers()){
+                    if(orgmanager.getPhoneNo().contentEquals(phoneNo)){
+                       return true;
+                    }
+                }                
+            }
+        }
+        
+        for(CityNetwork citynetwork : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
+            for(Organization org : citynetwork.getDepartmentDirectory().getDepartments()){
+                for(DeliveryVolunteer deliveryvolunteer : org.getDeliveryVolunteerDirectory().getDeliveryVolunteers()){
+                    if(deliveryvolunteer.getPhoneNo().contentEquals(phoneNo)){
+                       return true;
+                    }
+                }                
+            }
+        }
+        
+        return false;
+    } 
+    
+
+
+
+//    -----------------------------------------------------------------------------------
+//    -----------------------------------------------------------------------------------
+
+    public static boolean isPasswordValid(EcoSystem ecosystem, String password){
+        
+        if(!password.isEmpty() && password.matches("^[a-zA-Z0-9]+$")){
+            return true;
+        }        
+        else{
+            JOptionPane.showMessageDialog(null, "!Error! Password format is incorrect");
+            return false;
+        }
+    }
     
 }
