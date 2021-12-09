@@ -6,6 +6,7 @@
 package businesslogic.donor;
 
 import businesslogic.ModificationInfo;
+import businesslogic.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +38,20 @@ public class DonorsDirectory extends ModificationInfo{
 
     public void setDonors(List<Donor> donors) {
         this.donors = donors;
+    }
+
+    public User isUserDonor(String userName, String password) {
+        
+        if(!getDonors().isEmpty()) {
+            
+            for(Donor donor:getDonors()) {
+                if(donor.getUserName().equals(userName) && donor.getPassword().equals(password)) {
+                    return donor;
+                }
+            }
+        }
+        
+        return null;
     }
     
 }

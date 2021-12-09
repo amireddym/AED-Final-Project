@@ -5,6 +5,10 @@
  */
 package businesslogic;
 
+import businesslogic.enums.UserRole;
+import businesslogic.sysAdmin.SysAdmin;
+import java.util.Date;
+
 /**
  *
  * @author manojreddy
@@ -13,9 +17,11 @@ public class ConfigureASystem {
     
     public static EcoSystem configure() {
         
-        EcoSystem system = EcoSystem.getInstance();
+        EcoSystem ecoSystem = EcoSystem.getInstance();
+        ecoSystem.getSysAdminsDirectory().getSysAdmins().add(new SysAdmin("ManojSys", "6174351707", "manojreddya@sysadmin.com",
+            "50 Evergreen St", "sysadmin", "password", UserRole.SystemAdmin, "", new Date(), new Date(), "root", "root"));
 
-        return system;
+        return ecoSystem;
     }
     
 }

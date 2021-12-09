@@ -18,7 +18,7 @@ public class CityNetwork extends ModificationInfo{
     
     private CityName cityName;
     
-    private OrganizationDirectory departmentDirectory = new OrganizationDirectory();
+    private OrganizationDirectory organizationDirectory = new OrganizationDirectory();
     
     private CityOfficialDirectory cityOfficialsDirectory = new CityOfficialDirectory();
     
@@ -39,12 +39,20 @@ public class CityNetwork extends ModificationInfo{
         this.cityName = cityName;
     }
 
-    public OrganizationDirectory getDepartmentDirectory() {
-        return departmentDirectory;
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
     }
 
-    public void setDepartmentDirectory(OrganizationDirectory departmentDirectory) {
-        this.departmentDirectory = departmentDirectory;
+    public void setOrganizationDirectory(OrganizationDirectory organizationDirectory) {
+        this.organizationDirectory = organizationDirectory;
+    }
+
+    public FoodBankDirectory getFoodBankDirectory() {
+        return foodBankDirectory;
+    }
+
+    public void setFoodBankDirectory(FoodBankDirectory foodBankDirectory) {
+        this.foodBankDirectory = foodBankDirectory;
     }
 
     public CityOfficialDirectory getCityOfficialsDirectory() {

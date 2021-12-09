@@ -6,6 +6,7 @@
 package businesslogic.sysAdmin;
 
 import businesslogic.User;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class SysAdminsDirectory {
     
-    private List<SysAdmin> sysAdmins;
+    private List<SysAdmin> sysAdmins =  new ArrayList<>();
 
     public List<SysAdmin> getSysAdmins() {
         return sysAdmins;

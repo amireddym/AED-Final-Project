@@ -5,11 +5,14 @@
  */
 package userinterface;
 
+import businesslogic.CityNetwork;
 import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
 import businesslogic.JPanelManager;
 import businesslogic.User;
+import businesslogic.organization.Organization;
 import java.awt.CardLayout;
+import userinterface.signUpWorkArea.SignUpJPanel;
 
 /**
  *
@@ -72,6 +75,7 @@ public class MainJFrame extends javax.swing.JFrame {
         passwordJLabel.setText("Password");
 
         logoutJButton.setText("Logout");
+        logoutJButton.setEnabled(false);
         logoutJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutJButtonActionPerformed(evt);
@@ -173,6 +177,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
         // TODO add your handling code here:
+        logoutJButton.setEnabled(false);
+        
+        loginJButton.setEnabled(true);
+        userNameJTextField.setEnabled(true);
+        userNameJTextField.setText("");
+        jPasswordField.setEnabled(true);
+        jPasswordField.setText("");
+        signUpJButton.setEnabled(true);
+        
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
@@ -184,6 +197,7 @@ public class MainJFrame extends javax.swing.JFrame {
         
         User userLogged = null;
         
+        //SysAdmin login functionality
         if(!ecoSystem.getSysAdminsDirectory().getSysAdmins().isEmpty()){
             
             userLogged = ecoSystem.getSysAdminsDirectory().isUserSysAdmin(userName, password);
@@ -197,19 +211,133 @@ public class MainJFrame extends javax.swing.JFrame {
                         
         }
         
+        //CityOfficial login functionality
+        if(userLogged==null) {
+            
+            if(!ecoSystem.getCityNetworkDirectory().getCityNetworks().isEmpty()) {
+                for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
+                    
+                    if(!cityNetwork.getCityOfficialsDirectory().getCityOfficials().isEmpty()) {
+                        
+                        userLogged = cityNetwork.getCityOfficialsDirectory().isUserCityOfficial(userName,password);
+                        if(userLogged!=null) {
+                            CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+                            userProcessJPanel.add("CityOfficalHomePanel", JPanelManager.getCityOfficialHomePanel());
+                            cardLayout.next(userProcessJPanel);
+                            clearLoginPanels();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        
+        //Donor login functionality
+        if(userLogged==null) {
+            
+            if(!ecoSystem.getDonorsDirectory().getDonors().isEmpty()) {
+                
+                userLogged = ecoSystem.getDonorsDirectory().isUserDonor(userName, password);
+                if(userLogged!=null) {
+                    CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+                    userProcessJPanel.add("DonorHomePanel",JPanelManager.getDonorHomePanel());
+                    cardLayout.next(userProcessJPanel);
+                    clearLoginPanels();
+                    return;
+                }
+            }
+        }
+        
+        //Cleaner login functionality
+        if(userLogged==null) {
+            
+            if(!ecoSystem.getCityNetworkDirectory().getCityNetworks().isEmpty()) {
+                for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()){
+                    
+                    if(!cityNetwork.getCleanersDirectory().getCleaners().isEmpty()) {
+                        
+                        userLogged = cityNetwork.getCleanersDirectory().isUserCleaner(userName, password);
+                        if(userLogged!=null) {
+                            CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+                            userProcessJPanel.add("CleanerHomePanel",JPanelManager.getCleanerHomePanel());
+                            cardLayout.next(userProcessJPanel);
+                            clearLoginPanels();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        
+        //OrgManager login functionality
+        if(userLogged==null) {
+            
+            if(!ecoSystem.getCityNetworkDirectory().getCityNetworks().isEmpty()) {
+                for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
+                    
+                    if(!cityNetwork.getOrganizationDirectory().getOrganizations().isEmpty()) {
+                        for(Organization organization:cityNetwork.getOrganizationDirectory().getOrganizations()) {
+                            
+                            if(!organization.getOrgManagerDirectory().getOrgManagers().isEmpty()) {
+                                
+                                userLogged = organization.getOrgManagerDirectory().isUserOrgManager(userName,password);
+                                if(userLogged!=null) {
+                                    CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+                                    userProcessJPanel.add("OrgMangerHomePanel", JPanelManager.getOrgManagerHomePanel());
+                                    cardLayout.next(userProcessJPanel);
+                                    clearLoginPanels();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
+        //DeliveryVolunteer login functionality
+        if(userLogged==null) {
+            
+            if(!ecoSystem.getCityNetworkDirectory().getCityNetworks().isEmpty()) {
+                for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
+                    
+                    if(!cityNetwork.getOrganizationDirectory().getOrganizations().isEmpty()) {
+                        for(Organization organization:cityNetwork.getOrganizationDirectory().getOrganizations()) {
+                            
+                            if(!organization.getDeliveryVolunteerDirectory().getDeliveryVolunteers().isEmpty()) {
+                                
+                                userLogged = organization.getDeliveryVolunteerDirectory().isUserDeliveryVolunteer(userName, password);
+                                if(userLogged!=null) {
+                                    CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+                                    userProcessJPanel.add("DeliveryVolunteerHomePanel", JPanelManager.getDeliveryVolunteerHomePanel());
+                                    cardLayout.next(userProcessJPanel);
+                                    clearLoginPanels();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }        
+        
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void signUpJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpJButtonActionPerformed
         // TODO add your handling code here:
+        
+        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+        userProcessJPanel.add("SignUpPanel", new SignUpJPanel());
+        cardLayout.next(userProcessJPanel);
+        
     }//GEN-LAST:event_signUpJButtonActionPerformed
 
     private void clearLoginPanels() {
         
         userNameJTextField.setText("");
-        passwordJLabel.setText("");
         userNameJTextField.setEnabled(false);
-        passwordJLabel.setEnabled(false);
+        jPasswordField.setText("");
+        jPasswordField.setEnabled(false);
         loginJButton.setEnabled(false);
         logoutJButton.setEnabled(true);
         signUpJButton.setEnabled(false);
