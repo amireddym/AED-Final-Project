@@ -28,15 +28,7 @@
                       <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="passwordjLabel" min="-2" pref="122" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="passwordjTextField" linkSize="1" min="-2" pref="165" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="userNamejLabel" min="-2" pref="122" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="userNamejTextField" linkSize="1" min="-2" pref="165" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="506" max="-2" attributes="0"/>
                               <Component id="uploadjButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -51,8 +43,9 @@
                               </Group>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="addressjTextField" linkSize="1" min="-2" pref="165" max="-2" attributes="0"/>
-                                  <Component id="phoneNojTextField" linkSize="1" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="addressjTextField" linkSize="1" alignment="0" pref="165" max="32767" attributes="0"/>
+                                  <Component id="phoneNojTextField" linkSize="1" alignment="0" pref="165" max="32767" attributes="0"/>
+                                  <Component id="organizationTypejComboBox" alignment="0" min="-2" pref="172" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -65,11 +58,15 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="288" max="-2" attributes="0"/>
                       <Component id="savejButton" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                      <Component id="organizationTypejLabel" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="207" pref="294" max="32767" attributes="0"/>
+              <EmptySpace pref="179" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,12 +75,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="picHolderjLabel" min="-2" pref="139" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="uploadjButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="headerjLabel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="backjButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -93,17 +90,7 @@
                           <Component id="namejLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="namejTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="userNamejLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="userNamejTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="passwordjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="passwordjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="emailjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="emailjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,60 +105,21 @@
                           <Component id="addressjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="addressjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="savejButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="77" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="organizationTypejLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="organizationTypejComboBox" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="savejButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="126" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="namejLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="13" style="1"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Name :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="userNamejTextField">
-    </Component>
-    <Component class="javax.swing.JTextField" name="namejTextField">
-    </Component>
-    <Component class="javax.swing.JLabel" name="passwordjLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="13" style="1"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Password :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="passwordjTextField">
-    </Component>
-    <Component class="javax.swing.JLabel" name="emailjLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="13" style="1"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Email :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="emailjTextField">
-    </Component>
-    <Component class="javax.swing.JLabel" name="phoneNojLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="13" style="1"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Phone No :"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="backjButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt; &lt; Back"/>
@@ -188,7 +136,16 @@
           <Font name="Lucida Grande" size="18" style="3"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Create New SysAdmin"/>
+        <Property name="text" type="java.lang.String" value="Create New Organization"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="namejLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Name :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="savejButton">
@@ -199,14 +156,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="savejButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="userNamejLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="13" style="1"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="User Name :"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="namejTextField">
     </Component>
     <Component class="javax.swing.JLabel" name="addressjLabel">
       <Properties>
@@ -228,6 +178,15 @@
         </Property>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="emailjLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Email :"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JButton" name="uploadjButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="upload"/>
@@ -235,6 +194,39 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uploadjButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="emailjTextField">
+    </Component>
+    <Component class="javax.swing.JLabel" name="phoneNojLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Phone No :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="organizationTypejLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="13" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Organization Type :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="organizationTypejComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="organizationTypejComboBoxActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

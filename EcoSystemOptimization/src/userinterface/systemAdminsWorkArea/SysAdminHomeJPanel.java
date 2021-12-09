@@ -33,7 +33,7 @@ public class SysAdminHomeJPanel extends javax.swing.JPanel {
     
     public SysAdminHomeJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, User userLogged) {
         initComponents();
-        this.userProcessJpanel = this.userProcessJpanel;
+        this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
         this.userLogged = userLogged;
         populateCities();

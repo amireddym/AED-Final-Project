@@ -18,12 +18,12 @@ public enum OrganizationType {
     
     GovtNgo,PrivateNgo,ReligiousOrg;
     
-    public static List<String> getDepartmentTypesList(){
+    public static List<String> getOrganizationTypesList(){
        
         return Stream.of(OrganizationType.values()).map(OrganizationType::name).collect(Collectors.toList());
     }
     
-    public static String[] getDepartmentTypesArray() {
+    public static String[] getOrganizationTypesArray() {
         
         return Arrays.stream(OrganizationType.values()).map(OrganizationType::name).toArray(String[]::new);
     }

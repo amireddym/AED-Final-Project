@@ -7,12 +7,11 @@ package userinterface.systemAdminsWorkArea;
 
 import businesslogic.EcoSystem;
 import businesslogic.User;
-import businesslogic.enums.UserRole;
+import businesslogic.donor.Donor;
 import businesslogic.helper.Constants;
 import businesslogic.helper.EmailHelper;
 import businesslogic.helper.PhoneNoHelper;
 import businesslogic.helper.UserNameHelper;
-import businesslogic.sysAdmin.SysAdmin;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -29,41 +28,41 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author manojreddy
  */
-public class UpdateSysAdminJPanel extends javax.swing.JPanel {
+public class UpdateDonorJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form UpdateSysAdminJPanel
+     * Creates new form UpdateDonorJPanel
      */
     
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
-    private SysAdmin sysAdmin;
+    private Donor donor;
     private User userLogged;
     
     private String imagePath;
     
-    public UpdateSysAdminJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, SysAdmin sysAdmin, User userLogged) {
+    public UpdateDonorJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Donor donor, User userLogged) {
         initComponents();
         this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
-        this.sysAdmin = sysAdmin;
+        this.donor = donor;
         this.userLogged = userLogged;
         
         picHolderjLabel.setSize(126, 139);
         populateData();
     }
-
+    
     private void populateData() {
         
-        namejTextField.setText(sysAdmin.getName());
-        userNamejTextField.setText(sysAdmin.getUserName());
-        passwordjTextField.setText(sysAdmin.getPassword());
-        phoneNojTextField.setText(sysAdmin.getPhoneNo());
-        emailjTextField.setText(sysAdmin.getEmail());
-        addressjTextField.setText(sysAdmin.getAddress());
-        imagePath = sysAdmin.getProfilePic();
+        namejTextField.setText(donor.getName());
+        userNamejTextField.setText(donor.getUserName());
+        passwordjTextField.setText(donor.getPassword());
+        phoneNojTextField.setText(donor.getPhoneNo());
+        emailjTextField.setText(donor.getEmail());
+        addressjTextField.setText(donor.getAddress());
+        imagePath = donor.getProfilePic();
         
-        setPhoto(sysAdmin.getProfilePic());
+        setPhoto(donor.getProfilePic());
     }
     
     private void setPhoto(String profilePic) {
@@ -79,7 +78,7 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
         Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
         picHolderjLabel.setIcon(new ImageIcon(photoResized));
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,23 +88,31 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backjButton = new javax.swing.JButton();
-        phoneNojTextField = new javax.swing.JTextField();
-        headerjLabel = new javax.swing.JLabel();
-        namejLabel = new javax.swing.JLabel();
-        updatejButton = new javax.swing.JButton();
-        userNamejTextField = new javax.swing.JTextField();
-        userNamejLabel = new javax.swing.JLabel();
         namejTextField = new javax.swing.JTextField();
         addressjLabel = new javax.swing.JLabel();
         passwordjLabel = new javax.swing.JLabel();
         addressjTextField = new javax.swing.JTextField();
+        backjButton = new javax.swing.JButton();
         passwordjTextField = new javax.swing.JTextField();
+        phoneNojTextField = new javax.swing.JTextField();
         emailjLabel = new javax.swing.JLabel();
+        headerjLabel = new javax.swing.JLabel();
         picHolderjLabel = new javax.swing.JLabel();
+        namejLabel = new javax.swing.JLabel();
         emailjTextField = new javax.swing.JTextField();
+        updatejButton = new javax.swing.JButton();
         uploadjButton = new javax.swing.JButton();
+        userNamejTextField = new javax.swing.JTextField();
         phoneNojLabel = new javax.swing.JLabel();
+        userNamejLabel = new javax.swing.JLabel();
+
+        addressjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        addressjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        addressjLabel.setText("Address :");
+
+        passwordjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        passwordjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        passwordjLabel.setText("Password :");
 
         backjButton.setText("< < Back");
         backjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -114,9 +121,15 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        emailjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        emailjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        emailjLabel.setText("Email :");
+
         headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headerjLabel.setText("Update SysAdmin");
+        headerjLabel.setText("Update Donor");
+
+        picHolderjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         namejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         namejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -129,24 +142,6 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
             }
         });
 
-        userNamejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        userNamejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        userNamejLabel.setText("User Name :");
-
-        addressjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        addressjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        addressjLabel.setText("Address :");
-
-        passwordjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        passwordjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        passwordjLabel.setText("Password :");
-
-        emailjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        emailjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        emailjLabel.setText("Email :");
-
-        picHolderjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         uploadjButton.setText("upload");
         uploadjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +152,10 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
         phoneNojLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         phoneNojLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         phoneNojLabel.setText("Phone No :");
+
+        userNamejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        userNamejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        userNamejLabel.setText("User Name :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -247,7 +246,7 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
                             .addComponent(addressjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50)
                         .addComponent(updatejButton)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -256,8 +255,8 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
         userProcessJpanel.remove(this);
 
         Component[] components = userProcessJpanel.getComponents();
-        SysAdminHomeJPanel systemAdminWorkAreaJPanel = (SysAdminHomeJPanel) components[components.length-1];
-        systemAdminWorkAreaJPanel.populateSysAdmins();
+        ManageDonorsJpanel manageDonorsJpanel = (ManageDonorsJpanel) components[components.length-1];
+        manageDonorsJpanel.populateDonors();
 
         CardLayout cardLayout = (CardLayout) userProcessJpanel.getLayout();
         cardLayout.previous(userProcessJpanel);
@@ -267,31 +266,31 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
 
-            if(!sysAdmin.getUserName().equals(userNamejTextField.getText()) && UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {
+            if(!donor.getUserName().equals(userNamejTextField.getText()) && UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
                 return;
             }
-            if(!sysAdmin.getEmail().equals(emailjTextField.getText()) && EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
+            if(!donor.getEmail().equals(emailjTextField.getText()) && EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
                 return;
             }
-            if(!sysAdmin.getPhoneNo().equals(phoneNojTextField.getText()) && PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
+            if(!donor.getPhoneNo().equals(phoneNojTextField.getText()) && PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
                 return;
             }
 
-            sysAdmin.setName(namejTextField.getText());
-            sysAdmin.setUserName(userNamejTextField.getText());
-            sysAdmin.setPassword(passwordjTextField.getText());
-            sysAdmin.setEmail(emailjTextField.getText());
-            sysAdmin.setPhoneNo(phoneNojTextField.getText());
-            sysAdmin.setAddress(addressjTextField.getText());
-            sysAdmin.setProfilePic(imagePath);
-            sysAdmin.setLastUpdatedDate(new Date());
-            sysAdmin.setModifiedBy(userLogged.getUserName());
-            JOptionPane.showMessageDialog(this, "Successfully saved new SysAdmin");
+            donor.setName(namejTextField.getText());
+            donor.setUserName(userNamejTextField.getText());
+            donor.setPassword(passwordjTextField.getText());
+            donor.setEmail(emailjTextField.getText());
+            donor.setPhoneNo(phoneNojTextField.getText());
+            donor.setAddress(addressjTextField.getText());
+            donor.setProfilePic(imagePath);
+            donor.setLastUpdatedDate(new Date());
+            donor.setModifiedBy(userLogged.getUserName());
+            JOptionPane.showMessageDialog(this, "Successfully saved new Donor");
         }else{
-            JOptionPane.showMessageDialog(this, "Error saving new SysAdmin. Please check DataTypes");
+            JOptionPane.showMessageDialog(this, "Error saving new Donor. Please check DataTypes");
         }
     }//GEN-LAST:event_updatejButtonActionPerformed
 
@@ -319,7 +318,8 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
             setPhoto(imagePath);
         }
     }//GEN-LAST:event_uploadjButtonActionPerformed
-   
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressjLabel;
     private javax.swing.JTextField addressjTextField;
