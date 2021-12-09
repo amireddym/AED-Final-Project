@@ -7,7 +7,11 @@ package userinterface.cityOfficialsWorkArea;
 import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
+import businesslogic.cleaner.Cleaner;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +26,7 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
     private User userAccount;
     private EcoSystem ecoSystem;
     private CityNetwork cityNetwork;
+     private Cleaner cleaner;
     
     public ManageCleanersJPanel(JPanel userProcessContainer,User userAccount,
         EcoSystem ecoSystem, CityNetwork cityNetwork) {
@@ -34,6 +39,22 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         
     }
      private void populateData(){
+                 DefaultTableModel manageCleanersModel = (DefaultTableModel) managecleanerstbl.getModel();
+                 manageCleanersModel.setRowCount(0);
+                 int currentCleaner=0;
+                 
+                 for(Cleaner cleaner:cityNetwork.getCleanersDirectory().getCleaners()){
+                     currentCleaner++;
+                     Object[] row = new Object[7];
+                     row[0]=currentCleaner;
+                     row[1]=cleaner.getName();
+                     row[2]=cleaner.getPhoneNo();
+                     row[3]=cleaner.getEmail();
+                     row[4]=cleaner.getAddress();
+                     row[5]=cleaner.getUserName();
+                     row[6]=cleaner.getPassword();
+                     manageCleanersModel.addRow(row);
+                 }
      }
 
     /**
@@ -84,12 +105,32 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         jLabel3.setText("<Profile Pic>");
 
         addBtn.setText("Create New Cleaner");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         updatebtn.setText("Update Details");
+        updatebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatebtnActionPerformed(evt);
+            }
+        });
 
         deletebtn.setText("Delete");
+        deletebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletebtnActionPerformed(evt);
+            }
+        });
 
         backbtn.setText("Back");
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -139,6 +180,42 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
                 .addGap(27, 27, 27))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backbtnActionPerformed
+
+    private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed
+        // TODO add your handling code here:
+         int selectedRow=managecleanerstbl.getSelectedRow();
+         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a Cleaner to delete");
+            return;
+        }else{
+             Cleaner selectedCleaner=(Cleaner) managecleanerstbl.getValueAt(selectedRow, 1);
+             cityNetwork.getCleanersDirectory().getCleaners().remove(selectedCleaner);
+             JOptionPane.showMessageDialog(null, "Successfully deleted Cleaner Account ");
+
+            populateData();
+         }
+    }//GEN-LAST:event_deletebtnActionPerformed
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("Create New Cleaners", new CreateNewCleanerJPanel(userProcessContainer,  ecoSystem, userAccount, cityNetwork));
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("Update Cleaner", new UpdateCleanerJPanel(userProcessContainer,  cleaner, userAccount));
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_updatebtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -98,6 +98,10 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
 
     private void manageCleanerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCleanerbtnActionPerformed
         // TODO add your handling code here:
+         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("Manage Cleaners", new ManageCleanersJPanel(userProcessContainer, userAccount,
+            ecoSystem, cityNetwork));
+        cardLayout.next(userProcessContainer);
         
     }//GEN-LAST:event_manageCleanerbtnActionPerformed
 
