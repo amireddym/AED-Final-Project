@@ -12,7 +12,7 @@ package businesslogic.helper;
 public class ValidateInputs {
     
     public static boolean isNameValid(String name){        
-        if(name.matches("^[a-zA-Z]+$")){
+        if(name.matches("^[a-zA-Z]+[a-zA-Z_\\s]+$")){
             return true;
         }return false;
     }

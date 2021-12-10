@@ -22,7 +22,7 @@
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Component id="btnupdatemyprofile" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="171" pref="171" max="-2" attributes="0"/>
-                      <Component id="btnmanagemydonations" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnmanagemydeliveries" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnupdatemyprofile" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnmanagemydonations" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnmanagemydeliveries" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="88" max="32767" attributes="0"/>
           </Group>
@@ -65,12 +65,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnupdatemyprofileActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnmanagemydonations">
+    <Component class="javax.swing.JButton" name="btnmanagemydeliveries">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage My Donations"/>
+        <Property name="text" type="java.lang.String" value="Manage My Deliveries"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmanagemydonationsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmanagemydeliveriesActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

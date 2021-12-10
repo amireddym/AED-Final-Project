@@ -41,7 +41,7 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
 
         lbltitle = new javax.swing.JLabel();
         btnupdatemyprofile = new javax.swing.JButton();
-        btnmanagemydonations = new javax.swing.JButton();
+        btnmanagemydeliveries = new javax.swing.JButton();
 
         lbltitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbltitle.setText("Delivery Volunteer Home Page");
@@ -53,10 +53,10 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnmanagemydonations.setText("Manage My Donations");
-        btnmanagemydonations.addActionListener(new java.awt.event.ActionListener() {
+        btnmanagemydeliveries.setText("Manage My Deliveries");
+        btnmanagemydeliveries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmanagemydonationsActionPerformed(evt);
+                btnmanagemydeliveriesActionPerformed(evt);
             }
         });
 
@@ -70,7 +70,7 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
                         .addGap(56, 56, 56)
                         .addComponent(btnupdatemyprofile)
                         .addGap(171, 171, 171)
-                        .addComponent(btnmanagemydonations))
+                        .addComponent(btnmanagemydeliveries))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(145, 145, 145)
                         .addComponent(lbltitle)))
@@ -84,7 +84,7 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnupdatemyprofile)
-                    .addComponent(btnmanagemydonations))
+                    .addComponent(btnmanagemydeliveries))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -95,15 +95,15 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
         cardLayout.next(userProcessJPanel);
     }//GEN-LAST:event_btnupdatemyprofileActionPerformed
 
-    private void btnmanagemydonationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanagemydonationsActionPerformed
-//        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-//        userProcessJPanel.add("ManageMyDeliveriesJPanel", new ManageMyDeliveriesJPanel(userProcessJPanel,ecoSystem,userLogged));
-//        cardLayout.next(userProcessJPanel);
-    }//GEN-LAST:event_btnmanagemydonationsActionPerformed
+    private void btnmanagemydeliveriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanagemydeliveriesActionPerformed
+        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+        userProcessJPanel.add("ManageMyDeliveriesJPanel", new ManageMyDeliveriesJPanel(userProcessJPanel,ecoSystem,userLogged));
+        cardLayout.next(userProcessJPanel);
+    }//GEN-LAST:event_btnmanagemydeliveriesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnmanagemydonations;
+    private javax.swing.JButton btnmanagemydeliveries;
     private javax.swing.JButton btnupdatemyprofile;
     private javax.swing.JLabel lbltitle;
     // End of variables declaration//GEN-END:variables
