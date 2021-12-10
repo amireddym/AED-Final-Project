@@ -328,7 +328,7 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
             return;
         }
         DefaultTableModel currentDonationsModel = (DefaultTableModel) availableDonationsjTable.getModel();
-        Donation donation = (Donation) currentDonationsModel.getValueAt(selectedIndex, 3);
+        Donation donation = (Donation) currentDonationsModel.getValueAt(selectedIndex, 1);
 
         donation.setOrgManager((OrgManager) userLogged);
         donation.setDeliveryVolunteer(organization.getDeliveryVolunteerDirectory().getDeliveryVolunteers().get(deliveryVolunteerjComboBox.getSelectedIndex()));

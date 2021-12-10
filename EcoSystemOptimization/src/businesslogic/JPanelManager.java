@@ -46,9 +46,10 @@ public class JPanelManager {
         return new DeliveryVolunteerHomeJPanel();
     }
     
-    public static JPanel getCleanerHomePanel() {
+    public static JPanel getCleanerHomePanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork,
+            User userLogged) {
         
-        return new CleanerHomeJPanel();
+        return new CleanerHomeJPanel(userProcessJPanel, ecoSystem, cityNetwork, userLogged);
     }
     
 }
