@@ -196,5 +196,10 @@ public class Donation extends ModificationInfo{
     public void setCleaner(Cleaner cleaner) {
         this.cleaner = cleaner;
     }
+
+    @Override
+    public String toString() {
+        return information;
+    }
     
 }

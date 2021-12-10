@@ -5,6 +5,7 @@
  */
 package businesslogic;
 
+import businesslogic.organization.Organization;
 import javax.swing.JPanel;
 import userinterface.cityOfficialsWorkArea.CityOfficialHomeJPanel;
 import userinterface.cleanersWorkArea.CleanerHomeJPanel;
@@ -29,9 +30,10 @@ public class JPanelManager {
         return new CityOfficialHomeJPanel();
     }
         
-    public static JPanel getOrgManagerHomePanel() {
+    public static JPanel getOrgManagerHomePanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork,
+            Organization organization, User userLogged) {
         
-        return new OrgManagerHomeJPanel();
+        return new OrgManagerHomeJPanel(userProcessJPanel, ecoSystem, cityNetwork, organization, userLogged);
     }
     
     public static JPanel getDonorHomePanel() {
@@ -44,9 +46,10 @@ public class JPanelManager {
         return new DeliveryVolunteerHomeJPanel();
     }
     
-    public static JPanel getCleanerHomePanel() {
+    public static JPanel getCleanerHomePanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork,
+            User userLogged) {
         
-        return new CleanerHomeJPanel();
+        return new CleanerHomeJPanel(userProcessJPanel, ecoSystem, cityNetwork, userLogged);
     }
     
 }

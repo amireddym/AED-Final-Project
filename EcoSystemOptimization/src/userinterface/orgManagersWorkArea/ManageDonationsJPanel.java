@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.cleanersWorkArea;
+package userinterface.orgManagersWorkArea;
 
 import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
-import businesslogic.cleaner.Cleaner;
+import businesslogic.delivery.DeliveryVolunteer;
 import businesslogic.donor.Donation;
 import businesslogic.donor.Donor;
 import businesslogic.enums.DonationStatus;
 import businesslogic.enums.PickUp;
+import businesslogic.organization.OrgManager;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.util.Date;
@@ -24,76 +25,85 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author manojreddy
  */
-public class CleanerHomeJPanel extends javax.swing.JPanel {
+public class ManageDonationsJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CleanerHomeJPanel
+     * Creates new form ManageDonationsJPanel
      */
+    
     private JPanel userProcessJPanel;
     private EcoSystem ecoSystem;
     private CityNetwork cityNetwork;
+    private Organization organization;
     private User userLogged;
     
-    public CleanerHomeJPanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork,
-            User userLogged) {
+    public ManageDonationsJPanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         initComponents();
         
         this.userProcessJPanel = userProcessJPanel;
         this.ecoSystem = ecoSystem;
         this.cityNetwork = cityNetwork;
+        this.organization = organization;
         this.userLogged = userLogged;
         
-        populateDonations();
+        populateData();
+        
     }
     
-    public void populateDonations() {
+    private void populateData() {
         
-        Cleaner cleaner  = (Cleaner) userLogged;
+        deliveryVolunteerjComboBox.removeAllItems();
+        for(DeliveryVolunteer deliveryVolunteer:organization.getDeliveryVolunteerDirectory().getDeliveryVolunteers()) {
+            deliveryVolunteerjComboBox.addItem(deliveryVolunteer.getName());
+        }
         
-        DefaultTableModel readyToCleanModel = (DefaultTableModel) availableDonationsToCleanUpjTable.getModel();
-        readyToCleanModel.setRowCount(0);
-        int readyToCleanCount=0;
-       
-        DefaultTableModel cleanedModel = (DefaultTableModel) cleanedDonationsjTable.getModel();
-        cleanedModel.setRowCount(0);
-        int cleanedCount=0;
+        DefaultTableModel currentOrdersModel = (DefaultTableModel) availableDonationsjTable.getModel();
+        currentOrdersModel.setRowCount(0);
+        int currentOrderCount=0;
         
-        //Donations available to clean
+        DefaultTableModel successOrderModel = (DefaultTableModel) acceptedDonationsjTable.getModel();
+        successOrderModel.setRowCount(0);
+        int successOrderCount=0;
+        
         for(Donor donor:ecoSystem.getDonorsDirectory().getDonors()) {
             
             for(Donation donation:donor.getDonations()) {
-                
-                if(donation.getPickUp().name().equals(PickUp.FoodBank.name()) && (
-                        donation.getDonationStatus().name().equals(DonationStatus.ReadyToPickup.name()) || donation.getDonationStatus().name().equals(DonationStatus.PickupAwaiting.name())) && 
-                        donation.getDateofExpiry().before(new Date())) {
+                if(donation.getDateofExpiry()!=null && donation.getDateofExpiry().before(new Date())){
+                    continue;
+                }
+                if(donation.getDonationStatus().name().equals(DonationStatus.ReadyToPickup.name()) && 
+                        donation.getCityNetwork().getCityName().name().equals(cityNetwork.getCityName().name())) {
                     
-                    readyToCleanCount++;
-                    Object[] row = new Object[8];
-                    row[0] = cleanedCount;
+                    currentOrderCount++;
+                    Object[] row = new Object[7];
+                    row[0] = currentOrderCount;
                     row[1] = donation;
                     row[2] = donation.getDonor().getName();
                     row[3] = donation.getCategory().name();
                     row[4] = donation.getUsageStatus().name();
-                    row[5] = donation.getFoodBank().getLocation();
+                    if(donation.getPickUp().name().equals(PickUp.Home.name())) {
+                        row[5] = donation.getAddressToPickUp();
+                    }else{
+                        row[5] = donation.getFoodBank().getLocation();
+                    }
                     if(donation.getDateofExpiry()!=null) {
                         row[6] = donation.getDateofExpiry();
                     }
-                    donation.setDonationStatus(DonationStatus.Expired);
-                    row[7] = donation.getDonationStatus().name();
-//                    row[7] = donation.getDonationStatus().name();
-                    readyToCleanModel.addRow(row);
-                }  
+                    
+                    currentOrdersModel.addRow(row);
+                }
+                
             }
+            
         }
         
-        availableDonationsToCleanUpCountjLabel.setText(String.valueOf(readyToCleanCount));
+        availableDonationsCountjLabel.setText(String.valueOf(currentOrderCount));
         
-        //Populating cleaned donations by cleaner
-        for(Donation donation:cleaner.getDonations()) {
+        for(Donation donation:organization.getDonations()) {
             
-            cleanedCount++;
+            successOrderCount++;
             Object[] row = new Object[8];
-            row[0] = cleanedCount;
+            row[0] = successOrderCount;
             row[1] = donation;
             row[2] = donation.getDonor().getName();
             row[3] = donation.getCategory().name();
@@ -108,10 +118,10 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
             }
             row[7] = donation.getDonationStatus().name();
             
-            cleanedModel.addRow(row);
+            successOrderModel.addRow(row);
         }
         
-        cleanedDonatonsCountjLabel.setText(String.valueOf(cleanedCount)); 
+        totalDonationsAcceptedCountjLabel.setText(String.valueOf(successOrderCount));
         
     }
 
@@ -124,27 +134,26 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cleanedDonationsHeaderjLabel1 = new javax.swing.JLabel();
-        cleanedDonatonsCountjLabel = new javax.swing.JLabel();
+        currentOrdersHeaderjLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        cleanedDonationsjTable = new javax.swing.JTable();
-        pendingCountHeaderjLabel = new javax.swing.JLabel();
-        availableDonationsToCleanUpCountjLabel = new javax.swing.JLabel();
+        acceptedDonationsjTable = new javax.swing.JTable();
         backButtonjButton = new javax.swing.JButton();
+        deliveryVolunteerjComboBox = new javax.swing.JComboBox<>();
         currentDonationsHeaderjLabel = new javax.swing.JLabel();
+        deliveryPersonjLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        availableDonationsToCleanUpjTable = new javax.swing.JTable();
-        cleanUpjButton = new javax.swing.JButton();
+        availableDonationsjTable = new javax.swing.JTable();
+        acceptjButton = new javax.swing.JButton();
         totalCountHeaderjLabel = new javax.swing.JLabel();
+        totalDonationsAcceptedCountjLabel = new javax.swing.JLabel();
+        pendingCountHeaderjLabel = new javax.swing.JLabel();
+        availableDonationsCountjLabel = new javax.swing.JLabel();
 
-        cleanedDonationsHeaderjLabel1.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
-        cleanedDonationsHeaderjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cleanedDonationsHeaderjLabel1.setText("Donations Cleaned By Me");
+        currentOrdersHeaderjLabel1.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
+        currentOrdersHeaderjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        currentOrdersHeaderjLabel1.setText("Donations Accepted");
 
-        cleanedDonatonsCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        cleanedDonatonsCountjLabel.setText("0");
-
-        cleanedDonationsjTable.setModel(new javax.swing.table.DefaultTableModel(
+        acceptedDonationsjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -170,15 +179,8 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        cleanedDonationsjTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(cleanedDonationsjTable);
-
-        pendingCountHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        pendingCountHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        pendingCountHeaderjLabel.setText("Count :");
-
-        availableDonationsToCleanUpCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        availableDonationsToCleanUpCountjLabel.setText("0");
+        acceptedDonationsjTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(acceptedDonationsjTable);
 
         backButtonjButton.setText("< < Back");
         backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -189,9 +191,12 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
 
         currentDonationsHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         currentDonationsHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        currentDonationsHeaderjLabel.setText("Donations Ready To CleanUp in the City");
+        currentDonationsHeaderjLabel.setText("Donations Available in the City");
 
-        availableDonationsToCleanUpjTable.setModel(new javax.swing.table.DefaultTableModel(
+        deliveryPersonjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        deliveryPersonjLabel.setText("Choose Delivery Volunteer :");
+
+        availableDonationsjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -217,18 +222,28 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        availableDonationsToCleanUpjTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(availableDonationsToCleanUpjTable);
+        availableDonationsjTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(availableDonationsjTable);
 
-        cleanUpjButton.setText("Clean this Donation ");
-        cleanUpjButton.addActionListener(new java.awt.event.ActionListener() {
+        acceptjButton.setText("Accept and Assign Order");
+        acceptjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cleanUpjButtonActionPerformed(evt);
+                acceptjButtonActionPerformed(evt);
             }
         });
 
         totalCountHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         totalCountHeaderjLabel.setText("Total Count :");
+
+        totalDonationsAcceptedCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        totalDonationsAcceptedCountjLabel.setText("0");
+
+        pendingCountHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        pendingCountHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        pendingCountHeaderjLabel.setText("Count :");
+
+        availableDonationsCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        availableDonationsCountjLabel.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -238,10 +253,17 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(pendingCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(availableDonationsToCleanUpCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(availableDonationsCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(deliveryPersonjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(deliveryVolunteerjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(acceptjButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,19 +271,16 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backButtonjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(188, 188, 188)
-                                .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(totalCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cleanedDonatonsCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(811, 811, 811)
-                                .addComponent(cleanUpjButton))))
+                                .addComponent(totalDonationsAcceptedCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(344, 344, 344)
-                        .addComponent(cleanedDonationsHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addGap(345, 345, 345)
+                        .addComponent(currentOrdersHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,20 +292,23 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pendingCountHeaderjLabel)
-                    .addComponent(availableDonationsToCleanUpCountjLabel))
+                    .addComponent(availableDonationsCountjLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cleanUpjButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deliveryVolunteerjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deliveryPersonjLabel)
+                    .addComponent(acceptjButton))
                 .addGap(22, 22, 22)
-                .addComponent(cleanedDonationsHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentOrdersHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalCountHeaderjLabel)
-                    .addComponent(cleanedDonatonsCountjLabel))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(totalDonationsAcceptedCountjLabel))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -298,40 +320,44 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
         layout.previous(userProcessJPanel);
     }//GEN-LAST:event_backButtonjButtonActionPerformed
 
-    private void cleanUpjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanUpjButtonActionPerformed
+    private void acceptjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptjButtonActionPerformed
         // TODO add your handling code here:
-        
-        Cleaner cleaner  = (Cleaner) userLogged;
-        int selectedIndex = availableDonationsToCleanUpjTable.getSelectedRow();
-        if(selectedIndex<0 ) {
-            JOptionPane.showMessageDialog(this, "Please select a row");
+        int selectedIndex = availableDonationsjTable.getSelectedRow();
+        if(selectedIndex<0 || deliveryVolunteerjComboBox.getSelectedIndex()<0) {
+            JOptionPane.showMessageDialog(this, "Please select a row or make sure you assign a delivery volunteer");
             return;
         }
-        DefaultTableModel currentDonationsModel = (DefaultTableModel) availableDonationsToCleanUpjTable.getModel();
+        DefaultTableModel currentDonationsModel = (DefaultTableModel) availableDonationsjTable.getModel();
         Donation donation = (Donation) currentDonationsModel.getValueAt(selectedIndex, 1);
 
-        donation.setCleaner(cleaner);
+        donation.setOrgManager((OrgManager) userLogged);
+        donation.setDeliveryVolunteer(organization.getDeliveryVolunteerDirectory().getDeliveryVolunteers().get(deliveryVolunteerjComboBox.getSelectedIndex()));
         donation.setLastUpdatedDate(new Date());
         donation.setModifiedBy(userLogged.getName());
-        donation.setDonationStatus(DonationStatus.Closed);
+        donation.setDonationStatus(DonationStatus.PickupAwaiting);
+        donation.setOrganization(organization);
         
-        cleaner.getDonations().add(donation);
-        populateDonations();
-    }//GEN-LAST:event_cleanUpjButtonActionPerformed
+        organization.getDonations().add(donation);
+        organization.getDeliveryVolunteerDirectory().getDeliveryVolunteers().get(deliveryVolunteerjComboBox.getSelectedIndex()).getDonations().add(donation);
+        
+        populateData();
+    }//GEN-LAST:event_acceptjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel availableDonationsToCleanUpCountjLabel;
-    private javax.swing.JTable availableDonationsToCleanUpjTable;
+    private javax.swing.JTable acceptedDonationsjTable;
+    private javax.swing.JButton acceptjButton;
+    private javax.swing.JLabel availableDonationsCountjLabel;
+    private javax.swing.JTable availableDonationsjTable;
     private javax.swing.JButton backButtonjButton;
-    private javax.swing.JButton cleanUpjButton;
-    private javax.swing.JLabel cleanedDonationsHeaderjLabel1;
-    private javax.swing.JTable cleanedDonationsjTable;
-    private javax.swing.JLabel cleanedDonatonsCountjLabel;
     private javax.swing.JLabel currentDonationsHeaderjLabel;
+    private javax.swing.JLabel currentOrdersHeaderjLabel1;
+    private javax.swing.JLabel deliveryPersonjLabel;
+    private javax.swing.JComboBox<String> deliveryVolunteerjComboBox;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel pendingCountHeaderjLabel;
     private javax.swing.JLabel totalCountHeaderjLabel;
+    private javax.swing.JLabel totalDonationsAcceptedCountjLabel;
     // End of variables declaration//GEN-END:variables
 }
