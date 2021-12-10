@@ -280,7 +280,7 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
             
             JOptionPane.showMessageDialog(this, "Successfully updated City Official");
         }else{
-            JOptionPane.showMessageDialog(this, "Error saving City Official. Please check DataTypes");
+            JOptionPane.showMessageDialog(this, "Error updating City Official. Please check DataTypes");
         }
     }//GEN-LAST:event_updatejButtonActionPerformed
 

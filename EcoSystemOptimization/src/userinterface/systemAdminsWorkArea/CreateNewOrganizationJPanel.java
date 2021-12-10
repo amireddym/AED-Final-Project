@@ -272,7 +272,8 @@ public class CreateNewOrganizationJPanel extends javax.swing.JPanel {
     private boolean isDataEnteredValid() {
         if(namejTextField.getText().matches("^[a-zA-Z0-9 ']+$") && 
                 emailjTextField.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
-                !phoneNojTextField.getText().isEmpty() && phoneNojTextField.getText().matches("^[0-9]+$") )  {
+                !phoneNojTextField.getText().isEmpty() && phoneNojTextField.getText().matches("^[0-9]+$") &&
+                phoneNojTextField.getText().length()==10 )  {
            return true; 
         }
         return false;

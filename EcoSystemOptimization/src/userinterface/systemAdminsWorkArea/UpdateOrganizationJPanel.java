@@ -261,12 +261,12 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
 
-            if(EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
+            if(!organization.getEmail().equals(emailjTextField.getText()) && EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
                 return;
             }
 
-            if(PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
+            if(!organization.getPhoneNo().equals(phoneNojTextField.getText()) && PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
                 return;
             }
@@ -278,16 +278,17 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
             organization.setOrganizationImage(imagePath);
             organization.setOrganizationType(OrganizationType.valueOf((String) organizationTypejComboBox.getSelectedItem()));
 
-            JOptionPane.showMessageDialog(this, "Successfully saved new Organization");
+            JOptionPane.showMessageDialog(this, "Successfully updated Organization");
         }else{
-            JOptionPane.showMessageDialog(this, "Error saving new Organization. Please check DataTypes");
+            JOptionPane.showMessageDialog(this, "Error updating Organization. Please check DataTypes");
         }
     }//GEN-LAST:event_updatejButtonActionPerformed
 
     private boolean isDataEnteredValid() {
         if(namejTextField.getText().matches("^[a-zA-Z0-9 ']+$") && 
                 emailjTextField.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
-                !phoneNojTextField.getText().isEmpty() && phoneNojTextField.getText().matches("^[0-9]+$") )  {
+                !phoneNojTextField.getText().isEmpty() && phoneNojTextField.getText().matches("^[0-9]+$") &&
+                phoneNojTextField.getText().length()==10 )  {
            return true; 
         }
         return false;
