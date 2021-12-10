@@ -76,8 +76,8 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             donationsCount++;
             Object[] row = new Object[8];
             row[0]=donationsCount;
-            row[1]=donation;
-            row[2]=donation.getInformation();
+            row[1]=donation.getDonor().getName();
+            row[2]=donation;
             row[3]=donation.getUsageStatus();
             row[4]=donation.getDonationStatus();
             row[5]=donation.getPickUp();
@@ -206,7 +206,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a row");
             return;
         }else {
-            Donation selectedDonation = (Donation) tbldonationHistory.getValueAt(selectedRow, 1);
+            Donation selectedDonation = (Donation) tbldonationHistory.getValueAt(selectedRow, 2);
             CardLayout cardLayout = (CardLayout) userProcessJpanel.getLayout();
             userProcessJpanel.add("ViewOrEditDonationJPanel",new ViewOrEditDonationJPanel(userProcessJpanel,ecoSystem, userLogged, selectedDonation));
             cardLayout.next(userProcessJpanel);
@@ -219,7 +219,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a row");
             return;
         }else {
-            Donation selectedDonation = (Donation) tbldonationHistory.getValueAt(selectedRow, 1);
+            Donation selectedDonation = (Donation) tbldonationHistory.getValueAt(selectedRow, 2);
             if (selectedDonation.getDonationStatus().equals(DonationStatus.ReadyToPickup)){
                 donor.getDonations().remove(selectedDonation);
                 JOptionPane.showMessageDialog(this, "Donation request deleted successfully");
