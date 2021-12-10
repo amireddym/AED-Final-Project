@@ -7,8 +7,10 @@ package userinterface.cityOfficialsWorkArea;
 import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
+import businesslogic.organization.OrgManager;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -51,6 +53,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             
             model.addRow(row);
         }
+        DefaultTableModel managersModel = (DefaultTableModel) managerOrgtbl.getModel();
+        managersModel.setRowCount(0);
 
     }
 
@@ -66,16 +70,19 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         manageOrgtbl = new javax.swing.JTable();
-        addbtn = new javax.swing.JButton();
-        updatebtn = new javax.swing.JButton();
-        deletebtn = new javax.swing.JButton();
+        addOrgbtn = new javax.swing.JButton();
+        updateOrgbtn = new javax.swing.JButton();
+        deleteOrgbtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        managerOrgtbl = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        addbtn1 = new javax.swing.JButton();
-        updatebtn1 = new javax.swing.JButton();
-        deletebtn1 = new javax.swing.JButton();
+        addManagerbtn = new javax.swing.JButton();
+        updateManagerbtn = new javax.swing.JButton();
+        deleteManagerbtn = new javax.swing.JButton();
         backbtn = new javax.swing.JButton();
+        managerOrgbtn = new javax.swing.JButton();
+        managerpicHolderJlbl = new javax.swing.JLabel();
+        picHolderJlbl1 = new javax.swing.JLabel();
 
         jLabel1.setText("Manage Organizations ");
 
@@ -100,13 +107,18 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(manageOrgtbl);
 
-        addbtn.setText("Add");
+        addOrgbtn.setText("Add");
 
-        updatebtn.setText("Update");
+        updateOrgbtn.setText("Update");
 
-        deletebtn.setText("Delete");
+        deleteOrgbtn.setText("Delete");
+        deleteOrgbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteOrgbtnActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        managerOrgtbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -125,15 +137,25 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(managerOrgtbl);
 
         jLabel2.setText("Manage Organization Manager");
 
-        addbtn1.setText("Add");
+        addManagerbtn.setText("Add");
+        addManagerbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addManagerbtnActionPerformed(evt);
+            }
+        });
 
-        updatebtn1.setText("Update");
+        updateManagerbtn.setText("Update");
 
-        deletebtn1.setText("Delete");
+        deleteManagerbtn.setText("Delete");
+        deleteManagerbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteManagerbtnActionPerformed(evt);
+            }
+        });
 
         backbtn.setText("Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -142,67 +164,99 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
 
+        managerOrgbtn.setText("Manage Organization Manager");
+        managerOrgbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managerOrgbtnActionPerformed(evt);
+            }
+        });
+
+        managerpicHolderJlbl.setText("<Image>");
+
+        picHolderJlbl1.setText("<Image>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(addbtn)
-                        .addGap(37, 37, 37)
-                        .addComponent(updatebtn)
-                        .addGap(43, 43, 43)
-                        .addComponent(deletebtn)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(backbtn)
-                        .addGap(35, 35, 35)
-                        .addComponent(addbtn1)
-                        .addGap(37, 37, 37)
-                        .addComponent(updatebtn1)
-                        .addGap(43, 43, 43)
-                        .addComponent(deletebtn1)
-                        .addGap(51, 51, 51))))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(managerOrgbtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addOrgbtn)
+                                .addGap(44, 44, 44)
+                                .addComponent(updateOrgbtn)
+                                .addGap(75, 75, 75)
+                                .addComponent(deleteOrgbtn))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addComponent(picHolderJlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(156, 156, 156))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backbtn)
+                                .addGap(194, 194, 194)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(755, 755, 755)
+                                        .addComponent(deleteManagerbtn)
+                                        .addGap(48, 48, 48))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane2)
+                                        .addGap(41, 41, 41)))
+                                .addComponent(managerpicHolderJlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(addManagerbtn)
+                .addGap(44, 44, 44)
+                .addComponent(updateManagerbtn)
+                .addGap(500, 500, 500))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(292, 292, 292)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addbtn)
-                    .addComponent(updatebtn)
-                    .addComponent(deletebtn))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addbtn1)
-                    .addComponent(updatebtn1)
-                    .addComponent(deletebtn1)
+                    .addComponent(jLabel1)
                     .addComponent(backbtn))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(picHolderJlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addOrgbtn)
+                    .addComponent(updateOrgbtn)
+                    .addComponent(deleteOrgbtn)
+                    .addComponent(managerOrgbtn))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel2)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addManagerbtn)
+                            .addComponent(updateManagerbtn)
+                            .addComponent(deleteManagerbtn)))
+                    .addComponent(managerpicHolderJlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -213,20 +267,89 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backbtnActionPerformed
 
+    private void addManagerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addManagerbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addManagerbtnActionPerformed
+
+    private void deleteOrgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOrgbtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = manageOrgtbl.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row");
+            return;
+        } else {
+            Organization org = (Organization) manageOrgtbl.getValueAt(selectedRow, 1);
+            cityNetwork.getOrganizationDirectory().getOrganizations().remove(org);
+            JOptionPane.showMessageDialog(null, "successfully deleted Restaurant  ");
+
+          populateData();
+        }
+    }//GEN-LAST:event_deleteOrgbtnActionPerformed
+
+    private void managerOrgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerOrgbtnActionPerformed
+        // TODO add your handling code here:
+           int selectedRow = manageOrgtbl.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row");
+            return;
+        } else {
+            Organization org = (Organization) manageOrgtbl.getValueAt(selectedRow, 1);
+            DefaultTableModel managersModel = (DefaultTableModel) managerOrgtbl.getModel();
+            managersModel.setRowCount(0);
+            int employeeCount=0;
+            for(OrgManager orgManager:org.getOrgManagerDirectory().getOrgManagers()) {
+                employeeCount++;
+                Object[] row = new Object[7];
+                row[0] = employeeCount;
+                row[1] = orgManager.getName();
+                row[2] = orgManager.getPhoneNo();
+                row[3] = orgManager.getEmail();
+                row[4] = orgManager.getAddress();
+                row[5] = orgManager.getUserName();
+                row[6] = orgManager.getPassword();
+                managersModel.addRow(row);
+            }
+        }
+    }//GEN-LAST:event_managerOrgbtnActionPerformed
+
+    private void deleteManagerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteManagerbtnActionPerformed
+        // TODO add your handling code here:
+        int selectedManager = managerOrgtbl.getSelectedRow();
+        if(selectedManager < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a manager to delete");
+            return;
+        }
+        DefaultTableModel managerModel = (DefaultTableModel) managerOrgtbl.getModel();
+        OrgManager orgManager = (OrgManager) managerOrgtbl.getValueAt(selectedManager, 1);
+        
+        int selectedRow = manageOrgtbl.getSelectedRow();
+        DefaultTableModel orgManagerModel = (DefaultTableModel) manageOrgtbl.getModel();
+        Organization org = (Organization) orgManagerModel.getValueAt(selectedRow, 1);
+        org.getOrgManagerDirectory().getOrgManagers().remove(orgManager);
+        
+        JOptionPane.showMessageDialog(this, "Successfully deleted Manager");
+        populateData();
+    
+        
+    }//GEN-LAST:event_deleteManagerbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addbtn;
-    private javax.swing.JButton addbtn1;
+    private javax.swing.JButton addManagerbtn;
+    private javax.swing.JButton addOrgbtn;
     private javax.swing.JButton backbtn;
-    private javax.swing.JButton deletebtn;
-    private javax.swing.JButton deletebtn1;
+    private javax.swing.JButton deleteManagerbtn;
+    private javax.swing.JButton deleteOrgbtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable manageOrgtbl;
-    private javax.swing.JButton updatebtn;
-    private javax.swing.JButton updatebtn1;
+    private javax.swing.JButton managerOrgbtn;
+    private javax.swing.JTable managerOrgtbl;
+    private javax.swing.JLabel managerpicHolderJlbl;
+    private javax.swing.JLabel picHolderJlbl1;
+    private javax.swing.JButton updateManagerbtn;
+    private javax.swing.JButton updateOrgbtn;
     // End of variables declaration//GEN-END:variables
 }

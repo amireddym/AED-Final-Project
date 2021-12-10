@@ -4,36 +4,40 @@
  */
 package userinterface.cityOfficialsWorkArea;
 
-import businesslogic.CityNetwork;
-import businesslogic.EcoSystem;
+
 import businesslogic.FoodBank;
 import businesslogic.User;
-import java.awt.CardLayout;
-import java.util.Date;
-import javax.swing.JOptionPane;
 
+import java.awt.CardLayout;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
  * @author anshitaverma
  */
-public class CreateNewBankJPanel extends javax.swing.JPanel {
+public class UpdateFoodBankJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private EcoSystem ecoSystem;
-    private CityNetwork cityNetwork;
+    private FoodBank foodbank;
     private User userAccount;
+    
 
     /**
-     * Creates new form CreateNewBankJPanel
+     * Creates new form UpdateFoodBankJPanel
      */
-    public CreateNewBankJPanel(JPanel userProcessContainer, User userAccount,EcoSystem ecoSystem, CityNetwork cityNetwork) {
+    public UpdateFoodBankJPanel(JPanel userProcessContainer,FoodBank foodbank, User userAccount) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        this.ecoSystem=ecoSystem;
-        this.cityNetwork=cityNetwork;
-        this.userAccount=userAccount;
-         
+        this.foodbank=foodbank;
+        this.userAccount  = userAccount;
+
+        populateData();
+    }
+    
+    private void populateData(){
+        nameJTextField.setText(foodbank.getName());
+        locationJTextField.setText(foodbank.getLocation());
     }
 
     /**
@@ -50,26 +54,26 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         nameJTextField = new javax.swing.JTextField();
         locationJTextField = new javax.swing.JTextField();
-        addbtn = new javax.swing.JButton();
         backbtn = new javax.swing.JButton();
+        updatebtn = new javax.swing.JButton();
 
-        jLabel1.setText("Create New Bank");
+        jLabel1.setText("Update Food Bank");
 
         jLabel2.setText("Name:");
 
         jLabel3.setText("Location");
 
-        addbtn.setText("Add");
-        addbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addbtnActionPerformed(evt);
-            }
-        });
-
         backbtn.setText("Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backbtnActionPerformed(evt);
+            }
+        });
+
+        updatebtn.setText("Update");
+        updatebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatebtnActionPerformed(evt);
             }
         });
 
@@ -80,28 +84,30 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(locationJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                            .addComponent(nameJTextField)))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(61, 61, 61)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(locationJTextField)
+                                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backbtn)
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel1))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(backbtn)
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(addbtn)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                        .addGap(143, 143, 143)
+                        .addComponent(updatebtn)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(backbtn))
@@ -113,47 +119,55 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(locationJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(addbtn)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(updatebtn)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
-        // TODO add your handling code here:
-         if(isDataEnteredValid()){
-             cityNetwork.getFoodBankDirectory().getFoodBanks().add(new FoodBank(nameJTextField.getText(),locationJTextField.getText(),
-        new Date(), new Date(),userAccount.getName(),userAccount.getName()));
-             JOptionPane.showMessageDialog(this, " Added New Food Bank Successfully!");
-         }else{
-             JOptionPane.showMessageDialog(this, "Error ! Please input valid values");
-         }
-        
-    }//GEN-LAST:event_addbtnActionPerformed
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-        
+
     }//GEN-LAST:event_backbtnActionPerformed
-      private boolean isDataEnteredValid() {
-        if(!nameJTextField.getText().isEmpty() && nameJTextField.getText().matches("^[a-zA-Z0-9 ]+$") 
-               &&!locationJTextField.getText().isEmpty()){
-            return true;
+
+    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
+        // TODO add your handling code here:
+           if(isDataEnteredValid()) {
+               foodbank.setName(nameJTextField.getText());
+               foodbank.setLocation(locationJTextField.getText());
+
+            JOptionPane.showMessageDialog(this, "Successfully Updated ");
+        }else {
+            JOptionPane.showMessageDialog(this, "Error! Please enter valid values");
+        }
+    }//GEN-LAST:event_updatebtnActionPerformed
+        private boolean isDataEnteredValid() {
+        if(nameJTextField.getText().matches("^[a-zA-Z0-9 ']+$") 
+                &&!locationJTextField.getText().isEmpty())  {
+           return true; 
         }
         return false;
-    }
+    } 
     
+    
+    private void resetUi() {
+        
+        nameJTextField.setText("");
+        locationJTextField.setText("");
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addbtn;
     private javax.swing.JButton backbtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField locationJTextField;
     private javax.swing.JTextField nameJTextField;
+    private javax.swing.JButton updatebtn;
     // End of variables declaration//GEN-END:variables
 }

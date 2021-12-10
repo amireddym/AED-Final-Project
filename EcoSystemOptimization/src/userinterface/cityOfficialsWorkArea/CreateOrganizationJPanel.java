@@ -4,6 +4,14 @@
  */
 package userinterface.cityOfficialsWorkArea;
 
+import businesslogic.CityNetwork;
+import businesslogic.User;
+
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author anshitaverma
@@ -13,8 +21,16 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateOrganizationJPanel
      */
-    public CreateOrganizationJPanel() {
+    private JPanel userProcessContainer;
+    private CityNetwork cityNetwork;
+    private User userAccount;
+    public CreateOrganizationJPanel(JPanel userProcessContainer, User userAccount, CityNetwork cityNetwork) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.cityNetwork = cityNetwork;
+        this.userAccount = userAccount;
+        
+        
     }
 
     /**
@@ -26,19 +42,182 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        backbtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        orgNametxt = new javax.swing.JTextField();
+        addresstxt = new javax.swing.JTextField();
+        phoneNotxt = new javax.swing.JTextField();
+        emailIdtxt = new javax.swing.JTextField();
+        savebtn = new javax.swing.JButton();
+        orgTypecmb = new javax.swing.JComboBox<>();
+
+        jLabel1.setText("Create New Organization");
+
+        backbtn.setText("Back");
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Organization Name:");
+
+        jLabel3.setText("Organization Type:");
+
+        jLabel4.setText("Address:");
+
+        jLabel5.setText("Phone Number:");
+
+        jLabel6.setText("Email Id:");
+
+        orgNametxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orgNametxtActionPerformed(evt);
+            }
+        });
+
+        savebtn.setText("Save");
+        savebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savebtnActionPerformed(evt);
+            }
+        });
+
+        orgTypecmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(backbtn)
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(savebtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(phoneNotxt, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addresstxt, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(orgNametxt, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(orgTypecmb, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emailIdtxt))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(backbtn))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(orgNametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(orgTypecmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(addresstxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(phoneNotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(emailIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(savebtn))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void orgNametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgNametxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_orgNametxtActionPerformed
+
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
+        // TODO add your handling code here:
+        
+        userProcessContainer.remove(this);
+        Component[] components = userProcessContainer.getComponents();
+        ManageOrganizationJPanel manageOrgJPanel = (ManageOrganizationJPanel) components[components.length-1];
+        manageOrgJPanel.populateData();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backbtnActionPerformed
+
+    private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
+        // TODO add your handling code here:
+        if(isDataEnteredValid()){
+            String orgName = orgNametxt.getText();
+            
+            String address = addresstxt.getText();
+            String email = emailIdtxt.getText();
+            String phoneNo = phoneNotxt.getText();
+
+   
+
+            JOptionPane.showMessageDialog(this, "Successfully Saved");
+            resetUi();
+        }else{
+            JOptionPane.showMessageDialog(this, "Error! Please enter valid values");
+        }
+    }//GEN-LAST:event_savebtnActionPerformed
+     private boolean isDataEnteredValid() {
+        
+        if(!orgNametxt.getText().isEmpty() && orgNametxt.getText().matches("^[a-zA-Z0-9 ']+$") &&
+                !addresstxt.getText().isEmpty() && !phoneNotxt.getText().isEmpty() && 
+                phoneNotxt.getText().matches("^[0-9]+$") && phoneNotxt.getText().length()==10 &&
+                emailIdtxt.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")){
+            return true;
+        }
+        return false;
+    }
+    
+    private void resetUi() {
+       orgNametxt.setText("");
+    
+       addresstxt.setText("");
+       emailIdtxt.setText("");
+       phoneNotxt.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField addresstxt;
+    private javax.swing.JButton backbtn;
+    private javax.swing.JTextField emailIdtxt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField orgNametxt;
+    private javax.swing.JComboBox<String> orgTypecmb;
+    private javax.swing.JTextField phoneNotxt;
+    private javax.swing.JButton savebtn;
     // End of variables declaration//GEN-END:variables
 }

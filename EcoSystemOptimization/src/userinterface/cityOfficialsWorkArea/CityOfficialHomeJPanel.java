@@ -51,13 +51,13 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         createNewBankbtn.setForeground(new java.awt.Color(0, 102, 102));
-        createNewBankbtn.setText("Create New Bank");
+        createNewBankbtn.setText("Manage Food Banks");
         createNewBankbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createNewBankbtnActionPerformed(evt);
             }
         });
-        add(createNewBankbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 270, 60));
+        add(createNewBankbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 270, 60));
 
         manageCleanerbtn.setForeground(new java.awt.Color(0, 102, 102));
         manageCleanerbtn.setText("Manage Cleaners");
@@ -66,7 +66,7 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
                 manageCleanerbtnActionPerformed(evt);
             }
         });
-        add(manageCleanerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 270, 60));
+        add(manageCleanerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, 270, 60));
 
         createNewOrganizationbtn.setForeground(new java.awt.Color(0, 102, 102));
         createNewOrganizationbtn.setText("Create New Organization");
@@ -75,19 +75,19 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
                 createNewOrganizationbtnActionPerformed(evt);
             }
         });
-        add(createNewOrganizationbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 270, 60));
+        add(createNewOrganizationbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, 270, 60));
 
         jLabel1.setText("<Image>");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 50, 80, 80));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bgimage.jpg"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 380));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 520));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createNewBankbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewBankbtnActionPerformed
         // TODO add your handling code here:
          CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("Create new Food Bank", new CreateNewBankJPanel(userProcessContainer, userAccount,
+        userProcessContainer.add("Create new Food Bank", new ManageFoodBankJPanel(userProcessContainer, userAccount,
             ecoSystem, cityNetwork));
         cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_createNewBankbtnActionPerformed
