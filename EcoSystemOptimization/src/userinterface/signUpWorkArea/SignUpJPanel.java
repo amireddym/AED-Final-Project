@@ -9,6 +9,7 @@ import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
 import businesslogic.donor.Donor;
 import businesslogic.enums.UserRole;
+import businesslogic.helper.Constants;
 import businesslogic.helper.ValidateInputs;
 import java.awt.CardLayout;
 import java.awt.Image;
@@ -31,8 +32,8 @@ public class SignUpJPanel extends javax.swing.JPanel {
     private JPanel userProcessJPanel;
     private EcoSystem ecoSystem;
     private ImageIcon iconPic;
-    private String photoPath;
     private DB4OUtil dB4OUtil;
+    private String photoPath = Constants.DEFAULT_IMAGE_PATH;
     /**
      * Creates new form SignUpJPanel
      */

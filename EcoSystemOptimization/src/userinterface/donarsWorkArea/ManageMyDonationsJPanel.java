@@ -13,6 +13,7 @@ import businesslogic.User;
 import businesslogic.donor.Donation;
 import businesslogic.donor.Donor;
 import businesslogic.enums.Category;
+import businesslogic.enums.DonationStatus;
 import businesslogic.sysAdmin.SysAdmin;
 import java.awt.CardLayout;
 import java.util.Date;
@@ -42,8 +43,8 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         this.ecoSystem = ecoSystem;
         this.userLogged = userLogged;
         this.donor = (Donor) userLogged;
+
         populateCategories();
-        populateCities();
         populateDonationHistoryTable();
     }
     
@@ -56,14 +57,6 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         }
     }
     
-    public void populateCities() {
-        
-        List<CityNetwork> cityNetworks = ecoSystem.getCityNetworkDirectory().getCityNetworks();
-        cityjComboBox.removeAllItems();
-        for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
-            cityjComboBox.addItem(cityNetwork.getCityName().name());
-        }
-    }
     
     public void populateDonationHistoryTable() {
         
@@ -84,17 +77,17 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         
         int donationsCount=0;
         for(Donation donation:donor.getDonations()) {
-            if (donation.getCategory().name().equalsIgnoreCase((String) donationcategoryjComboBox.getSelectedItem()) 
-                    && donation.getCityNetwork().getCityName().name().equalsIgnoreCase((String) cityjComboBox.getSelectedItem())){
+            if (donation.getCategory().name().equalsIgnoreCase(donationcategoryjComboBox.getSelectedItem().toString())){
             donationsCount++;
-            Object[] row = new Object[7];
+            Object[] row = new Object[8];
             row[0]=donationsCount;
             row[1]=donation;
             row[2]=donation.getInformation();
             row[3]=donation.getUsageStatus();
-            row[4]=donation.getOrganization();
-            row[5]=donation.getDeliveryVolunteer().getName();
-            row[6]=donation.getDonationStatus();
+            row[4]=donation.getDonationStatus();
+            row[5]=donation.getPickUp();
+            row[6]=donation.getDeliveryVolunteer()==null?"Not yet assigned":donation.getDeliveryVolunteer().getName();
+            row[7]=donation.getOrganization()==null?"Not yet assigned":donation.getOrganization();
             
             donationHistory.addRow(row);
             }
@@ -118,10 +111,10 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         tbldonationHistory = new javax.swing.JTable();
         countTotaljLabel = new javax.swing.JLabel();
         countLablejLabel = new javax.swing.JLabel();
-        lbldonationCategory = new javax.swing.JLabel();
-        cityjComboBox = new javax.swing.JComboBox<>();
         lbldonationCategory1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnnviewOrUpdate = new javax.swing.JButton();
+        btndelete = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -150,13 +143,13 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
 
         tbldonationHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "S.No", "Donor", "Information", "Usage Status", "Organization", "Delivery Volunteer", "Status"
+                "S.No", "Donor", "Information", "Usage Status", "Status", "Where to Pickup", "Delivery Volunteer", "Organization"
             }
         ));
         jScrollPane1.setViewportView(tbldonationHistory);
@@ -174,18 +167,6 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         add(countLablejLabel);
         countLablejLabel.setBounds(20, 520, 45, 18);
 
-        lbldonationCategory.setText("City:");
-        add(lbldonationCategory);
-        lbldonationCategory.setBounds(320, 130, 40, 20);
-
-        cityjComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cityjComboBoxActionPerformed(evt);
-            }
-        });
-        add(cityjComboBox);
-        cityjComboBox.setBounds(320, 160, 224, 22);
-
         lbldonationCategory1.setText("Donation Category:");
         add(lbldonationCategory1);
         lbldonationCategory1.setBounds(20, 130, 120, 20);
@@ -194,17 +175,29 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         jLabel1.setText("Donation History");
         add(jLabel1);
         jLabel1.setBounds(390, 240, 160, 30);
+
+        btnnviewOrUpdate.setText("View/Update");
+        btnnviewOrUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnviewOrUpdateActionPerformed(evt);
+            }
+        });
+        add(btnnviewOrUpdate);
+        btnnviewOrUpdate.setBounds(430, 470, 120, 25);
+
+        btndelete.setText("Delete");
+        btndelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeleteActionPerformed(evt);
+            }
+        });
+        add(btndelete);
+        btndelete.setBounds(590, 470, 69, 25);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnmakenewdonationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmakenewdonationActionPerformed
-//        int selectedIndex = donationcategoryjComboBox.getSelectedIndex();
-//        if(selectedIndex<0) {
-//            JOptionPane.showMessageDialog(this, "Please add a city to proceed further");
-//            return;
-//        }
-        
         CardLayout cardLayout = (CardLayout) userProcessJpanel.getLayout();
-        userProcessJpanel.add("MakeNewDonationJPanel",new MakeNewDonationJPanel(userProcessJpanel,ecoSystem, userLogged));
+        userProcessJpanel.add("MakeNewDonationJPanel",new CreateNewDonationJPanel(userProcessJpanel,ecoSystem, userLogged));
         cardLayout.next(userProcessJpanel);
     }//GEN-LAST:event_btnmakenewdonationActionPerformed
 
@@ -212,21 +205,47 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         populateDonationHistoryTable();
     }//GEN-LAST:event_donationcategoryjComboBoxActionPerformed
 
-    private void cityjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityjComboBoxActionPerformed
-        populateDonationHistoryTable();
-    }//GEN-LAST:event_cityjComboBoxActionPerformed
+    private void btnnviewOrUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnviewOrUpdateActionPerformed
+        int selectedRow = tbldonationHistory.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row");
+            return;
+        }else {
+            Donation selectedDonation = (Donation) tbldonationHistory.getValueAt(selectedRow, 1);
+            CardLayout cardLayout = (CardLayout) userProcessJpanel.getLayout();
+            userProcessJpanel.add("ViewOrEditDonationJPanel",new ViewOrEditDonationJPanel(userProcessJpanel,ecoSystem, userLogged, selectedDonation));
+            cardLayout.next(userProcessJpanel);
+        }
+    }//GEN-LAST:event_btnnviewOrUpdateActionPerformed
+
+    private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
+        int selectedRow = tbldonationHistory.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row");
+            return;
+        }else {
+            Donation selectedDonation = (Donation) tbldonationHistory.getValueAt(selectedRow, 1);
+            if (selectedDonation.getDonationStatus().equals(DonationStatus.ReadyToPickup)){
+                donor.getDonations().remove(selectedDonation);
+                JOptionPane.showMessageDialog(this, "Donation request deleted successfully");
+                populateDonationHistoryTable();
+            }else{
+                JOptionPane.showMessageDialog(this, "!Error! You can only delete when the donation status is Ready for Pickup");
+            }
+        }
+    }//GEN-LAST:event_btndeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btndelete;
     private javax.swing.JButton btnmakenewdonation;
-    private javax.swing.JComboBox<String> cityjComboBox;
+    private javax.swing.JButton btnnviewOrUpdate;
     private javax.swing.JLabel countLablejLabel;
     private javax.swing.JLabel countTotaljLabel;
     private javax.swing.JComboBox<String> donationcategoryjComboBox;
     private javax.swing.JLabel headerjLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbldonationCategory;
     private javax.swing.JLabel lbldonationCategory1;
     private javax.swing.JTable tbldonationHistory;
     // End of variables declaration//GEN-END:variables

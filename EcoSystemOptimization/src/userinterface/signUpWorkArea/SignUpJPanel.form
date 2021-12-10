@@ -28,10 +28,7 @@
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="txtpassword" linkSize="8" min="-2" pref="100" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="txtpassword" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtemail" linkSize="8" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
@@ -42,9 +39,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
                       <Component id="lblpicpreview" min="-2" pref="234" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
