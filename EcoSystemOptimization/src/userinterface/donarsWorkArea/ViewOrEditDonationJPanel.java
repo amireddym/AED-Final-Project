@@ -69,8 +69,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         this.donor = (Donor) userLogged;
         this.donation = selectedDonation;
         this.imagePath = donation.getPicture();
-//        System.out.println(this.imagePath);
-        //Image photoResized = photo.getImage().getScaledInstance(lblpicHolder.getWidth(), lblpicHolder.getHeight(),4);
+        lblpicHolder.setSize(146, 139);
         
         populateCategories();
         populateCities();
@@ -218,7 +217,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(usageStatusjComboBox, 0, 129, Short.MAX_VALUE)
                             .addComponent(cityjComboBox, 0, 129, Short.MAX_VALUE))))
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 190, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(uploadjButton)
@@ -268,11 +267,9 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblpicHolder, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(uploadjButton)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnupdatedonationrequest)
-                        .addGap(125, 125, 125))))
+                        .addComponent(uploadjButton))
+                    .addComponent(btnupdatedonationrequest))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -297,6 +294,18 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         }
     }
     
+    public void populateFoodBanks() {
+        
+        selectfoodbankjComboBox.removeAllItems();
+        List<CityNetwork> cityNetworks = ecoSystem.getCityNetworkDirectory().getCityNetworks();
+        cityjComboBox.removeAllItems();
+        for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
+            for(FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
+                selectfoodbankjComboBox.addItem(fb.getName());
+            }
+        }
+    }
+    
     public void populatePickUpMode() {
         
         pickupmodejComboBox.removeAllItems();
@@ -310,16 +319,12 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
             selectfoodbankjComboBox.setEnabled(false);
         }else{
             selectfoodbankjComboBox.setEnabled(true);
+            
         }
     }
     
     public void populateCities() {
         
-//        cityjComboBox.removeAllItems();
-//        String[] cities = CityName.getCitiesArray();
-//        for(String city:cities) {
-//            cityjComboBox.addItem(city);
-//        }
         List<CityNetwork> cityNetworks = ecoSystem.getCityNetworkDirectory().getCityNetworks();
         cityjComboBox.removeAllItems();
         for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
@@ -333,13 +338,18 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         donationcategoryjComboBox.setSelectedItem(donation.getCategory().toString());
         usageStatusjComboBox.setSelectedItem(donation.getUsageStatus().toString());
         pickupmodejComboBox.setSelectedItem(donation.getPickUp().toString());
-        selectfoodbankjComboBox.setSelectedItem(donation.getFoodBank());
+        if (donation.getFoodBank()==null){
+            selectfoodbankjComboBox.setEditable(false);
+        }else{
+            selectfoodbankjComboBox.setSelectedItem(donation.getFoodBank().getName());
+        }
         cityjComboBox.setSelectedItem(donation.getCityNetwork());
         txtpickupaddress.setText(donation.getAddressToPickUp());
         dateofexpiryDATECHOOSER.setDate(donation.getDateofExpiry());
-//        if (!donation.getPicture().equals("")){
-//            setPhoto(imagePath);
-//        }
+        
+        if (!donation.getPicture().equals("")){
+            setPhoto(imagePath);
+        }
     }
     
     

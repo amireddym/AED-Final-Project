@@ -10,6 +10,9 @@ import businesslogic.EcoSystem;
 import businesslogic.donor.Donor;
 import businesslogic.enums.UserRole;
 import businesslogic.helper.Constants;
+import businesslogic.helper.EmailHelper;
+import businesslogic.helper.PhoneNoHelper;
+import businesslogic.helper.UserNameHelper;
 import businesslogic.helper.ValidateInputs;
 import java.awt.CardLayout;
 import java.awt.Image;
@@ -127,9 +130,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
                     .addComponent(lblpassword))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,8 +139,8 @@ public class SignUpJPanel extends javax.swing.JPanel {
                             .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtphoneno, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(197, 197, 197)
-                        .addComponent(lblpicpreview, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(lblpicpreview, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -155,7 +156,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
                                 .addGap(31, 31, 31)
                                 .addComponent(lblimagepath, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btncreatenewuser))))
-                .addGap(0, 45, Short.MAX_VALUE))
+                .addGap(0, 227, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lbladdress, lblemail, lblname, lblpassword, lblphoneno, lblusername});
@@ -203,7 +204,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
                     .addComponent(lblpassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btncreatenewuser)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lbladdress, lblemail, lblimagepath, lblname, lblpassword, lblphoneno, lblusername, txtaddress, txtemail, txtname, txtpassword, txtphoneno, txtusername});
@@ -266,15 +267,32 @@ public class SignUpJPanel extends javax.swing.JPanel {
     }
     
     private void btncreatenewuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncreatenewuserActionPerformed
+        if (UserNameHelper.isUserNameAlreadyExisted(ecoSystem, txtusername.getText())){
+            JOptionPane.showMessageDialog(this, "UserName already registered. Please try with a different UserName");
+            return;
+        }
+        
+        if (EmailHelper.isEmailAlreadyExisted(ecoSystem, txtemail.getText())){
+            JOptionPane.showMessageDialog(this, "Email already registered. Please try with a different Email");
+            return;
+        }
+        
+        if (PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, txtphoneno.getText())){
+            JOptionPane.showMessageDialog(this, "PhoneNo already registered. Please try with a different PhoneNo");
+            return;
+        }
+        
         if (ValidateInputs.isNameValid(txtname.getText()) && ValidateInputs.isPhoneNumberValid(txtphoneno.getText()) 
                 && ValidateInputs.isEmailValid(txtemail.getText()) && ValidateInputs.isUsernameValid(txtusername.getText()) 
                 && ValidateInputs.isPasswordValid(txtpassword.getText())){
-            Donor donor = new Donor(txtname.getText(), txtphoneno.getText(), txtemail.getText(), txtaddress.getText(), txtusername.getText(),
-                    txtpassword.getText(), UserRole.Donor, photoPath, new Date(), new Date(), txtname.getText(), txtname.getText());
             
+                
+            Donor donor = new Donor(txtname.getText(), txtphoneno.getText(), txtemail.getText(), txtaddress.getText(), txtusername.getText(),
+                txtpassword.getText(), UserRole.Donor, photoPath, new Date(), new Date(), txtname.getText(), txtname.getText());
+
             ecoSystem.getDonorsDirectory().getDonors().add(donor);
             JOptionPane.showMessageDialog(this, "User successfully added");
-            
+            resetFields();     
         }
         else{
             JOptionPane.showMessageDialog(this, "!Error! Please verify all the data types");

@@ -5,8 +5,6 @@
  */
 package userinterface.donarsWorkArea;
 
-import userinterface.systemAdminsWorkArea.*;
-import businesslogic.CityName;
 import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
@@ -14,10 +12,7 @@ import businesslogic.donor.Donation;
 import businesslogic.donor.Donor;
 import businesslogic.enums.Category;
 import businesslogic.enums.DonationStatus;
-import businesslogic.sysAdmin.SysAdmin;
 import java.awt.CardLayout;
-import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
