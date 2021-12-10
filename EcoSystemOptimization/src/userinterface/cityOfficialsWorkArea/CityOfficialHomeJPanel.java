@@ -77,7 +77,7 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         });
         add(createNewOrganizationbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 270, 60));
 
-        jLabel1.setText("Image");
+        jLabel1.setText("<Image>");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 50, 80, 80));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bgimage.jpg"))); // NOI18N
@@ -94,6 +94,10 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
 
     private void createNewOrganizationbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewOrganizationbtnActionPerformed
         // TODO add your handling code here:
+         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("Create new Organization", new ManageOrganizationJPanel(userProcessContainer, userAccount,
+            ecoSystem, cityNetwork));
+        cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_createNewOrganizationbtnActionPerformed
 
     private void manageCleanerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCleanerbtnActionPerformed

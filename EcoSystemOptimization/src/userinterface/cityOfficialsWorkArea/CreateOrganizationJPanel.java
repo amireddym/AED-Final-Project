@@ -8,12 +8,12 @@ package userinterface.cityOfficialsWorkArea;
  *
  * @author anshitaverma
  */
-public class CreateNewOrganizationJPanel extends javax.swing.JPanel {
+public class CreateOrganizationJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CreateNewOrganizationJPanel
+     * Creates new form CreateOrganizationJPanel
      */
-    public CreateNewOrganizationJPanel() {
+    public CreateOrganizationJPanel() {
         initComponents();
     }
 
