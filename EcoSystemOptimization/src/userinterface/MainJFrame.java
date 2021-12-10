@@ -12,7 +12,8 @@ import businesslogic.JPanelManager;
 import businesslogic.User;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
-import java.awt.event.KeyEvent;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.signUpWorkArea.SignUpJPanel;
@@ -32,8 +33,18 @@ public class MainJFrame extends javax.swing.JFrame {
     
     public MainJFrame() {
         initComponents();
+//        setLoveGif();
         ecoSystem = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
+    }
+    
+    private void setLoveGif() {
+        ImageIcon imageIcon = new ImageIcon("images/love.gif");
+        System.out.println(imageIcon.getDescription());
+        System.out.println(lovejLabel.getWidth());
+        System.out.println(lovejLabel.getHeight());
+        Image photoResized = imageIcon.getImage().getScaledInstance(lovejLabel.getWidth(), lovejLabel.getHeight(),4);
+        lovejLabel.setIcon(new ImageIcon(photoResized));
     }
 
     /**
@@ -54,6 +65,9 @@ public class MainJFrame extends javax.swing.JFrame {
         loginJButton = new javax.swing.JButton();
         signUpJButton = new javax.swing.JButton();
         jPasswordField = new javax.swing.JPasswordField();
+        madeWithjLabel = new javax.swing.JLabel();
+        lovejLabel = new javax.swing.JLabel();
+        neujLabel = new javax.swing.JLabel();
         userProcessJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,11 +113,15 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jPasswordFieldKeyPressed(evt);
-            }
-        });
+        madeWithjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 10)); // NOI18N
+        madeWithjLabel.setText("Made with ");
+
+        lovejLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/love.gif"))); // NOI18N
+        lovejLabel.setMaximumSize(new java.awt.Dimension(380, 312));
+        lovejLabel.setMinimumSize(new java.awt.Dimension(380, 312));
+
+        neujLabel.setFont(new java.awt.Font("Lucida Grande", 1, 10)); // NOI18N
+        neujLabel.setText("@neu");
 
         javax.swing.GroupLayout controlJPanelLayout = new javax.swing.GroupLayout(controlJPanel);
         controlJPanel.setLayout(controlJPanelLayout);
@@ -128,6 +146,13 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addGroup(controlJPanelLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(userNameJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(controlJPanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(madeWithjLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lovejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(neujLabel))
                     .addGroup(controlJPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -155,10 +180,18 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(logoutJButton)
                 .addGap(110, 110, 110)
                 .addComponent(signUpJButton)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lovejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlJPanelLayout.createSequentialGroup()
+                        .addComponent(madeWithjLabel)
+                        .addContainerGap())
+                    .addComponent(neujLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         controlJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {loginJButton, logoutJButton, signUpJButton});
+
+        controlJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {madeWithjLabel, neujLabel});
 
         mainJSplitPane.setLeftComponent(controlJPanel);
 
@@ -170,7 +203,7 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainJSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE)
+            .addComponent(mainJSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +299,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 userLogged = ecoSystem.getDonorsDirectory().isUserDonor(userName, password);
                 if(userLogged!=null) {
                     CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                    userProcessJPanel.add("DonorHomePanel",JPanelManager.getDonorHomePanel(userProcessJPanel, ecoSystem, userLogged));
+                    userProcessJPanel.add("DonorHomePanel",JPanelManager.getDonorHomePanel());
                     cardLayout.next(userProcessJPanel);
                     clearLoginPanels();
                     return;
@@ -336,7 +369,7 @@ public class MainJFrame extends javax.swing.JFrame {
                                 userLogged = organization.getDeliveryVolunteerDirectory().isUserDeliveryVolunteer(userName, password);
                                 if(userLogged!=null) {
                                     CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                                    userProcessJPanel.add("DeliveryVolunteerHomePanel", JPanelManager.getDeliveryVolunteerHomePanel(userProcessJPanel, ecoSystem, userLogged));
+                                    userProcessJPanel.add("DeliveryVolunteerHomePanel", JPanelManager.getDeliveryVolunteerHomePanel());
                                     cardLayout.next(userProcessJPanel);
                                     clearLoginPanels();
                                     return;
@@ -356,16 +389,10 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-        userProcessJPanel.add("SignUpPanel", new SignUpJPanel(userProcessJPanel, ecoSystem, dB4OUtil));
+        userProcessJPanel.add("SignUpPanel", new SignUpJPanel());
         cardLayout.next(userProcessJPanel);
         
     }//GEN-LAST:event_signUpJButtonActionPerformed
-
-    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            loginJButton.doClick();
-        }
-    }//GEN-LAST:event_jPasswordFieldKeyPressed
 
     private void clearLoginPanels() {
         
@@ -419,7 +446,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JButton loginJButton;
     private javax.swing.JButton logoutJButton;
+    private javax.swing.JLabel lovejLabel;
+    private javax.swing.JLabel madeWithjLabel;
     private javax.swing.JSplitPane mainJSplitPane;
+    private javax.swing.JLabel neujLabel;
     private javax.swing.JLabel passwordJLabel;
     private javax.swing.JButton signUpJButton;
     private javax.swing.JLabel userNameJLabel;
