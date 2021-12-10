@@ -17,7 +17,6 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
-import java.io.FileFilter;
 import java.nio.file.Paths;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -40,7 +39,7 @@ public class CreateNewSysAdminJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private User userLogged;
     
-    private String imagePath = Constants.DEFAULT_IMAGE_PATH;
+    private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     
     public CreateNewSysAdminJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, User userLogged) {
         initComponents();
@@ -291,7 +290,7 @@ public class CreateNewSysAdminJPanel extends javax.swing.JPanel {
     
     private void setDefaultPhoto() {
         
-        setPhoto(Paths.get(Constants.DEFAULT_IMAGE_PATH).toAbsolutePath().toString());
+        setPhoto(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
     }
     
     private void uploadjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadjButtonActionPerformed

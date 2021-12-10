@@ -59,7 +59,7 @@ public class SysAdminManageCityJPanel extends javax.swing.JPanel {
 
         headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headerjLabel.setText("Manage Data in the city : ");
+        headerjLabel.setText("Manage Data in the City ");
 
         manageOrganizationsjButton.setText("Manage Organizations >");
         manageOrganizationsjButton.addActionListener(new java.awt.event.ActionListener() {

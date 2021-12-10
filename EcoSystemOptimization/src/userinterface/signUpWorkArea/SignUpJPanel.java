@@ -33,7 +33,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private ImageIcon iconPic;
     private DB4OUtil dB4OUtil;
-    private String photoPath = Constants.DEFAULT_IMAGE_PATH;
+    private String photoPath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     /**
      * Creates new form SignUpJPanel
      */

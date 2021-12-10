@@ -55,7 +55,7 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private User userLogged;
     private Donor donor;
-    private String imagePath = Constants.DEFAULT_IMAGE_PATH;
+    private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     
     /**
      * Creates new form MakeNewDonationJPanel
