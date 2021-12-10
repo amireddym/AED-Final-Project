@@ -5,8 +5,10 @@
  */
 package userinterface.deliveryVolunteerWorkArea;
 
+import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
+import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -19,15 +21,19 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
     private JPanel userProcessJPanel;
     private EcoSystem ecoSystem;
     private User userLogged;
+    private CityNetwork cityNetwork;
+    private Organization organization;
     
     /**
      * Creates new form DeliveryVolunteerHomeJPanel
      */
-    public DeliveryVolunteerHomeJPanel(JPanel userProcessJPanel, EcoSystem ecoSystem, User userLogged) {
+    public DeliveryVolunteerHomeJPanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         initComponents();
         this.userProcessJPanel = userProcessJPanel;
         this.ecoSystem = ecoSystem;
         this.userLogged = userLogged;
+        this.cityNetwork = cityNetwork;
+        this.organization = organization;
     }
 
     /**
@@ -97,7 +103,7 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
 
     private void btnmanagemydeliveriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanagemydeliveriesActionPerformed
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-        userProcessJPanel.add("ManageMyDeliveriesJPanel", new ManageMyDeliveriesJPanel(userProcessJPanel,ecoSystem,userLogged));
+        userProcessJPanel.add("ManageMyDeliveriesJPanel", new ManageMyDeliveriesJPanel(userProcessJPanel, ecoSystem, cityNetwork, organization, userLogged));
         cardLayout.next(userProcessJPanel);
     }//GEN-LAST:event_btnmanagemydeliveriesActionPerformed
 

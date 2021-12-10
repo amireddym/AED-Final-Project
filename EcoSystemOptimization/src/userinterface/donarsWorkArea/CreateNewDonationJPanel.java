@@ -67,8 +67,6 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         this.userLogged = userLogged;
         this.donor = (Donor) userLogged;
         
-//        System.out.println(ecoSystem.getCityNetworkDirectory().getCityNetworks().size());
-        
         populateCategories();
         populateCities();
         populatePickUpMode();
@@ -323,17 +321,25 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
     
     public void populateCities() {
         
-//        cityjComboBox.removeAllItems();
-//        String[] cities = CityName.getCitiesArray();
-//        for(String city:cities) {
-//            cityjComboBox.addItem(city);
-//        }
         List<CityNetwork> cityNetworks = ecoSystem.getCityNetworkDirectory().getCityNetworks();
         cityjComboBox.removeAllItems();
         for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
             cityjComboBox.addItem(cityNetwork.getCityName().name());
         }
         
+    }
+    
+    
+    public void populateFoodBanks() {
+        String selectedCityNetworkName = cityjComboBox.getSelectedItem().toString();
+        
+        for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
+            if(selectedCityNetworkName.equalsIgnoreCase(cityNetwork.getCityName().name())){
+                for(FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
+                    selectfoodbankjComboBox.addItem(fb.getName());
+                }
+            }
+        }
     }
     
     
@@ -396,7 +402,11 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         if (((String) pickupmodejComboBox.getSelectedItem()).equals("FoodBank")){
             selectfoodbankjComboBox.setEnabled(true);
             txtpickupaddress.setEditable(false);
+            
+            populateFoodBanks();
         }else{
+            selectfoodbankjComboBox.removeAllItems();
+            
             selectfoodbankjComboBox.setEnabled(false);
             txtpickupaddress.setEditable(true);
         }

@@ -29,7 +29,7 @@ public class DonorHomeJPanel extends javax.swing.JPanel {
         
         this.userProcessJPanel = userProcessJPanel;
         this.ecoSystem = ecoSystem;
-        this.userLogged = userLogged;
+        this.userLogged = userLogged;        
     }
 
     /**

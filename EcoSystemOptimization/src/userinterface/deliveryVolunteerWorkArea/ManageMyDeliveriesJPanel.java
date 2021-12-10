@@ -9,12 +9,15 @@ import userinterface.donarsWorkArea.*;
 import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
+import businesslogic.delivery.DeliveryVolunteer;
 import businesslogic.donor.Donation;
 import businesslogic.donor.Donor;
 import businesslogic.enums.Category;
 import businesslogic.enums.DonationStatus;
+import businesslogic.enums.PickUp;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -34,67 +37,82 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
     private CityNetwork cityNetwork;
     private Organization organization;
     private User userLogged;
+    private DeliveryVolunteer deliveryVolunteer;
     
     public ManageMyDeliveriesJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         initComponents();
-        this.userProcessJPanel = userProcessJPanel;
+        this.userProcessJPanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
         this.cityNetwork = cityNetwork;
         this.organization = organization;
         this.userLogged = userLogged;
+        this.deliveryVolunteer = (DeliveryVolunteer) userLogged;
         
         populateData();
-
-        populateCategories();
-        populateDonationHistoryTable();
     }
     
-    public void populateCategories() {
+    public void populateData() {
+        DefaultTableModel currentOrdersModel = (DefaultTableModel) currentPickUpsjTable.getModel();
+        currentOrdersModel.setRowCount(0);
+        int currentPickUpcount=0;
         
-        donationcategoryjComboBox.removeAllItems();
-        String[] categories = Category.getCategoriesArray();
-        for(String category:categories) {
-            donationcategoryjComboBox.addItem(category);
-        }
-    }
-    
-    
-    public void populateDonationHistoryTable() {
+        DefaultTableModel delieveredOrdersModel = (DefaultTableModel) donationDeliveryHistoryjTable.getModel();
+        delieveredOrdersModel.setRowCount(0);
+        int donationHistoryCount=0;
         
-//        int selectedIndex = donationcategoryjComboBox.getSelectedIndex();
-//        if(selectedIndex<0) {
-//            JOptionPane.showMessageDialog(this, "Please select a category to proceed further");
-//            return;
-//        }
-//        
-//        int selectedIndex2 = cityjComboBox.getSelectedIndex();
-//        if(selectedIndex2<0) {
-//            JOptionPane.showMessageDialog(this, "Please select a city to proceed further");
-//            return;
-//        }
+        DeliveryVolunteer volunteer = (DeliveryVolunteer) userLogged;
         
-        DefaultTableModel donationHistory = (DefaultTableModel) tbldonationHistory.getModel();
-        donationHistory.setRowCount(0);
-        
-        int donationsCount=0;
-        for(Donation donation:donor.getDonations()) {
-            if (donation.getCategory().name().equalsIgnoreCase(donationcategoryjComboBox.getSelectedItem().toString())){
-            donationsCount++;
-            Object[] row = new Object[8];
-            row[0]=donationsCount;
-            row[1]=donation.getDonor().getName();
-            row[2]=donation;
-            row[3]=donation.getUsageStatus();
-            row[4]=donation.getDonationStatus();
-            row[5]=donation.getPickUp();
-            row[6]=donation.getDeliveryVolunteer()==null?"Not yet assigned":donation.getDeliveryVolunteer().getName();
-            row[7]=donation.getOrganization()==null?"Not yet assigned":donation.getOrganization();
-            
-            donationHistory.addRow(row);
+        for(Donation donation:volunteer.getDonations()){
+            if(donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.ReadyToPickup.name()) 
+                    || donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.PickupAwaiting.name())
+                    || donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.Accepted.name())){
+                donationHistoryCount++;
+                Object[] row = new Object[7];
+                    row[0] = currentPickUpcount;
+                    row[1] = donation;
+                    row[2] = donation.getDonor().getName();
+                    row[3] = donation.getCategory().name();
+                    if(donation.getPickUp().name().equals(PickUp.Home.name())) {
+                        row[4] = donation.getAddressToPickUp();
+                    }else{
+                        row[4] = donation.getFoodBank().getLocation();
+                    }
+                    if(donation.getDateofExpiry()!=null) {
+                        row[5] = donation.getDateofExpiry();
+                    }
+                    row[6] = donation.getDonationStatus();
+                    
+                    currentOrdersModel.addRow(row);
             }
         }
-        countTotaljLabel.setText(String.valueOf(donationsCount));        
+        availableDonationsCountjLabel.setText(String.valueOf(donationHistoryCount));
+        
+        for(Donation donation:volunteer.getDonations()){
+            if(donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.PickedUp.name()) 
+                    || donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.Expired.name())
+                    || donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.Closed.name())){
+                donationHistoryCount++;
+                Object[] row = new Object[7];
+                    row[0] = currentPickUpcount;
+                    row[1] = donation;
+                    row[2] = donation.getDonor().getName();
+                    row[3] = donation.getCategory().name();
+                    if(donation.getPickUp().name().equals(PickUp.Home.name())) {
+                        row[4] = donation.getAddressToPickUp();
+                    }else{
+                        row[4] = donation.getFoodBank().getLocation();
+                    }
+                    if(donation.getDateofExpiry()!=null) {
+                        row[5] = donation.getDateofExpiry();
+                    }
+                    row[6] = donation.getDonationStatus();
+                    
+                    delieveredOrdersModel.addRow(row);
+            }
+        }
+        totalCountjLabel.setText(String.valueOf(currentPickUpcount));
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,31 +123,19 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        ratingjComboBox = new javax.swing.JComboBox<>();
         currentOrdersHeaderjLabel = new javax.swing.JLabel();
         totalCountHeaderjLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        currentOrdersjTable = new javax.swing.JTable();
+        currentPickUpsjTable = new javax.swing.JTable();
         totalCountjLabel = new javax.swing.JLabel();
         currentOrdersHeaderjLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        deliveredOrdersjTable = new javax.swing.JTable();
-        deliveredjButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        feedbackjTextField = new javax.swing.JTextField();
+        donationDeliveryHistoryjTable = new javax.swing.JTable();
+        btnpcikedup = new javax.swing.JButton();
+        pendingCountHeaderjLabel = new javax.swing.JLabel();
+        availableDonationsCountjLabel = new javax.swing.JLabel();
 
         setLayout(null);
-
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel2.setText("Rating :");
-        add(jLabel2);
-        jLabel2.setBounds(440, 240, 53, 19);
-
-        ratingjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        ratingjComboBox.setSelectedIndex(4);
-        add(ratingjComboBox);
-        ratingjComboBox.setBounds(510, 240, 34, 22);
 
         currentOrdersHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         currentOrdersHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -142,7 +148,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         add(totalCountHeaderjLabel);
         totalCountHeaderjLabel.setBounds(10, 540, 88, 19);
 
-        currentOrdersjTable.setModel(new javax.swing.table.DefaultTableModel(
+        currentPickUpsjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -150,14 +156,14 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Serial-No", "CustomerName", "SpecialRequests", "Total Price($)", "Status", "AssignedBy", "Restaurant"
+                "Serial-No", "Information", "Donor Name", "Category", "Pickup Address", "Expiry", "Donation Request Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -168,8 +174,8 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        currentOrdersjTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(currentOrdersjTable);
+        currentPickUpsjTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(currentPickUpsjTable);
 
         add(jScrollPane1);
         jScrollPane1.setBounds(10, 60, 980, 160);
@@ -185,7 +191,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         add(currentOrdersHeaderjLabel1);
         currentOrdersHeaderjLabel1.setBounds(380, 310, 202, 24);
 
-        deliveredOrdersjTable.setModel(new javax.swing.table.DefaultTableModel(
+        donationDeliveryHistoryjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -193,14 +199,14 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Serial-No", "CustomerName", "SpecialRequests", "Total Price($)", "Status", "AssignedBy", "Restaurant"
+                "Serial-No", "Information", "Donor Name", "Category", "Pickup Address", "Expiry", "Donation Request Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -211,70 +217,62 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        deliveredOrdersjTable.getTableHeader().setReorderingAllowed(false);
-        deliveredOrdersjTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deliveredOrdersjTableMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(deliveredOrdersjTable);
+        donationDeliveryHistoryjTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(donationDeliveryHistoryjTable);
 
         add(jScrollPane2);
         jScrollPane2.setBounds(10, 350, 980, 160);
 
-        deliveredjButton.setText("Mark Delivered");
-        deliveredjButton.addActionListener(new java.awt.event.ActionListener() {
+        btnpcikedup.setText("Picked Up?");
+        btnpcikedup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deliveredjButtonActionPerformed(evt);
+                btnpcikedupActionPerformed(evt);
             }
         });
-        add(deliveredjButton);
-        deliveredjButton.setBounds(870, 250, 117, 25);
+        add(btnpcikedup);
+        btnpcikedup.setBounds(850, 230, 117, 25);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel1.setText("Feedback :");
-        add(jLabel1);
-        jLabel1.setBounds(10, 240, 77, 19);
-        add(feedbackjTextField);
-        feedbackjTextField.setBounds(110, 240, 280, 22);
+        pendingCountHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        pendingCountHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        pendingCountHeaderjLabel.setText("Count :");
+        add(pendingCountHeaderjLabel);
+        pendingCountHeaderjLabel.setBounds(880, 30, 50, 19);
+
+        availableDonationsCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        availableDonationsCountjLabel.setText("0");
+        add(availableDonationsCountjLabel);
+        availableDonationsCountjLabel.setBounds(940, 30, 8, 19);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deliveredOrdersjTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deliveredOrdersjTableMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deliveredOrdersjTableMouseClicked
+    private void btnpcikedupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpcikedupActionPerformed
 
-    private void deliveredjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliveredjButtonActionPerformed
-        // TODO add your handling code here:
-
-        int selectedRow = currentOrdersjTable.getSelectedRow();
+        int selectedRow = currentPickUpsjTable.getSelectedRow();
         if(selectedRow <0){
             JOptionPane.showMessageDialog(this, "Please select a row to update delivery");
             return;
         }
 
-        DefaultTableModel currentOrdersModel = (DefaultTableModel) currentOrdersjTable.getModel();
-        Order order = (Order) currentOrdersModel.getValueAt(selectedRow, 3);
-        order.setDeliveryPersonCustomerRating(ratingjComboBox.getSelectedIndex()+1);
-        order.setDeliveryPersonFeedback(feedbackjTextField.getText());
-        order.setOrderStatus(OrderStatus.Delivered);
-        order.setLastUpdatedDate(new Date());
-        order.setModifiedBy(userAccount.getName());
+        DefaultTableModel currentOrdersModel = (DefaultTableModel) currentPickUpsjTable.getModel();
+        Donation dn = (Donation) currentOrdersModel.getValueAt(selectedRow, 1);
+        
+        dn.setDonationStatus(DonationStatus.PickedUp);
+        dn.setLastUpdatedDate(new Date());
+        dn.setModifiedBy(userLogged.getName());
+
         populateData();
-    }//GEN-LAST:event_deliveredjButtonActionPerformed
+    }//GEN-LAST:event_btnpcikedupActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel availableDonationsCountjLabel;
+    private javax.swing.JButton btnpcikedup;
     private javax.swing.JLabel currentOrdersHeaderjLabel;
     private javax.swing.JLabel currentOrdersHeaderjLabel1;
-    private javax.swing.JTable currentOrdersjTable;
-    private javax.swing.JTable deliveredOrdersjTable;
-    private javax.swing.JButton deliveredjButton;
-    private javax.swing.JTextField feedbackjTextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTable currentPickUpsjTable;
+    private javax.swing.JTable donationDeliveryHistoryjTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JComboBox<String> ratingjComboBox;
+    private javax.swing.JLabel pendingCountHeaderjLabel;
     private javax.swing.JLabel totalCountHeaderjLabel;
     private javax.swing.JLabel totalCountjLabel;
     // End of variables declaration//GEN-END:variables
