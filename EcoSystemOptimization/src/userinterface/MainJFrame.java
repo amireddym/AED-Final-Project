@@ -291,7 +291,8 @@ public class MainJFrame extends javax.swing.JFrame {
                                 userLogged = organization.getOrgManagerDirectory().isUserOrgManager(userName,password);
                                 if(userLogged!=null) {
                                     CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                                    userProcessJPanel.add("OrgMangerHomePanel", JPanelManager.getOrgManagerHomePanel());
+                                    userProcessJPanel.add("OrgMangerHomePanel", JPanelManager.getOrgManagerHomePanel(userProcessJPanel, ecoSystem,
+                                            cityNetwork, organization, userLogged));
                                     cardLayout.next(userProcessJPanel);
                                     clearLoginPanels();
                                     return;
