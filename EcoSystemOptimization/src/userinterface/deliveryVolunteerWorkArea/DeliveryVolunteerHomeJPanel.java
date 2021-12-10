@@ -5,17 +5,29 @@
  */
 package userinterface.deliveryVolunteerWorkArea;
 
+import businesslogic.EcoSystem;
+import businesslogic.User;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author manojreddy
  */
 public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
 
+    private JPanel userProcessJPanel;
+    private EcoSystem ecoSystem;
+    private User userLogged;
+    
     /**
      * Creates new form DeliveryVolunteerHomeJPanel
      */
-    public DeliveryVolunteerHomeJPanel() {
+    public DeliveryVolunteerHomeJPanel(JPanel userProcessJPanel, EcoSystem ecoSystem, User userLogged) {
         initComponents();
+        this.userProcessJPanel = userProcessJPanel;
+        this.ecoSystem = ecoSystem;
+        this.userLogged = userLogged;
     }
 
     /**
@@ -27,19 +39,72 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lbltitle = new javax.swing.JLabel();
+        btnupdatemyprofile = new javax.swing.JButton();
+        btnmanagemydonations = new javax.swing.JButton();
+
+        lbltitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbltitle.setText("Delivery Volunteer Home Page");
+
+        btnupdatemyprofile.setText("Update my Profile");
+        btnupdatemyprofile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdatemyprofileActionPerformed(evt);
+            }
+        });
+
+        btnmanagemydonations.setText("Manage My Donations");
+        btnmanagemydonations.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmanagemydonationsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1013, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(btnupdatemyprofile)
+                        .addGap(171, 171, 171)
+                        .addComponent(btnmanagemydonations))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(lbltitle)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 481, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(lbltitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnupdatemyprofile)
+                    .addComponent(btnmanagemydonations))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnupdatemyprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdatemyprofileActionPerformed
+        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+        userProcessJPanel.add("UpdateDeliveryVolunteerProfileJPanel", new UpdateDeliveryVolunteerProfileJPanel(userProcessJPanel,ecoSystem,userLogged));
+        cardLayout.next(userProcessJPanel);
+    }//GEN-LAST:event_btnupdatemyprofileActionPerformed
+
+    private void btnmanagemydonationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanagemydonationsActionPerformed
+//        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+//        userProcessJPanel.add("ManageMyDeliveriesJPanel", new ManageMyDeliveriesJPanel(userProcessJPanel,ecoSystem,userLogged));
+//        cardLayout.next(userProcessJPanel);
+    }//GEN-LAST:event_btnmanagemydonationsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnmanagemydonations;
+    private javax.swing.JButton btnupdatemyprofile;
+    private javax.swing.JLabel lbltitle;
     // End of variables declaration//GEN-END:variables
 }

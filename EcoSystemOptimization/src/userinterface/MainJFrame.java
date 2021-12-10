@@ -324,7 +324,7 @@ public class MainJFrame extends javax.swing.JFrame {
                                 userLogged = organization.getDeliveryVolunteerDirectory().isUserDeliveryVolunteer(userName, password);
                                 if(userLogged!=null) {
                                     CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                                    userProcessJPanel.add("DeliveryVolunteerHomePanel", JPanelManager.getDeliveryVolunteerHomePanel());
+                                    userProcessJPanel.add("DeliveryVolunteerHomePanel", JPanelManager.getDeliveryVolunteerHomePanel(userProcessJPanel, ecoSystem, userLogged));
                                     cardLayout.next(userProcessJPanel);
                                     clearLoginPanels();
                                     return;
