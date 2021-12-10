@@ -201,9 +201,6 @@ public class Donation extends ModificationInfo{
 
     @Override
     public String toString() {
-        return donor.getName();
-    }
-    
-    
-    
+        return information;
+    }    
 }

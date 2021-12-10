@@ -13,6 +13,7 @@ import businesslogic.User;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.signUpWorkArea.SignUpJPanel;
 
@@ -210,6 +211,16 @@ public class MainJFrame extends javax.swing.JFrame {
         char[] passwordChars = jPasswordField.getPassword();
         String password = String.valueOf(passwordChars);
         
+        if(userName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username cannot be Empty");
+            return;
+        }else{
+            if(password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Password cannot be Empty");
+                return;
+            }
+        }
+        
         User userLogged = null;
         
         //SysAdmin login functionality
@@ -274,7 +285,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         userLogged = cityNetwork.getCleanersDirectory().isUserCleaner(userName, password);
                         if(userLogged!=null) {
                             CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                            userProcessJPanel.add("CleanerHomePanel",JPanelManager.getCleanerHomePanel());
+                            userProcessJPanel.add("CleanerHomePanel",JPanelManager.getCleanerHomePanel(userProcessJPanel, ecoSystem, cityNetwork, userLogged));
                             cardLayout.next(userProcessJPanel);
                             clearLoginPanels();
                             return;
@@ -298,7 +309,8 @@ public class MainJFrame extends javax.swing.JFrame {
                                 userLogged = organization.getOrgManagerDirectory().isUserOrgManager(userName,password);
                                 if(userLogged!=null) {
                                     CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                                    userProcessJPanel.add("OrgMangerHomePanel", JPanelManager.getOrgManagerHomePanel());
+                                    userProcessJPanel.add("OrgMangerHomePanel", JPanelManager.getOrgManagerHomePanel(userProcessJPanel, ecoSystem,
+                                            cityNetwork, organization, userLogged));
                                     cardLayout.next(userProcessJPanel);
                                     clearLoginPanels();
                                     return;
@@ -334,7 +346,9 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                 }
             }
-        }        
+        }
+
+        JOptionPane.showMessageDialog(this, "Please recheck your credentials");
         
     }//GEN-LAST:event_loginJButtonActionPerformed
 

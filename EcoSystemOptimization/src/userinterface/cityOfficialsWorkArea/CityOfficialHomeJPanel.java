@@ -31,11 +31,11 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGap(0, 832, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGap(0, 384, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

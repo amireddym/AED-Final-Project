@@ -431,7 +431,7 @@ public class ManageOrganizationsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = tblOrganizationsList.getSelectedRow();
         if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a Restaurant to add Managers");
+            JOptionPane.showMessageDialog(this, "Please select an Organization to add Managers");
             return;
         } else {
             DefaultTableModel organizationsModel = (DefaultTableModel) tblOrganizationsList.getModel();
