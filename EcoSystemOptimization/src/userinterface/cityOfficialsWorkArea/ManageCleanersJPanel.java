@@ -9,6 +9,8 @@ import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
 import java.awt.CardLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -93,6 +95,11 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        managecleanerstbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                managecleanerstblMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(managecleanerstbl);
@@ -198,8 +205,11 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
              Cleaner selectedCleaner=(Cleaner) managecleanerstbl.getValueAt(selectedRow, 1);
              cityNetwork.getCleanersDirectory().getCleaners().remove(selectedCleaner);
              JOptionPane.showMessageDialog(null, "Successfully deleted Cleaner Account ");
-
+        nameHolderjLabel.setText("");
+            picHolderjLabel.setText("");
             populateData();
+            
+            
          }
     }//GEN-LAST:event_deletebtnActionPerformed
 
@@ -217,6 +227,23 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_updatebtnActionPerformed
 
+    private void managecleanerstblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managecleanerstblMouseClicked
+        // TODO add your handling code here:
+        int selectedIndex = managecleanerstbl.getSelectedRow();
+        if(selectedIndex<0) {
+            return;
+        }
+         Cleaner selectedCleaner=(Cleaner) managecleanerstbl.getValueAt(selectedIndex, 1);
+         nameHolderjLabel.setText(selectedCleaner.getName());
+         setPhoto(selectedCleaner.getProfilePic());
+    }//GEN-LAST:event_managecleanerstblMouseClicked
+     
+    private void setPhoto(String profilePic) {
+        
+        ImageIcon photo = new ImageIcon(profilePic);
+        Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
+        picHolderjLabel.setIcon(new ImageIcon(photoResized));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
