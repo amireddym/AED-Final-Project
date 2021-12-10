@@ -66,7 +66,9 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         this.ecoSystem = ecoSystem;
         this.userLogged = userLogged;
         this.donor = (Donor) userLogged;
-        System.out.println(lblpicHolder.getWidth());
+        
+//        System.out.println(ecoSystem.getCityNetworkDirectory().getCityNetworks().size());
+        
         populateCategories();
         populateCities();
         populatePickUpMode();
@@ -268,7 +270,7 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblpicHolder, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(uploadjButton)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -357,12 +359,12 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         }
 
         Date dateofExpiry = (Date) dateofexpiryDATECHOOSER.getDate();
-        if (dateofExpiry == null) 
-        {
-            JOptionPane.showMessageDialog(null, "!Error! Choose Date field.", "Error", JOptionPane.ERROR_MESSAGE);
-            dateofexpiryDATECHOOSER.grabFocus();
-            return;
-        }
+//        if (dateofExpiry == null) 
+//        {
+//            JOptionPane.showMessageDialog(null, "!Error! Choose Date field.", "Error", JOptionPane.ERROR_MESSAGE);
+//            dateofexpiryDATECHOOSER.grabFocus();
+//            return;
+//        }
         
         Donation newDonation = new Donation(information, category, usageStatus, pickUp, foodBank, addressToPickUp, dateofExpiry, imagePath, donor, cityNetwork, null, null, null, DonationStatus.ReadyToPickup, null, new Date(), new Date(), donor.getName(), donor.getName());
         JOptionPane.showMessageDialog(this, "Sucessfully added a Donation request.");

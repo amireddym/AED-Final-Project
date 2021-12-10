@@ -14,6 +14,7 @@ import businesslogic.helper.ValidateInputs;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -230,12 +231,9 @@ public class SignUpJPanel extends javax.swing.JPanel {
             this.photoPath = f.getAbsolutePath();
             ImageIcon icon = new ImageIcon(photoPath);
             lblimagepath.setText(photoPath);
-            
-            this.iconPic = icon;
-//            user.setBiometricIdentifier(icon);         
+            this.iconPic = icon;        
         }
         
-//        iconPic = userProfile.getPic();
         if(iconPic !=null){            
             lblpicpreview.setSize(200, 200);
             Image resizedImage = iconPic.getImage().getScaledInstance(lblpicpreview.getWidth(), lblpicpreview.getHeight(), Image.SCALE_SMOOTH);
@@ -245,6 +243,28 @@ public class SignUpJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnattachpicActionPerformed
 
+    private void resetFields(){
+        txtname.setText("");
+        txtusername.setText("");
+        txtpassword.setText("");
+        txtemail.setText("");
+        txtphoneno.setText("");
+        txtaddress.setText("");
+        
+        setDefaultPhoto();
+    }
+    
+    private void setDefaultPhoto() {
+        
+        setPhoto(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
+    }
+    
+    private void setPhoto(String imagePath) {
+        ImageIcon photo = new ImageIcon(imagePath);
+        Image photoResized = photo.getImage().getScaledInstance(lblpicpreview.getWidth(), lblpicpreview.getHeight(),4);
+        lblpicpreview.setIcon(new ImageIcon(photoResized));
+    }
+    
     private void btncreatenewuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncreatenewuserActionPerformed
         if (ValidateInputs.isNameValid(txtname.getText()) && ValidateInputs.isPhoneNumberValid(txtphoneno.getText()) 
                 && ValidateInputs.isEmailValid(txtemail.getText()) && ValidateInputs.isUsernameValid(txtusername.getText()) 
@@ -254,6 +274,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
             
             ecoSystem.getDonorsDirectory().getDonors().add(donor);
             JOptionPane.showMessageDialog(this, "User successfully added");
+            
         }
         else{
             JOptionPane.showMessageDialog(this, "!Error! Please verify all the data types");

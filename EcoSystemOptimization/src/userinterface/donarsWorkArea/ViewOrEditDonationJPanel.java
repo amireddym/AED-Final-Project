@@ -365,12 +365,6 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         }
 
         Date dateofExpiry = (Date) dateofexpiryDATECHOOSER.getDate();
-        if (dateofExpiry == null) 
-        {
-            JOptionPane.showMessageDialog(null, "!Error! Choose Date field.", "Error", JOptionPane.ERROR_MESSAGE);
-            dateofexpiryDATECHOOSER.grabFocus();
-            return;
-        }
         
         donation.setInformation(information);
         donation.setCategory(category);
