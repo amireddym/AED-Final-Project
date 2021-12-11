@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.systemAdminsWorkArea;
+package userinterface.orgManagersWorkArea;
 
 import businesslogic.EcoSystem;
 import businesslogic.User;
-import businesslogic.cityOfficial.CityOfficial;
+import businesslogic.delivery.DeliveryVolunteer;
 import businesslogic.helper.Constants;
 import businesslogic.helper.EmailHelper;
 import businesslogic.helper.PhoneNoHelper;
 import businesslogic.helper.UserNameHelper;
+import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -28,42 +29,45 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author manojreddy
  */
-public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
+public class UpdateDeliveryVolunteerJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form UpdateCityOfficialJPanel
+     * Creates new form UpdateDeliveryVolunteerJPanel
      */
     
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
-    private CityOfficial cityOfficial;
+    private Organization organization;
+    private DeliveryVolunteer deliveryVolunteer;
     private User userLogged;
     
     private String imagePath;
     
-    public UpdateCityOfficialJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityOfficial cityOfficial, User userLogged) {
+    public UpdateDeliveryVolunteerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Organization organization, 
+            DeliveryVolunteer deliveryVolunteer, User userLogged ) {
         initComponents();
         
-        this.userProcessJpanel=userProcessJpanel;
-        this.ecoSystem=ecoSystem;
-        this.cityOfficial=cityOfficial;
-        this.userLogged=userLogged;
+        this.userProcessJpanel = userProcessJpanel;
+        this.ecoSystem = ecoSystem;
+        this.organization = organization;
+        this.deliveryVolunteer = deliveryVolunteer;
+        this.userLogged = userLogged;
         
         picHolderjLabel.setSize(126, 139);
         populateData();
     }
-
+    
     private void populateData() {
         
-        namejTextField.setText(cityOfficial.getName());
-        userNamejTextField.setText(cityOfficial.getUserName());
-        passwordjTextField.setText(cityOfficial.getPassword());
-        phoneNojTextField.setText(cityOfficial.getPhoneNo());
-        emailjTextField.setText(cityOfficial.getEmail());
-        addressjTextField.setText(cityOfficial.getAddress());
-        imagePath = cityOfficial.getProfilePic();
+        namejTextField.setText(deliveryVolunteer.getName());
+        userNamejTextField.setText(deliveryVolunteer.getUserName());
+        passwordjTextField.setText(deliveryVolunteer.getPassword());
+        phoneNojTextField.setText(deliveryVolunteer.getPhoneNo());
+        emailjTextField.setText(deliveryVolunteer.getEmail());
+        addressjTextField.setText(deliveryVolunteer.getAddress());
+        imagePath = deliveryVolunteer.getProfilePic();
         
-        setPhoto(cityOfficial.getProfilePic());
+        setPhoto(deliveryVolunteer.getProfilePic());
     }
     
     private void setPhoto(String profilePic) {
@@ -79,6 +83,7 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
         Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
         picHolderjLabel.setIcon(new ImageIcon(photoResized));
     }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,13 +94,6 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        phoneNojLabel = new javax.swing.JLabel();
-        passwordjTextField = new javax.swing.JTextField();
-        userNamejLabel = new javax.swing.JLabel();
-        phoneNojTextField = new javax.swing.JTextField();
-        emailjLabel = new javax.swing.JLabel();
-        headerjLabel = new javax.swing.JLabel();
-        picHolderjLabel = new javax.swing.JLabel();
         namejLabel = new javax.swing.JLabel();
         namejTextField = new javax.swing.JTextField();
         emailjTextField = new javax.swing.JTextField();
@@ -106,24 +104,13 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
         addressjTextField = new javax.swing.JTextField();
         userNamejTextField = new javax.swing.JTextField();
         backjButton = new javax.swing.JButton();
-
-        phoneNojLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        phoneNojLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        phoneNojLabel.setText("Phone No :");
-
-        userNamejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        userNamejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        userNamejLabel.setText("User Name :");
-
-        emailjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        emailjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        emailjLabel.setText("Email :");
-
-        headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
-        headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headerjLabel.setText("Update City Donor");
-
-        picHolderjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        phoneNojLabel = new javax.swing.JLabel();
+        passwordjTextField = new javax.swing.JTextField();
+        userNamejLabel = new javax.swing.JLabel();
+        phoneNojTextField = new javax.swing.JTextField();
+        emailjLabel = new javax.swing.JLabel();
+        headerjLabel = new javax.swing.JLabel();
+        picHolderjLabel = new javax.swing.JLabel();
 
         namejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         namejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -157,6 +144,24 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
                 backjButtonActionPerformed(evt);
             }
         });
+
+        phoneNojLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        phoneNojLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        phoneNojLabel.setText("Phone No :");
+
+        userNamejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        userNamejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        userNamejLabel.setText("User Name :");
+
+        emailjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        emailjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        emailjLabel.setText("Email :");
+
+        headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
+        headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerjLabel.setText("Update Delivery Volunteer");
+
+        picHolderjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -247,7 +252,7 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
                             .addComponent(addressjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50)
                         .addComponent(updatejButton)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -255,32 +260,31 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
 
-            if(!cityOfficial.getUserName().equals(userNamejTextField.getText()) && UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {
+            if(!deliveryVolunteer.getUserName().equals(userNamejTextField.getText()) && UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
                 return;
             }
-            if(!cityOfficial.getEmail().equals(emailjTextField.getText()) && EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
+            if(!deliveryVolunteer.getEmail().equals(emailjTextField.getText()) && EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
                 return;
             }
-            if(!cityOfficial.getPhoneNo().equals(phoneNojTextField.getText()) && PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
+            if(!deliveryVolunteer.getPhoneNo().equals(phoneNojTextField.getText()) && PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
                 return;
             }
 
-            cityOfficial.setName(namejTextField.getText());
-            cityOfficial.setUserName(userNamejTextField.getText());
-            cityOfficial.setPassword(passwordjTextField.getText());
-            cityOfficial.setEmail(emailjTextField.getText());
-            cityOfficial.setPhoneNo(phoneNojTextField.getText());
-            cityOfficial.setAddress(addressjTextField.getText());
-            cityOfficial.setProfilePic(imagePath);
-            cityOfficial.setLastUpdatedDate(new Date());
-            cityOfficial.setModifiedBy(userLogged.getUserName());
-            
-            JOptionPane.showMessageDialog(this, "Successfully updated City Official");
+            deliveryVolunteer.setName(namejTextField.getText());
+            deliveryVolunteer.setUserName(userNamejTextField.getText());
+            deliveryVolunteer.setPassword(passwordjTextField.getText());
+            deliveryVolunteer.setEmail(emailjTextField.getText());
+            deliveryVolunteer.setPhoneNo(phoneNojTextField.getText());
+            deliveryVolunteer.setAddress(addressjTextField.getText());
+            deliveryVolunteer.setProfilePic(imagePath);
+            deliveryVolunteer.setLastUpdatedDate(new Date());
+            deliveryVolunteer.setModifiedBy(userLogged.getUserName());
+            JOptionPane.showMessageDialog(this, "Successfully saved Delivery Volunteer");
         }else{
-            JOptionPane.showMessageDialog(this, "Error updating City Official. Please check DataTypes");
+            JOptionPane.showMessageDialog(this, "Error saving Delivery Volunteer. Please check DataTypes");
         }
     }//GEN-LAST:event_updatejButtonActionPerformed
 
@@ -314,8 +318,8 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
         userProcessJpanel.remove(this);
 
         Component[] components = userProcessJpanel.getComponents();
-        ManageCityOfficialsJPanel manageCityOfficialsJPanel = (ManageCityOfficialsJPanel) components[components.length-1];
-        manageCityOfficialsJPanel.populateCityOfficials();
+        ManageDeliveryVolunteersJPanel manageDeliveryVolunteersJPanel = (ManageDeliveryVolunteersJPanel) components[components.length-1];
+        manageDeliveryVolunteersJPanel.populateDeliveryVolunteers();
 
         CardLayout cardLayout = (CardLayout) userProcessJpanel.getLayout();
         cardLayout.previous(userProcessJpanel);

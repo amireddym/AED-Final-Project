@@ -288,9 +288,9 @@ public class UpdateDonorJPanel extends javax.swing.JPanel {
             donor.setProfilePic(imagePath);
             donor.setLastUpdatedDate(new Date());
             donor.setModifiedBy(userLogged.getUserName());
-            JOptionPane.showMessageDialog(this, "Successfully saved new Donor");
+            JOptionPane.showMessageDialog(this, "Successfully updated Donor");
         }else{
-            JOptionPane.showMessageDialog(this, "Error saving new Donor. Please check DataTypes");
+            JOptionPane.showMessageDialog(this, "Error updating Donor. Please check DataTypes");
         }
     }//GEN-LAST:event_updatejButtonActionPerformed
 

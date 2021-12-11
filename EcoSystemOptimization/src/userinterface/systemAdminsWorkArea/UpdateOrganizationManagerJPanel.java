@@ -268,15 +268,15 @@ public class UpdateOrganizationManagerJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
 
-            if(UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {
+            if(!orgManager.getUserName().equals(userNamejTextField.getText()) && UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
                 return;
             }
-            if(EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
+            if(!orgManager.getEmail().equals(emailjTextField.getText()) && EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
                 return;
             }
-            if(PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
+            if(!orgManager.getPhoneNo().equals(phoneNojTextField.getText()) && PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
                 return;
             }
@@ -288,9 +288,9 @@ public class UpdateOrganizationManagerJPanel extends javax.swing.JPanel {
             orgManager.setPhoneNo(phoneNojTextField.getText());
             orgManager.setAddress(addressjTextField.getText());
             
-            JOptionPane.showMessageDialog(this, "Successfully saved new Organization Manager");
+            JOptionPane.showMessageDialog(this, "Successfully updated Organization Manager");
         }else{
-            JOptionPane.showMessageDialog(this, "Error saving new Organization Manager. Please check DataTypes");
+            JOptionPane.showMessageDialog(this, "Error updating Organization Manager. Please check DataTypes");
         }
     }//GEN-LAST:event_updatejButtonActionPerformed
 
