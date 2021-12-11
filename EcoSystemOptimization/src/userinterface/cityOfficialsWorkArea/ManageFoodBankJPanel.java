@@ -72,7 +72,7 @@ public class ManageFoodBankJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         jLabel1.setText("Manage Food Bank");
 
-        backbtn.setText("Back");
+        backbtn.setText("< < Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backbtnActionPerformed(evt);
@@ -107,7 +107,7 @@ public class ManageFoodBankJPanel extends javax.swing.JPanel {
             }
         });
 
-        createbtn.setText("Create New Food Bank");
+        createbtn.setText("Create >");
         createbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createbtnActionPerformed(evt);
@@ -127,13 +127,6 @@ public class ManageFoodBankJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(updatebtn)
-                        .addGap(33, 33, 33)
-                        .addComponent(deletebtn)
-                        .addGap(37, 37, 37)
-                        .addComponent(createbtn))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(65, 65, 65)
@@ -142,7 +135,14 @@ public class ManageFoodBankJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(127, 127, 127)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updatebtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(deletebtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(createbtn)))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -154,12 +154,12 @@ public class ManageFoodBankJPanel extends javax.swing.JPanel {
                     .addComponent(backbtn))
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deletebtn)
                     .addComponent(createbtn)
+                    .addComponent(deletebtn)
                     .addComponent(updatebtn))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

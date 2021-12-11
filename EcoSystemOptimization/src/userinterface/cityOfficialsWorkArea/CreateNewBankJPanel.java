@@ -54,11 +54,12 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
         addbtn = new javax.swing.JButton();
         backbtn = new javax.swing.JButton();
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Create New Bank");
 
         jLabel2.setText("Name:");
 
-        jLabel3.setText("Location");
+        jLabel3.setText("Location :");
 
         addbtn.setText("Add");
         addbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +68,7 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
             }
         });
 
-        backbtn.setText("Back");
+        backbtn.setText("< < Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backbtnActionPerformed(evt);
@@ -81,32 +82,32 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
+                        .addGap(60, 60, 60)
+                        .addComponent(backbtn)
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(361, 361, 361)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(locationJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                            .addComponent(nameJTextField)))
+                            .addComponent(locationJTextField)
+                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(backbtn)
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
+                        .addGap(420, 420, 420)
                         .addComponent(addbtn)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backbtn))
-                .addGap(39, 39, 39)
+                .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -116,7 +117,7 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
                     .addComponent(locationJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(addbtn)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

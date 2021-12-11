@@ -9,8 +9,6 @@ import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
 import java.awt.CardLayout;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -71,8 +69,6 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         managecleanerstbl = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        nameHolderjLabel = new javax.swing.JLabel();
-        picHolderjLabel = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
         updatebtn = new javax.swing.JButton();
         deletebtn = new javax.swing.JButton();
@@ -97,30 +93,20 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        managecleanerstbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                managecleanerstblMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(managecleanerstbl);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Cleaners");
 
-        nameHolderjLabel.setText("<Name>");
-        nameHolderjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        picHolderjLabel.setText("<Profile Pic>");
-        picHolderjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        addBtn.setText("Create New Cleaner");
+        addBtn.setText("Create >");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
             }
         });
 
-        updatebtn.setText("Update Details");
+        updatebtn.setText("Update");
         updatebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updatebtnActionPerformed(evt);
@@ -134,7 +120,7 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
             }
         });
 
-        backbtn.setText("Back");
+        backbtn.setText("< < Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backbtnActionPerformed(evt);
@@ -147,51 +133,41 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(updatebtn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(deletebtn)
+                            .addGap(18, 18, 18)
+                            .addComponent(addBtn))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(backbtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(284, 284, 284)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(updatebtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(deletebtn)
-                                .addGap(31, 31, 31)
-                                .addComponent(addBtn))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(53, 53, 53)
-                                    .addComponent(backbtn))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(84, 84, 84)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameHolderjLabel)
-                            .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backbtn))
-                .addGap(72, 72, 72)
-                .addComponent(nameHolderjLabel)
+                .addGap(98, 98, 98)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addBtn)
-                            .addComponent(deletebtn)
-                            .addComponent(updatebtn)))
-                    .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addBtn)
+                    .addComponent(deletebtn)
+                    .addComponent(updatebtn))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,8 +188,6 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
              Cleaner selectedCleaner=(Cleaner) managecleanerstbl.getValueAt(selectedRow, 1);
              cityNetwork.getCleanersDirectory().getCleaners().remove(selectedCleaner);
              JOptionPane.showMessageDialog(null, "Successfully deleted Cleaner Account ");
-            nameHolderjLabel.setText("");
-            picHolderjLabel.setText("");
             populateData();
             
             
@@ -241,24 +215,7 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
          }
         
     }//GEN-LAST:event_updatebtnActionPerformed
-
-    private void managecleanerstblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managecleanerstblMouseClicked
-        // TODO add your handling code here:
-        int selectedIndex = managecleanerstbl.getSelectedRow();
-        if(selectedIndex<0) {
-            return;
-        }
-         Cleaner selectedCleaner=(Cleaner) managecleanerstbl.getValueAt(selectedIndex, 1);
-         nameHolderjLabel.setText(selectedCleaner.getName());
-         setPhoto(selectedCleaner.getProfilePic());
-    }//GEN-LAST:event_managecleanerstblMouseClicked
      
-    private void setPhoto(String profilePic) {
-        
-        ImageIcon photo = new ImageIcon(profilePic);
-        Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
-        picHolderjLabel.setIcon(new ImageIcon(photoResized));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
@@ -267,8 +224,6 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable managecleanerstbl;
-    private javax.swing.JLabel nameHolderjLabel;
-    private javax.swing.JLabel picHolderjLabel;
     private javax.swing.JButton updatebtn;
     // End of variables declaration//GEN-END:variables
 }
