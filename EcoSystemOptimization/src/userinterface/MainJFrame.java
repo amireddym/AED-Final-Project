@@ -68,6 +68,7 @@ public class MainJFrame extends javax.swing.JFrame {
         madeWithjLabel = new javax.swing.JLabel();
         lovejLabel = new javax.swing.JLabel();
         neujLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         userProcessJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,17 +124,15 @@ public class MainJFrame extends javax.swing.JFrame {
         neujLabel.setFont(new java.awt.Font("Lucida Grande", 1, 10)); // NOI18N
         neujLabel.setText("@neu");
 
+        jButton1.setBackground(new java.awt.Color(102, 255, 102));
+        jButton1.setText("About Me");
+        jButton1.setPreferredSize(new java.awt.Dimension(104, 25));
+        jButton1.setSize(new java.awt.Dimension(90, 25));
+
         javax.swing.GroupLayout controlJPanelLayout = new javax.swing.GroupLayout(controlJPanel);
         controlJPanel.setLayout(controlJPanelLayout);
         controlJPanelLayout.setHorizontalGroup(
             controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlJPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(signUpJButton)
-                    .addComponent(logoutJButton)
-                    .addComponent(loginJButton))
-                .addGap(33, 33, 33))
             .addGroup(controlJPanelLayout.createSequentialGroup()
                 .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(controlJPanelLayout.createSequentialGroup()
@@ -147,6 +146,9 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(userNameJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(controlJPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(controlJPanelLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(madeWithjLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -154,8 +156,14 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(neujLabel))
                     .addGroup(controlJPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(controlJPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(signUpJButton)
+                            .addComponent(logoutJButton)
+                            .addComponent(loginJButton))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -178,9 +186,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(loginJButton)
                 .addGap(18, 18, 18)
                 .addComponent(logoutJButton)
-                .addGap(110, 110, 110)
+                .addGap(58, 58, 58)
                 .addComponent(signUpJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lovejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlJPanelLayout.createSequentialGroup()
@@ -443,6 +453,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel controlJPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JButton loginJButton;
     private javax.swing.JButton logoutJButton;
