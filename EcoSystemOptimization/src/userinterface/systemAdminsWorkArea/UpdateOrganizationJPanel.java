@@ -43,6 +43,7 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
         this.ecoSystem = ecoSystem;
         this.organization = organization;
         this.userLogged = userLogged;
+        picHolderjLabel.setSize(126, 139);
         
         populateData();
     }

@@ -396,7 +396,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void signUpJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpJButtonActionPerformed
-        // TODO add your handling code here:
+        signUpJButton.setEnabled(false);
         
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
         userProcessJPanel.add("SignUpPanel", new SignUpJPanel(userProcessJPanel, ecoSystem, dB4OUtil));
