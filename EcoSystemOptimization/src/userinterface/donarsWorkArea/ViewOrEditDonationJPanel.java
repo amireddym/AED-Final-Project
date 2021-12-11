@@ -57,6 +57,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
     private Donor donor;
     private String imagePath;
     private Donation donation;
+    private CityNetwork cityNetwork;
     
     /**
      * Creates new form MakeNewDonationJPanel
@@ -70,6 +71,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         this.donation = selectedDonation;
         this.imagePath = donation.getPicture();
         lblpicHolder.setSize(126, 139);
+        this.cityNetwork = donation.getCityNetwork();
         
         populateCategories();
         populateCities();
@@ -153,6 +155,12 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         uploadjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uploadjButtonActionPerformed(evt);
+            }
+        });
+
+        cityjComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityjComboBoxActionPerformed(evt);
             }
         });
 
@@ -309,14 +317,16 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
     }
     
     public void populateFoodBanks() {
-        
         selectfoodbankjComboBox.removeAllItems();
-        List<CityNetwork> cityNetworks = ecoSystem.getCityNetworkDirectory().getCityNetworks();
-        cityjComboBox.removeAllItems();
+        
         for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
-            for(FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
-                selectfoodbankjComboBox.addItem(fb.getName());
-            }
+            if (cityNetwork.getCityName().name().equals(cityjComboBox.getSelectedItem().toString())){
+                if (cityNetwork.getFoodBankDirectory()!=null){
+                    for(FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
+                       selectfoodbankjComboBox.addItem(fb.getName());
+                    }
+                }
+            }            
         }
     }
     
@@ -341,8 +351,8 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         
         List<CityNetwork> cityNetworks = ecoSystem.getCityNetworkDirectory().getCityNetworks();
         cityjComboBox.removeAllItems();
-        for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
-            cityjComboBox.addItem(cityNetwork.getCityName().name());
+        for(CityNetwork cityNet:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
+            cityjComboBox.addItem(cityNet.getCityName().name());
         }
         
     }
@@ -373,7 +383,13 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         Category category = Category.valueOf(donationcategoryjComboBox.getSelectedItem().toString());
         UsageStatus usageStatus = UsageStatus.valueOf(usageStatusjComboBox.getSelectedItem().toString());
         PickUp pickUp = PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString());
-        FoodBank foodBank = (FoodBank) selectfoodbankjComboBox.getSelectedItem();
+        String foodBankName = selectfoodbankjComboBox.getSelectedItem().toString();
+        FoodBank foodBank = null;
+        for (FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
+            if (fb.getName().equals(foodBankName)){
+                foodBank = fb;
+            }
+        }
         
         int cityNetworkIndex = cityjComboBox.getSelectedIndex();
         CityNetwork cityNetwork =  ecoSystem.getCityNetworkDirectory().getCityNetworks().get(cityNetworkIndex);
@@ -390,6 +406,15 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
 
         Date dateofExpiry = (Date) dateofexpiryDATECHOOSER.getDate();
         
+        DonationStatus ds = null;
+        if (dateofExpiry.before(new Date())){
+            ds = DonationStatus.Expired;
+        }else{
+            ds = DonationStatus.ReadyToPickup;
+        }
+        
+        
+        
         donation.setInformation(information);
         donation.setCategory(category);
         donation.setUsageStatus(usageStatus);
@@ -398,6 +423,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         donation.setCityNetwork(cityNetwork);
         donation.setAddressToPickUp(addressToPickUp);
         donation.setDateofExpiry(dateofExpiry);
+        donation.setDonationStatus(ds);
         donation.setPicture(imagePath);
         
         JOptionPane.showMessageDialog(this, "Sucessfully updated the Donation request.");
@@ -429,17 +455,14 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         if (((String) pickupmodejComboBox.getSelectedItem()).equals("FoodBank")){
             selectfoodbankjComboBox.setEnabled(true);
             txtpickupaddress.setEditable(false);
+            
+            populateFoodBanks();
         }else{
+            selectfoodbankjComboBox.removeAllItems();
+            
             selectfoodbankjComboBox.setEnabled(false);
             txtpickupaddress.setEditable(true);
         }
-        
-//        String selectedItem = (String) pickupmodejComboBox.getSelectedItem();
-//        if(selectedItem.equalsIgnoreCase("Home")) {
-//            selectfoodbankjComboBox.setEnabled(false);
-//        }else{
-//            selectfoodbankjComboBox.setEnabled(true);
-//        }
     }//GEN-LAST:event_pickupmodejComboBoxActionPerformed
 
     private void backjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton2ActionPerformed
@@ -459,6 +482,10 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
             setPhoto(imagePath);
         }
     }//GEN-LAST:event_lblpicHolderMouseMoved
+
+    private void cityjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityjComboBoxActionPerformed
+        populateFoodBanks();
+    }//GEN-LAST:event_cityjComboBoxActionPerformed
 
 
     

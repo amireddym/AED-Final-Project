@@ -7,7 +7,11 @@ package userinterface.donarsWorkArea;
 
 import businesslogic.EcoSystem;
 import businesslogic.User;
+import businesslogic.cleaner.Cleaner;
+import businesslogic.enums.UserRole;
+import businesslogic.helper.Constants;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JPanel;
 
 /**
@@ -29,7 +33,9 @@ public class DonorHomeJPanel extends javax.swing.JPanel {
         
         this.userProcessJPanel = userProcessJPanel;
         this.ecoSystem = ecoSystem;
-        this.userLogged = userLogged;        
+        this.userLogged = userLogged;
+//        Cleaner c = new Cleaner("Michael Murugesh", "8463512357", "mmcleaner@gmail.com", "110 Forest Hills, Boston", "cleaner1", "password", UserRole.Donor, Constants.DEFAULT_PROFILE_IMAGE_PATH, new Date(), new Date(), "Guna", "Guna");
+//        ecoSystem.getCityNetworkDirectory().getCityNetworks().get(1).getCleanersDirectory().getCleaners().add(c);
     }
 
     /**

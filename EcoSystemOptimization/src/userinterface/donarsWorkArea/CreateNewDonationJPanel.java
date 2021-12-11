@@ -57,6 +57,7 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
     private Donor donor;
     private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     
+    
     /**
      * Creates new form MakeNewDonationJPanel
      */
@@ -155,6 +156,12 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         uploadjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uploadjButtonActionPerformed(evt);
+            }
+        });
+
+        cityjComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityjComboBoxActionPerformed(evt);
             }
         });
 
@@ -330,14 +337,16 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
     
     
     public void populateFoodBanks() {
-        String selectedCityNetworkName = cityjComboBox.getSelectedItem().toString();
+        selectfoodbankjComboBox.removeAllItems();
         
         for(CityNetwork cityNetwork:ecoSystem.getCityNetworkDirectory().getCityNetworks()) {
-            if(selectedCityNetworkName.equalsIgnoreCase(cityNetwork.getCityName().name())){
-                for(FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
-                    selectfoodbankjComboBox.addItem(fb.getName());
+            if (cityNetwork.getCityName().name().equals(cityjComboBox.getSelectedItem().toString())){
+                if (cityNetwork.getFoodBankDirectory()!=null){
+                    for(FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
+                       selectfoodbankjComboBox.addItem(fb.getName());
+                    }
                 }
-            }
+            }            
         }
     }
     
@@ -348,12 +357,19 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         Category category = Category.valueOf(donationcategoryjComboBox.getSelectedItem().toString());
         UsageStatus usageStatus = UsageStatus.valueOf(usageStatusjComboBox.getSelectedItem().toString());
         PickUp pickUp = PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString());
-        FoodBank foodBank = (FoodBank) selectfoodbankjComboBox.getSelectedItem();
+        
         int cityNetworkIndex = cityjComboBox.getSelectedIndex();
-        
         CityNetwork cityNetwork =  ecoSystem.getCityNetworkDirectory().getCityNetworks().get(cityNetworkIndex);
-        String addressToPickUp = null;
         
+        String foodBankName = selectfoodbankjComboBox.getSelectedItem().toString();
+        FoodBank foodBank = null;
+        for (FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
+            if (fb.getName().equals(foodBankName)){
+                foodBank = fb;
+            }
+        }
+        
+        String addressToPickUp = null;
         if ((PickUp.valueOf((String)pickupmodejComboBox.getSelectedItem())).equals(PickUp.Home)){
             if (txtpickupaddress.getText().isEmpty()){
                 JOptionPane.showMessageDialog(this, "!Error! Address cannot be empty for Home Pickup");
@@ -362,16 +378,17 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
                 addressToPickUp = txtpickupaddress.getText();
             }
         }
-
-        Date dateofExpiry = (Date) dateofexpiryDATECHOOSER.getDate();
-//        if (dateofExpiry == null) 
-//        {
-//            JOptionPane.showMessageDialog(null, "!Error! Choose Date field.", "Error", JOptionPane.ERROR_MESSAGE);
-//            dateofexpiryDATECHOOSER.grabFocus();
-//            return;
-//        }
         
-        Donation newDonation = new Donation(information, category, usageStatus, pickUp, foodBank, addressToPickUp, dateofExpiry, imagePath, donor, cityNetwork, null, null, null, DonationStatus.ReadyToPickup, null, new Date(), new Date(), donor.getName(), donor.getName());
+        Date dateofExpiry = (Date) dateofexpiryDATECHOOSER.getDate();
+        
+        DonationStatus ds = null;
+        if (dateofExpiry.before(new Date())){
+            ds = DonationStatus.Expired;
+        }else{
+            ds = DonationStatus.ReadyToPickup;
+        }
+        
+        Donation newDonation = new Donation(information, category, usageStatus, pickUp, foodBank, addressToPickUp, dateofExpiry, imagePath, donor, cityNetwork, null, null, null, ds, null, new Date(), new Date(), donor.getName(), donor.getName());
         JOptionPane.showMessageDialog(this, "Sucessfully added a Donation request.");
 
     }//GEN-LAST:event_btncreatedonationrequestActionPerformed
@@ -422,6 +439,10 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         CardLayout cardLayout = (CardLayout) userProcessJpanel.getLayout();
         cardLayout.previous(userProcessJpanel);
     }//GEN-LAST:event_backjButton2ActionPerformed
+
+    private void cityjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityjComboBoxActionPerformed
+        populateFoodBanks();
+    }//GEN-LAST:event_cityjComboBoxActionPerformed
 
 
     

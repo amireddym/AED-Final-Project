@@ -33,6 +33,8 @@ public class SysAdminManageCityJPanel extends javax.swing.JPanel {
         this.cityNetwork = cityNetwork;
         this.userLogged = userLogged;
         initComponents();
+        
+        lblcity.setText(cityNetwork.getCityName().name());
     }
 
     /**
@@ -49,6 +51,7 @@ public class SysAdminManageCityJPanel extends javax.swing.JPanel {
         manageOrganizationsjButton = new javax.swing.JButton();
         manageDonorsjButton = new javax.swing.JButton();
         manageCityOfficialsjButton = new javax.swing.JButton();
+        lblcity = new javax.swing.JLabel();
 
         backjButton.setText("< < Back");
         backjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +101,10 @@ public class SysAdminManageCityJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(manageDonorsjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(manageOrganizationsjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
-                            .addComponent(manageCityOfficialsjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(manageCityOfficialsjButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(365, 365, 365)
+                        .addComponent(lblcity, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(403, Short.MAX_VALUE))
         );
 
@@ -111,13 +117,15 @@ public class SysAdminManageCityJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backjButton))
-                .addGap(90, 90, 90)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblcity, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(manageOrganizationsjButton)
                 .addGap(18, 18, 18)
                 .addComponent(manageDonorsjButton)
                 .addGap(18, 18, 18)
                 .addComponent(manageCityOfficialsjButton)
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,6 +165,7 @@ public class SysAdminManageCityJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backjButton;
     private javax.swing.JLabel headerjLabel;
+    private javax.swing.JLabel lblcity;
     private javax.swing.JButton manageCityOfficialsjButton;
     private javax.swing.JButton manageDonorsjButton;
     private javax.swing.JButton manageOrganizationsjButton;
