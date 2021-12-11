@@ -8,6 +8,7 @@ package userinterface.orgManagersWorkArea;
 import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.enums.OrganizationType;
+import businesslogic.helper.Constants;
 import businesslogic.helper.EmailHelper;
 import businesslogic.helper.PhoneNoHelper;
 import businesslogic.organization.Organization;
@@ -69,6 +70,13 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
     }
     
     private void setPhoto(String imagePath) {
+        
+        if(imagePath.equals(Constants.DEFAULT_ORGANIZATION_IMAGE_PATH)){
+            ImageIcon photo = new ImageIcon(getClass().getResource(imagePath).getPath());
+            Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
+            picHolderjLabel.setIcon(new ImageIcon(photoResized));
+            return;
+        }
         ImageIcon photo = new ImageIcon(imagePath);
         Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
         picHolderjLabel.setIcon(new ImageIcon(photoResized));

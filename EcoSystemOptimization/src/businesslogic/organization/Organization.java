@@ -119,5 +119,11 @@ public class Organization extends ModificationInfo{
     public void setOrganizationImage(String organizationImage) {
         this.organizationImage = organizationImage;
     }
+
+    @Override
+    public String toString() {
+        return organizationName;
+    }
+    
     
 }
