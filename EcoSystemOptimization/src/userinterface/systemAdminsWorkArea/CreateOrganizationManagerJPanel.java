@@ -50,6 +50,7 @@ public class CreateOrganizationManagerJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.userLogged = userLogged;
         
+        picHolderjLabel.setSize(126, 139);
         setDefaultPhoto();
     }
 

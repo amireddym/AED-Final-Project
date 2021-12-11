@@ -49,6 +49,7 @@ public class CreateNewOrganizationJPanel extends javax.swing.JPanel {
         this.cityNetwork = cityNetwork;
         this.userLogged = userLogged;
         
+        picHolderjLabel.setSize(126, 139);
         poupulateOrganizationTypes();
         setDefaultPhoto();
     }

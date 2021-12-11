@@ -47,6 +47,7 @@ public class CreateNewDonorJPanel extends javax.swing.JPanel {
         this.ecoSystem = ecoSystem;
         this.userLogged = userLogged;
         
+        picHolderjLabel.setSize(126, 139);
         setDefaultPhoto();
     }
 

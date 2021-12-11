@@ -50,6 +50,7 @@ public class CreateNewCityOfficialJPanel extends javax.swing.JPanel {
         this.cityNetwork = cityNetwork;
         this.userLogged = userLogged;
         
+        picHolderjLabel.setSize(126, 139);
         setDefaultPhoto();
     }
 

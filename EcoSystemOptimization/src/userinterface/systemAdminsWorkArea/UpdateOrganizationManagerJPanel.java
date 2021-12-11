@@ -49,7 +49,6 @@ public class UpdateOrganizationManagerJPanel extends javax.swing.JPanel {
         this.userLogged = userLogged;
         
         picHolderjLabel.setSize(126, 139);
-        
         populateData();
     }
 
