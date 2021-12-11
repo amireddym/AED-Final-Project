@@ -45,7 +45,7 @@ public class ManageFoodBankJPanel extends javax.swing.JPanel {
                      currentFoodbank++;
                      Object[] row = new Object[7];
                      row[0]=currentFoodbank;
-                     row[1]=foodbank.getName();
+                     row[1]=foodbank;
                      row[2]=foodbank.getLocation();
                     
                      manageCleanersModel.addRow(row);
@@ -179,9 +179,17 @@ public class ManageFoodBankJPanel extends javax.swing.JPanel {
 
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
         // TODO add your handling code here:
-         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("Update Cleaner", new UpdateFoodBankJPanel(userProcessContainer,  foodbank, userAccount));
+         int selectedRow = manageFoodbanktbl.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row");
+            return;
+        }else {
+        FoodBank foodbank=(FoodBank) manageFoodbanktbl.getValueAt(selectedRow, 1);
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("Update Food Bank", new UpdateFoodBankJPanel(userProcessContainer,  foodbank, userAccount));
         cardLayout.next(userProcessContainer);
+        }
+         
     }//GEN-LAST:event_updatebtnActionPerformed
 
     private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed

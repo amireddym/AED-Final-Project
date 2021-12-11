@@ -320,7 +320,9 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             return;
         } else {
             Organization org = (Organization) manageOrgtbl.getValueAt(selectedRow, 1);
+            
             cityNetwork.getOrganizationDirectory().getOrganizations().remove(org);
+           
             JOptionPane.showMessageDialog(null, "Organization deleted Successfully! ");
             picHolderJlbl.setText("");
           populateData();
@@ -366,10 +368,11 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         int selectedRow = manageOrgtbl.getSelectedRow();
         DefaultTableModel orgManagerModel = (DefaultTableModel) manageOrgtbl.getModel();
         Organization org = (Organization) orgManagerModel.getValueAt(selectedRow, 1);
+    
         org.getOrgManagerDirectory().getOrgManagers().remove(orgManager);
-        
+            managerpicHolderJlbl.setText("");
         JOptionPane.showMessageDialog(this, "Successfully deleted Manager");
-        managerpicHolderJlbl.setText("");
+      
         populateData();
     
         
@@ -419,8 +422,9 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         } else {
             Organization selectedOrganization = (Organization) manageOrgtbl.getValueAt(selectedRow, 1);
             UpdateOrganizationJPanel updateOrganizationJPanel = new UpdateOrganizationJPanel(userProcessContainer, ecoSystem, selectedOrganization, userLogged);
-            userProcessContainer.add("UpdateOrganizationPanel", updateOrganizationJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add("UpdateOrganizationPanel", updateOrganizationJPanel);
+    
             layout.next(userProcessContainer);
         }
     }//GEN-LAST:event_updateOrgbtnActionPerformed

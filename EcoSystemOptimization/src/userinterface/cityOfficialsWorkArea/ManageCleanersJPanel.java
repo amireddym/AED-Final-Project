@@ -40,7 +40,7 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         populateData();
         
     }
-     private void populateData(){
+     public void populateData(){
                  DefaultTableModel manageCleanersModel = (DefaultTableModel) managecleanerstbl.getModel();
                  manageCleanersModel.setRowCount(0);
                  int currentCleaner=0;
@@ -49,7 +49,7 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
                      currentCleaner++;
                      Object[] row = new Object[7];
                      row[0]=currentCleaner;
-                     row[1]=cleaner.getName();
+                     row[1]=cleaner;
                      row[2]=cleaner.getPhoneNo();
                      row[3]=cleaner.getEmail();
                      row[4]=cleaner.getAddress();
@@ -208,7 +208,7 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
              Cleaner selectedCleaner=(Cleaner) managecleanerstbl.getValueAt(selectedRow, 1);
              cityNetwork.getCleanersDirectory().getCleaners().remove(selectedCleaner);
              JOptionPane.showMessageDialog(null, "Successfully deleted Cleaner Account ");
-        nameHolderjLabel.setText("");
+            nameHolderjLabel.setText("");
             picHolderjLabel.setText("");
             populateData();
             
@@ -225,9 +225,17 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
 
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
         // TODO add your handling code here:
+          int selectedRow=managecleanerstbl.getSelectedRow();
+         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a Cleaner to delete");
+            return;
+        }else{
+        Cleaner selectedCleaner=(Cleaner) managecleanerstbl.getValueAt(selectedRow, 1);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("Update Cleaner", new UpdateCleanerJPanel(userProcessContainer,  cleaner, userAccount));
+        userProcessContainer.add("Update Cleaner", new UpdateCleanerJPanel(userProcessContainer,  selectedCleaner, userAccount));
         cardLayout.next(userProcessContainer);
+         }
+        
     }//GEN-LAST:event_updatebtnActionPerformed
 
     private void managecleanerstblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managecleanerstblMouseClicked
