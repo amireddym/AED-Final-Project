@@ -137,7 +137,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "S.No", "Donor", "Information", "Usage Status", "Status", "Where to Pickup", "Delivery Volunteer", "Organization"
+                "S.No", "Donor", "Information", "Usage Status", "Status", "Pickup at Home? or FoodBank?", "Delivery Volunteer", "Sent To (Org)"
             }
         ));
         jScrollPane1.setViewportView(tbldonationHistory);
@@ -200,6 +200,22 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             return;
         }else {
             Donation selectedDonation = (Donation) tbldonationHistory.getValueAt(selectedRow, 2);
+            
+            if(selectedDonation.getDonationStatus().equals(DonationStatus.Closed)){
+                JOptionPane.showMessageDialog(this, "This donation request is already Closed. Cannot edit now.");
+                return;
+            }
+            
+            if (selectedDonation.getDonationStatus().equals(DonationStatus.PickedUp)){
+                JOptionPane.showMessageDialog(this, "This donation request is already Picked up. Cannot edit now.");
+                return;
+            }
+            
+            if (selectedDonation.getDonationStatus().equals(DonationStatus.Accepted)){
+                JOptionPane.showMessageDialog(this, "This donation request is already Accepted. Cannot edit now.");
+                return;
+            }
+            
             CardLayout cardLayout = (CardLayout) userProcessJpanel.getLayout();
             userProcessJpanel.add("ViewOrEditDonationJPanel",new ViewOrEditDonationJPanel(userProcessJpanel,ecoSystem, userLogged, selectedDonation));
             cardLayout.next(userProcessJpanel);

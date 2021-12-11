@@ -72,6 +72,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         this.imagePath = donation.getPicture();
         lblpicHolder.setSize(126, 139);
         this.cityNetwork = donation.getCityNetwork();
+        dateofexpiryDATECHOOSER.setEnabled(false);
         
         populateCategories();
         populateCities();

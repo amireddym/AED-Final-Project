@@ -281,7 +281,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
         
         if (ValidateInputs.isNameValid(txtname.getText()) && ValidateInputs.isPhoneNumberValid(txtphoneno.getText()) 
                 && ValidateInputs.isEmailValid(txtemail.getText()) && ValidateInputs.isUsernameValid(txtusername.getText()) 
-                && ValidateInputs.isPasswordValid(txtpassword.getText())){
+                && ValidateInputs.isPasswordValid(txtpassword.getText()) && ValidateInputs.isAddressValid(txtaddress.getText())){
             
                 
             Donor donor = new Donor(txtname.getText(), txtphoneno.getText(), txtemail.getText(), txtaddress.getText(), txtusername.getText(),

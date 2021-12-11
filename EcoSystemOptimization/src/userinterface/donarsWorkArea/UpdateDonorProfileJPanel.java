@@ -310,7 +310,7 @@ public class UpdateDonorProfileJPanel extends javax.swing.JPanel {
     private boolean isDataEnteredValid() {
         if(ValidateInputs.isNameValid(namejTextField.getText()) && ValidateInputs.isUsernameValid(userNamejTextField.getText()) && 
                 ValidateInputs.isEmailValid(emailjTextField.getText()) && ValidateInputs.isPhoneNumberValid(phoneNojTextField.getText())
-                && ValidateInputs.isPasswordValid(passwordjTextField.getText()))  {
+                && ValidateInputs.isPasswordValid(passwordjTextField.getText()) && ValidateInputs.isAddressValid(addressjTextField.getText()))  {
            return true; 
         }
         return false;
