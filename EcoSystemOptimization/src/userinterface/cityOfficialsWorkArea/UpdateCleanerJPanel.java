@@ -50,10 +50,9 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         imagePath =cleaner.getProfilePic();
         setPhoto(cleaner.getProfilePic());
         
-    
     }
     
-      private void setPhoto(String profilePic) {
+    private void setPhoto(String profilePic) {
         
  
         ImageIcon photo = new ImageIcon(profilePic);
@@ -246,9 +245,9 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         if(isDataEnteredValid()) {
             cleaner.setName(nametxt.getText());
             cleaner.setPhoneNo(phoneNumbertxt.getText());
-         cleaner.setAddress(addresstxt.getText());
-         cleaner.setEmail(emailIdtxt.getText());
-         cleaner.setPassword(passwordtxt.getText());
+            cleaner.setAddress(addresstxt.getText());
+            cleaner.setEmail(emailIdtxt.getText());
+            cleaner.setPassword(passwordtxt.getText());
             cleaner.setUserName(usernametxt.getText());
             cleaner.setModifiedBy(userAccount.getName());
             cleaner.setLastUpdatedDate(new Date());
@@ -261,7 +260,7 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
 
     private void uploadbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbtnActionPerformed
         // TODO add your handling code here:
-                JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("/"));
         fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Jpeg format", "jpeg"));
         fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Jpg format", "jpg"));
@@ -276,7 +275,8 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         // TODO add your handling code here:
-         userProcessContainer.remove(this);
+        userProcessContainer.remove(this);
+        
         Component[] components = userProcessContainer.getComponents();
         ManageCleanersJPanel manageCleanersJPanel = (ManageCleanersJPanel) components[components.length-1];
         manageCleanersJPanel.populateData();
@@ -312,18 +312,6 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
            return true; 
         }
         return false;
-    } 
-    
-    
-    private void resetUi() {
-        
-        nametxt.setText("");
-        usernametxt.setText("");
-        addresstxt.setText("");
-        passwordtxt.setText("");
-        emailIdtxt.setText("");
-        phoneNumbertxt.setText("");
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

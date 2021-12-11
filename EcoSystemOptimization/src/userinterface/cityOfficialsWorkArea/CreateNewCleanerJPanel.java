@@ -9,6 +9,7 @@ import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
 import businesslogic.enums.UserRole;
+import businesslogic.helper.Constants;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -34,7 +35,7 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
     private User userAccount;
     private CityNetwork cityNetwork;
     //add default image
-    private String imagepath;
+    private String imagepath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     public CreateNewCleanerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, User userAccount, CityNetwork cityNetwork) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -266,7 +267,7 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordtxtActionPerformed
    
-       private boolean isDataEnteredValid() {
+    private boolean isDataEnteredValid() {
         if(nametxt.getText().matches("^[a-zA-Z0-9 ']+$") && usernametxt.getText().matches("^[a-zA-Z0-9]+$") && 
                 emailIdtxt.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
                 !phoneNumbertxt.getText().isEmpty() && phoneNumbertxt.getText().matches("^[0-9]+$") 
@@ -293,7 +294,7 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
     //have to make changes
      private void setDefaultPhoto() {
         
-       // setPhoto(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
     }
 
     private void setPhoto(String imagePath) {
