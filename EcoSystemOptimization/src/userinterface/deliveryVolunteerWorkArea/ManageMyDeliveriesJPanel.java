@@ -134,6 +134,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         btnpcikedup = new javax.swing.JButton();
         pendingCountHeaderjLabel = new javax.swing.JLabel();
         availableDonationsCountjLabel = new javax.swing.JLabel();
+        backjButton = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -146,7 +147,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         totalCountHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         totalCountHeaderjLabel.setText("Total Count :");
         add(totalCountHeaderjLabel);
-        totalCountHeaderjLabel.setBounds(10, 540, 88, 19);
+        totalCountHeaderjLabel.setBounds(10, 540, 110, 19);
 
         currentPickUpsjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -183,7 +184,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         totalCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         totalCountjLabel.setText("0");
         add(totalCountjLabel);
-        totalCountjLabel.setBounds(120, 540, 8, 19);
+        totalCountjLabel.setBounds(120, 540, 40, 19);
 
         currentOrdersHeaderjLabel1.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         currentOrdersHeaderjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -223,7 +224,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         add(jScrollPane2);
         jScrollPane2.setBounds(10, 350, 980, 160);
 
-        btnpcikedup.setText("Picked Up?");
+        btnpcikedup.setText("Picked Up");
         btnpcikedup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnpcikedupActionPerformed(evt);
@@ -236,12 +237,21 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         pendingCountHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         pendingCountHeaderjLabel.setText("Count :");
         add(pendingCountHeaderjLabel);
-        pendingCountHeaderjLabel.setBounds(880, 30, 50, 19);
+        pendingCountHeaderjLabel.setBounds(860, 30, 70, 19);
 
         availableDonationsCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         availableDonationsCountjLabel.setText("0");
         add(availableDonationsCountjLabel);
-        availableDonationsCountjLabel.setBounds(940, 30, 8, 19);
+        availableDonationsCountjLabel.setBounds(940, 30, 30, 19);
+
+        backjButton.setText("< < Back");
+        backjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backjButtonActionPerformed(evt);
+            }
+        });
+        add(backjButton);
+        backjButton.setBounds(10, 20, 85, 25);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnpcikedupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpcikedupActionPerformed
@@ -262,9 +272,17 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         populateData();
     }//GEN-LAST:event_btnpcikedupActionPerformed
 
+    private void backjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButtonActionPerformed
+        // TODO add your handling code here:
+        userProcessJPanel.remove(this);
+        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+        cardLayout.previous(userProcessJPanel);
+    }//GEN-LAST:event_backjButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel availableDonationsCountjLabel;
+    private javax.swing.JButton backjButton;
     private javax.swing.JButton btnpcikedup;
     private javax.swing.JLabel currentOrdersHeaderjLabel;
     private javax.swing.JLabel currentOrdersHeaderjLabel1;
