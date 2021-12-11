@@ -85,7 +85,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
                     currentOrdersModel.addRow(row);
             }
         }
-        availableDonationsCountjLabel.setText(String.valueOf(donationHistoryCount));
+        availableDonationsCountjLabel.setText(String.valueOf(currentPickUpcount));
         
         for(Donation donation:volunteer.getDonations()){
             if(donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.PickedUp.name()) 
@@ -110,7 +110,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
                     delieveredOrdersModel.addRow(row);
             }
         }
-        totalCountjLabel.setText(String.valueOf(currentPickUpcount));
+        totalCountjLabel.setText(String.valueOf(donationHistoryCount));
     }
     
 
