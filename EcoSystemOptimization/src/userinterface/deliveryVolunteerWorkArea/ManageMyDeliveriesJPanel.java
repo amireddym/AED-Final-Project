@@ -66,7 +66,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
             if(donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.ReadyToPickup.name()) 
                     || donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.PickupAwaiting.name())
                     || donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.Accepted.name())){
-                donationHistoryCount++;
+                currentPickUpcount++;
                 Object[] row = new Object[7];
                     row[0] = currentPickUpcount;
                     row[1] = donation;

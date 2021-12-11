@@ -363,12 +363,13 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         usageStatusjComboBox.setSelectedItem(donation.getUsageStatus().toString());
         pickupmodejComboBox.setSelectedItem(donation.getPickUp().toString());
         if (donation.getFoodBank()==null){
+            txtpickupaddress.setText(donation.getAddressToPickUp());
             selectfoodbankjComboBox.setEditable(false);
         }else{
             selectfoodbankjComboBox.setSelectedItem(donation.getFoodBank().getName());
         }
         cityjComboBox.setSelectedItem(donation.getCityNetwork().getCityName().name());
-        txtpickupaddress.setText(donation.getAddressToPickUp());
+        
         dateofexpiryDATECHOOSER.setDate(donation.getDateofExpiry());
         
         if (!donation.getPicture().equals("")){
@@ -378,16 +379,18 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
     
     
     private void btnupdatedonationrequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdatedonationrequestActionPerformed
-//        String donorName = donor.getName();
         String information = txtinformation.getText().isEmpty()?"":txtinformation.getText();
         Category category = Category.valueOf(donationcategoryjComboBox.getSelectedItem().toString());
         UsageStatus usageStatus = UsageStatus.valueOf(usageStatusjComboBox.getSelectedItem().toString());
         PickUp pickUp = PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString());
+        
         String foodBankName = selectfoodbankjComboBox.getSelectedItem().toString();
         FoodBank foodBank = null;
-        for (FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
-            if (fb.getName().equals(foodBankName)){
-                foodBank = fb;
+        if (cityNetwork.getFoodBankDirectory()!=null){
+            for (FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
+                if (fb.getName().equals(foodBankName)){
+                    foodBank = fb;
+                }
             }
         }
         
@@ -395,12 +398,16 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         CityNetwork cityNetwork =  ecoSystem.getCityNetworkDirectory().getCityNetworks().get(cityNetworkIndex);
         
         String addressToPickUp = null;
-        if ((PickUp.valueOf((String)pickupmodejComboBox.getSelectedItem())).equals(PickUp.Home)){
+        if ((PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString())).equals(PickUp.Home)){
             if (txtpickupaddress.getText().isEmpty()){
                 JOptionPane.showMessageDialog(this, "!Error! Address cannot be empty for Home Pickup");
                 return;
             }else{
                 addressToPickUp = txtpickupaddress.getText();
+            }
+        }else{
+            if (foodBank!=null){
+                addressToPickUp = foodBank.getLocation();;
             }
         }
 

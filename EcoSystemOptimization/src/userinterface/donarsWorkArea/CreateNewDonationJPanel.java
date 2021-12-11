@@ -363,9 +363,11 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         
         String foodBankName = selectfoodbankjComboBox.getSelectedItem().toString();
         FoodBank foodBank = null;
-        for (FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
-            if (fb.getName().equals(foodBankName)){
-                foodBank = fb;
+        if (cityNetwork.getFoodBankDirectory()!=null){
+            for (FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
+                if (fb.getName().equals(foodBankName)){
+                    foodBank = fb;
+                }
             }
         }
         
@@ -376,6 +378,10 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
                 return;
             }else{
                 addressToPickUp = txtpickupaddress.getText();
+            }
+        }else{
+            if (foodBank!=null){
+                addressToPickUp = foodBank.getLocation();
             }
         }
         
