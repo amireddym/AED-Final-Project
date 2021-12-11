@@ -9,6 +9,7 @@ import businesslogic.FoodBank;
 import businesslogic.User;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -128,6 +129,9 @@ public class UpdateFoodBankJPanel extends javax.swing.JPanel {
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
+        Component[] components = userProcessContainer.getComponents();
+        ManageFoodBankJPanel manageFoodBankJPanel = (ManageFoodBankJPanel) components[components.length-1];
+        manageFoodBankJPanel.populateData();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
 
@@ -140,6 +144,7 @@ public class UpdateFoodBankJPanel extends javax.swing.JPanel {
                foodbank.setLocation(locationJTextField.getText());
 
             JOptionPane.showMessageDialog(this, "Successfully Updated ");
+            resetUi();
         }else {
             JOptionPane.showMessageDialog(this, "Error! Please enter valid values");
         }

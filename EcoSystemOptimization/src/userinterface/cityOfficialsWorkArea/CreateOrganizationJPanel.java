@@ -5,12 +5,22 @@
 package userinterface.cityOfficialsWorkArea;
 
 import businesslogic.CityNetwork;
+import businesslogic.EcoSystem;
 import businesslogic.User;
+import businesslogic.enums.OrganizationType;
+import businesslogic.helper.Constants;
+import businesslogic.organization.Organization;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Image;
+import java.io.File;
+import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -23,14 +33,28 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private CityNetwork cityNetwork;
+    private EcoSystem ecoSystem;
     private User userAccount;
-    public CreateOrganizationJPanel(JPanel userProcessContainer, User userAccount, CityNetwork cityNetwork) {
+    
+     private String imagePath = Constants.DEFAULT_ORGANIZATION_IMAGE_PATH;
+    
+    public CreateOrganizationJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, User userAccount, CityNetwork cityNetwork) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.cityNetwork = cityNetwork;
         this.userAccount = userAccount;
+        poupulateOrganizationTypes();
         
+    }
+    
+        private void poupulateOrganizationTypes() {
         
+        orgTypecmb.removeAllItems();
+        
+        String[] organizationTypes = OrganizationType.getOrganizationTypesArray();
+        for(String organizationType:organizationTypes) {
+            orgTypecmb.addItem(organizationType);
+        }
     }
 
     /**
@@ -55,6 +79,8 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
         emailIdtxt = new javax.swing.JTextField();
         savebtn = new javax.swing.JButton();
         orgTypecmb = new javax.swing.JComboBox<>();
+        picHolderJlbl = new javax.swing.JLabel();
+        uploadbtn = new javax.swing.JButton();
 
         jLabel1.setText("Create New Organization");
 
@@ -88,7 +114,14 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
             }
         });
 
-        orgTypecmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        picHolderJlbl.setText("<Image>");
+
+        uploadbtn.setText("Upload");
+        uploadbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,14 +146,21 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(phoneNotxt, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addresstxt, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(orgNametxt, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(orgTypecmb, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emailIdtxt))
-                .addGap(50, 50, 50))
+                    .addComponent(emailIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(picHolderJlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(uploadbtn)
+                        .addGap(50, 50, 50))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,27 +169,37 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(backbtn))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(orgNametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(orgNametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(orgTypecmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addresstxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(picHolderJlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(phoneNotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(uploadbtn)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(orgTypecmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(addresstxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(phoneNotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(emailIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emailIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(savebtn))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -177,8 +227,11 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
             String address = addresstxt.getText();
             String email = emailIdtxt.getText();
             String phoneNo = phoneNotxt.getText();
+            OrganizationType organizationType = OrganizationType.valueOf((String) orgTypecmb.getSelectedItem());
 
-   
+              Organization organization = new Organization(orgName, organizationType, address, phoneNo, email, imagePath,
+                new Date(), new Date(), userAccount.getName(), userAccount.getName());
+            cityNetwork.getOrganizationDirectory().getOrganizations().add(organization);
 
             JOptionPane.showMessageDialog(this, "Successfully Saved");
             resetUi();
@@ -186,7 +239,28 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error! Please enter valid values");
         }
     }//GEN-LAST:event_savebtnActionPerformed
-     private boolean isDataEnteredValid() {
+
+    private void uploadbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbtnActionPerformed
+        // TODO add your handling code here:
+         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("/"));
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Jpeg format", "jpeg"));
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Jpg format", "jpg"));
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Png format", "png"));
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            imagePath = selectedFile.getAbsolutePath();
+            setPhoto(imagePath);
+        }
+    }//GEN-LAST:event_uploadbtnActionPerformed
+     private void setPhoto(String imagePath) {
+        ImageIcon photo = new ImageIcon(imagePath);
+        Image photoResized = photo.getImage().getScaledInstance(picHolderJlbl.getWidth(), picHolderJlbl.getHeight(),4);
+        picHolderJlbl.setIcon(new ImageIcon(photoResized));
+    } 
+    
+    private boolean isDataEnteredValid() {
         
         if(!orgNametxt.getText().isEmpty() && orgNametxt.getText().matches("^[a-zA-Z0-9 ']+$") &&
                 !addresstxt.getText().isEmpty() && !phoneNotxt.getText().isEmpty() && 
@@ -218,6 +292,8 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField orgNametxt;
     private javax.swing.JComboBox<String> orgTypecmb;
     private javax.swing.JTextField phoneNotxt;
+    private javax.swing.JLabel picHolderJlbl;
     private javax.swing.JButton savebtn;
+    private javax.swing.JButton uploadbtn;
     // End of variables declaration//GEN-END:variables
 }

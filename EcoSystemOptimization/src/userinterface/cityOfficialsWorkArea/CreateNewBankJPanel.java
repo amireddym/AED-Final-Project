@@ -9,6 +9,7 @@ import businesslogic.EcoSystem;
 import businesslogic.FoodBank;
 import businesslogic.User;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -125,6 +126,7 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
              cityNetwork.getFoodBankDirectory().getFoodBanks().add(new FoodBank(nameJTextField.getText(),locationJTextField.getText(),
         new Date(), new Date(),userAccount.getName(),userAccount.getName()));
              JOptionPane.showMessageDialog(this, " Added New Food Bank Successfully!");
+             resetUi();
          }else{
              JOptionPane.showMessageDialog(this, "Error ! Please input valid values");
          }
@@ -134,6 +136,9 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
+        Component[] components = userProcessContainer.getComponents();
+        ManageFoodBankJPanel manageFoodBankJPanel = (ManageFoodBankJPanel) components[components.length-1];
+        manageFoodBankJPanel.populateData();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
         
@@ -144,6 +149,14 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
             return true;
         }
         return false;
+    }
+      
+        private void resetUi() {
+        
+        nameJTextField.setText("");
+        locationJTextField.setText("");
+        
+        
     }
     
 

@@ -69,7 +69,7 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         add(manageCleanerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, 270, 60));
 
         createNewOrganizationbtn.setForeground(new java.awt.Color(0, 102, 102));
-        createNewOrganizationbtn.setText("Create New Organization");
+        createNewOrganizationbtn.setText("Manage Organizations");
         createNewOrganizationbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createNewOrganizationbtnActionPerformed(evt);

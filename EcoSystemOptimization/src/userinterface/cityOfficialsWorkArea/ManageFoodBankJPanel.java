@@ -36,7 +36,7 @@ public class ManageFoodBankJPanel extends javax.swing.JPanel {
          populateData();
     }
     
-         private void populateData(){
+         public void populateData(){
                  DefaultTableModel manageCleanersModel = (DefaultTableModel) manageFoodbanktbl.getModel();
                  manageCleanersModel.setRowCount(0);
                  int currentFoodbank=0;

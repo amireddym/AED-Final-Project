@@ -10,6 +10,8 @@ import businesslogic.User;
 import businesslogic.organization.OrgManager;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -43,13 +45,14 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         int count=0;
         for(Organization org:cityNetwork.getOrganizationDirectory().getOrganizations()){
             count++;
-            Object[] row = new Object[6];
+            Object[] row = new Object[7];
             row[0]=count;
-            row[1]=org.getOrganizationName();
+            row[1]=org;
             row[2]=org.getOrganizationType();
             row[3]=org.getAddress();
             row[4]=org.getPhoneNo();
             row[5]=org.getEmail();
+            row[6]=org.getCreatedBy();
             
             model.addRow(row);
         }
@@ -82,34 +85,49 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         backbtn = new javax.swing.JButton();
         managerOrgbtn = new javax.swing.JButton();
         managerpicHolderJlbl = new javax.swing.JLabel();
-        picHolderJlbl1 = new javax.swing.JLabel();
+        picHolderJlbl = new javax.swing.JLabel();
 
         jLabel1.setText("Manage Organizations ");
 
         manageOrgtbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Organization Name", "Organization Type", "Address", "Phone Number", "Email Id"
+                "Id", "Organization Name", "Organization Type", "Address", "Mobile Number", "Email Id", "Created By"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
+        manageOrgtbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageOrgtblMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(manageOrgtbl);
 
         addOrgbtn.setText("Add");
+        addOrgbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addOrgbtnActionPerformed(evt);
+            }
+        });
 
         updateOrgbtn.setText("Update");
+        updateOrgbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateOrgbtnActionPerformed(evt);
+            }
+        });
 
         deleteOrgbtn.setText("Delete");
         deleteOrgbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +144,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Name", "Phone Number", "Email Id", "Address", "Username", "Password"
+                "Id", "Manager Name", "Mobile Number", "Email Id", "Address", "Username", "Password"
             }
         ) {
             Class[] types = new Class [] {
@@ -135,6 +153,11 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        managerOrgtbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                managerOrgtblMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(managerOrgtbl);
@@ -149,6 +172,11 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         });
 
         updateManagerbtn.setText("Update");
+        updateManagerbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateManagerbtnActionPerformed(evt);
+            }
+        });
 
         deleteManagerbtn.setText("Delete");
         deleteManagerbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +201,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         managerpicHolderJlbl.setText("<Image>");
 
-        picHolderJlbl1.setText("<Image>");
+        picHolderJlbl.setText("<Image>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -194,7 +222,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                                 .addComponent(deleteOrgbtn))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(picHolderJlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(picHolderJlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(156, 156, 156))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +265,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(picHolderJlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(picHolderJlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addOrgbtn)
@@ -269,6 +297,19 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void addManagerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addManagerbtnActionPerformed
         // TODO add your handling code here:
+        int selectedRow = manageOrgtbl.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a Restaurant to add Managers");
+            return;
+        } else {
+            DefaultTableModel organizationsModel = (DefaultTableModel) manageOrgtbl.getModel();
+            Organization selectedOrganization = (Organization) organizationsModel.getValueAt(selectedRow, 1);
+            CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+            userProcessContainer.add("SysAdminCreateManagerPanel", new CreateOrgManagerJPanel(userProcessContainer, ecoSystem, selectedOrganization, userLogged));
+            cardLayout.next(userProcessContainer);
+
+        }
+
     }//GEN-LAST:event_addManagerbtnActionPerformed
 
     private void deleteOrgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOrgbtnActionPerformed
@@ -280,15 +321,15 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         } else {
             Organization org = (Organization) manageOrgtbl.getValueAt(selectedRow, 1);
             cityNetwork.getOrganizationDirectory().getOrganizations().remove(org);
-            JOptionPane.showMessageDialog(null, "successfully deleted Restaurant  ");
-
+            JOptionPane.showMessageDialog(null, "Organization deleted Successfully! ");
+            picHolderJlbl.setText("");
           populateData();
         }
     }//GEN-LAST:event_deleteOrgbtnActionPerformed
 
     private void managerOrgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerOrgbtnActionPerformed
         // TODO add your handling code here:
-           int selectedRow = manageOrgtbl.getSelectedRow();
+        int selectedRow = manageOrgtbl.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row");
             return;
@@ -301,7 +342,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 employeeCount++;
                 Object[] row = new Object[7];
                 row[0] = employeeCount;
-                row[1] = orgManager.getName();
+                row[1] = orgManager;
                 row[2] = orgManager.getPhoneNo();
                 row[3] = orgManager.getEmail();
                 row[4] = orgManager.getAddress();
@@ -328,11 +369,84 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         org.getOrgManagerDirectory().getOrgManagers().remove(orgManager);
         
         JOptionPane.showMessageDialog(this, "Successfully deleted Manager");
+        managerpicHolderJlbl.setText("");
         populateData();
     
         
     }//GEN-LAST:event_deleteManagerbtnActionPerformed
 
+    private void manageOrgtblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageOrgtblMouseClicked
+        // TODO add your handling code here:
+        int selectedIndex = manageOrgtbl.getSelectedRow();
+        if(selectedIndex<0) {
+            return;
+        }
+         Organization org=(Organization) manageOrgtbl.getValueAt(selectedIndex, 1);
+         setPhoto(org.getOrganizationImage());
+    }//GEN-LAST:event_manageOrgtblMouseClicked
+
+    private void managerOrgtblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managerOrgtblMouseClicked
+        // TODO add your handling code here:
+        int selectedIndex = managerOrgtbl.getSelectedRow();
+        if(selectedIndex<0) {
+            return;
+        }
+         OrgManager orgManager=(OrgManager) managerOrgtbl.getValueAt(selectedIndex, 1);
+         setProfilePic(orgManager.getProfilePic());
+    }//GEN-LAST:event_managerOrgtblMouseClicked
+
+    private void updateManagerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateManagerbtnActionPerformed
+        // TODO add your handling code here:
+        int selectedManager = managerOrgtbl.getSelectedRow();
+        if(selectedManager < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a manager to Update");
+            return;
+        }
+        DefaultTableModel organizationManagerModel = (DefaultTableModel) managerOrgtbl.getModel();
+        OrgManager orgManager = (OrgManager) organizationManagerModel.getValueAt(selectedManager, 1);
+
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("UpdateOrganizationManagerPanel", new UpdateOrgManagerJPanel(userProcessContainer, ecoSystem, orgManager, userLogged));
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_updateManagerbtnActionPerformed
+
+    private void updateOrgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateOrgbtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = manageOrgtbl.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row");
+            return;
+        } else {
+            Organization selectedOrganization = (Organization) manageOrgtbl.getValueAt(selectedRow, 1);
+            UpdateOrganizationJPanel updateOrganizationJPanel = new UpdateOrganizationJPanel(userProcessContainer, ecoSystem, selectedOrganization, userLogged);
+            userProcessContainer.add("UpdateOrganizationPanel", updateOrganizationJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_updateOrgbtnActionPerformed
+
+    private void addOrgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgbtnActionPerformed
+        // TODO add your handling code here:
+        CreateOrganizationJPanel panel = new CreateOrganizationJPanel(userProcessContainer, ecoSystem, userLogged,cityNetwork );
+        //          userProcessContainer.remove(this);
+        userProcessContainer.add("CreateNewOrganizationJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_addOrgbtnActionPerformed
+    
+    private void setPhoto(String profilePic) {
+        
+        ImageIcon photo = new ImageIcon(profilePic);
+        Image photoResized = photo.getImage().getScaledInstance(picHolderJlbl.getWidth(), picHolderJlbl.getHeight(),4);
+        picHolderJlbl.setIcon(new ImageIcon(photoResized));
+    }
+    
+    private void setProfilePic(String profilePic) {
+        
+        ImageIcon photo = new ImageIcon(profilePic);
+        Image photoResized = photo.getImage().getScaledInstance(managerpicHolderJlbl.getWidth(), managerpicHolderJlbl.getHeight(),4);
+        managerpicHolderJlbl.setIcon(new ImageIcon(photoResized));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addManagerbtn;
@@ -348,7 +462,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private javax.swing.JButton managerOrgbtn;
     private javax.swing.JTable managerOrgtbl;
     private javax.swing.JLabel managerpicHolderJlbl;
-    private javax.swing.JLabel picHolderJlbl1;
+    private javax.swing.JLabel picHolderJlbl;
     private javax.swing.JButton updateManagerbtn;
     private javax.swing.JButton updateOrgbtn;
     // End of variables declaration//GEN-END:variables
