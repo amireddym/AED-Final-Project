@@ -16,6 +16,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import userinterface.aboutme.AboutMeJPanel;
 import userinterface.signUpWorkArea.SignUpJPanel;
 
 /**
@@ -68,7 +69,7 @@ public class MainJFrame extends javax.swing.JFrame {
         madeWithjLabel = new javax.swing.JLabel();
         lovejLabel = new javax.swing.JLabel();
         neujLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        aboutMejButton = new javax.swing.JButton();
         userProcessJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,10 +125,15 @@ public class MainJFrame extends javax.swing.JFrame {
         neujLabel.setFont(new java.awt.Font("Lucida Grande", 1, 10)); // NOI18N
         neujLabel.setText("@neu");
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 102));
-        jButton1.setText("About Me");
-        jButton1.setPreferredSize(new java.awt.Dimension(104, 25));
-        jButton1.setSize(new java.awt.Dimension(90, 25));
+        aboutMejButton.setBackground(new java.awt.Color(102, 255, 102));
+        aboutMejButton.setText("About Me");
+        aboutMejButton.setPreferredSize(new java.awt.Dimension(104, 25));
+        aboutMejButton.setSize(new java.awt.Dimension(90, 25));
+        aboutMejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMejButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlJPanelLayout = new javax.swing.GroupLayout(controlJPanel);
         controlJPanel.setLayout(controlJPanelLayout);
@@ -157,7 +163,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addComponent(neujLabel))
                     .addGroup(controlJPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(aboutMejButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(controlJPanelLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -189,7 +195,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addComponent(signUpJButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(aboutMejButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(controlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lovejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -404,6 +410,14 @@ public class MainJFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_signUpJButtonActionPerformed
 
+    private void aboutMejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMejButtonActionPerformed
+        // TODO add your handling code here:
+        
+        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+        userProcessJPanel.add("AboutMePanel", new AboutMeJPanel());
+        cardLayout.next(userProcessJPanel);
+    }//GEN-LAST:event_aboutMejButtonActionPerformed
+
     private void clearLoginPanels() {
         
         userNameJTextField.setText("");
@@ -452,8 +466,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aboutMejButton;
     private javax.swing.JPanel controlJPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JButton loginJButton;
     private javax.swing.JButton logoutJButton;
