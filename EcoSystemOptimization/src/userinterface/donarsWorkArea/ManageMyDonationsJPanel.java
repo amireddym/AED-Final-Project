@@ -109,6 +109,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         headerjLabel = new javax.swing.JLabel();
         btnnviewOrUpdate = new javax.swing.JButton();
         btndelete = new javax.swing.JButton();
+        backjButton2 = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -181,6 +182,15 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         });
         add(btndelete);
         btndelete.setBounds(650, 360, 120, 25);
+
+        backjButton2.setText("< < Back");
+        backjButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backjButton2ActionPerformed(evt);
+            }
+        });
+        add(backjButton2);
+        backjButton2.setBounds(20, 20, 85, 25);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnmakenewdonationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmakenewdonationActionPerformed
@@ -239,8 +249,17 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btndeleteActionPerformed
 
+    private void backjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton2ActionPerformed
+        // TODO add your handling code here:
+        userProcessJpanel.remove(this);
+
+        CardLayout cardLayout = (CardLayout) userProcessJpanel.getLayout();
+        cardLayout.previous(userProcessJpanel);
+    }//GEN-LAST:event_backjButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backjButton2;
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnmakenewdonation;
     private javax.swing.JButton btnnviewOrUpdate;

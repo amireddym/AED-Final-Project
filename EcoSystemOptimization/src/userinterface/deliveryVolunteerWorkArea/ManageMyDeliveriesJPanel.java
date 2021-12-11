@@ -93,7 +93,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
                     || donation.getDonationStatus().name().equalsIgnoreCase(DonationStatus.Closed.name())){
                 donationHistoryCount++;
                 Object[] row = new Object[7];
-                    row[0] = currentPickUpcount;
+                    row[0] = donationHistoryCount;
                     row[1] = donation;
                     row[2] = donation.getDonor().getName();
                     row[3] = donation.getCategory().name();
