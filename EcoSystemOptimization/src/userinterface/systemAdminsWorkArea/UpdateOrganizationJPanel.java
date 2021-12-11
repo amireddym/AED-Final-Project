@@ -9,6 +9,7 @@ package userinterface.systemAdminsWorkArea;
 import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.enums.OrganizationType;
+import businesslogic.helper.Constants;
 import businesslogic.helper.EmailHelper;
 import businesslogic.helper.PhoneNoHelper;
 import businesslogic.organization.Organization;
@@ -35,7 +36,7 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
     private Organization organization;
     private User userLogged;
     
-    private String imagePath;
+    private String imagePath = Constants.DEFAULT_ORGANIZATION_IMAGE_PATH;
     
     public UpdateOrganizationJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Organization organization, User userLogged) {
         initComponents();
@@ -252,6 +253,14 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_uploadjButtonActionPerformed
 
     private void setPhoto(String imagePath) {
+        
+        if(imagePath.equals(Constants.DEFAULT_ORGANIZATION_IMAGE_PATH)) {
+            ImageIcon photo = new ImageIcon(getClass().getResource(Constants.DEFAULT_ORGANIZATION_IMAGE_PATH).getPath());
+            Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
+            picHolderjLabel.setIcon(new ImageIcon(photoResized));
+            return;
+        }
+        
         ImageIcon photo = new ImageIcon(imagePath);
         Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
         picHolderjLabel.setIcon(new ImageIcon(photoResized));

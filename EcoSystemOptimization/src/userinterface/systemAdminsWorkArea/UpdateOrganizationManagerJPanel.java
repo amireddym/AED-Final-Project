@@ -39,7 +39,7 @@ public class UpdateOrganizationManagerJPanel extends javax.swing.JPanel {
     private OrgManager orgManager;
     private User userLogged;
     
-    private String imagePath;
+    private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     
     public UpdateOrganizationManagerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, OrgManager orgManager, User userLogged) {
         initComponents();
@@ -61,6 +61,7 @@ public class UpdateOrganizationManagerJPanel extends javax.swing.JPanel {
         phoneNojTextField.setText(orgManager.getPhoneNo());
         emailjTextField.setText(orgManager.getEmail());
         addressjTextField.setText(orgManager.getAddress());
+        imagePath = orgManager.getProfilePic();
         
         setPhoto(orgManager.getProfilePic());
     }
@@ -68,7 +69,7 @@ public class UpdateOrganizationManagerJPanel extends javax.swing.JPanel {
     private void setPhoto(String profilePic) {
         
         if(profilePic.equals(Constants.DEFAULT_PROFILE_IMAGE_PATH)) {
-            ImageIcon photo = new ImageIcon(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
+            ImageIcon photo = new ImageIcon(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
             Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
             picHolderjLabel.setIcon(new ImageIcon(photoResized));
             return;
@@ -287,6 +288,7 @@ public class UpdateOrganizationManagerJPanel extends javax.swing.JPanel {
             orgManager.setEmail(emailjTextField.getText());
             orgManager.setPhoneNo(phoneNojTextField.getText());
             orgManager.setAddress(addressjTextField.getText());
+            orgManager.setProfilePic(imagePath);
             
             JOptionPane.showMessageDialog(this, "Successfully updated Organization Manager");
         }else{

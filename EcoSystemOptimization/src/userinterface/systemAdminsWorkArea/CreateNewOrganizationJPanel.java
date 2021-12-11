@@ -50,6 +50,7 @@ public class CreateNewOrganizationJPanel extends javax.swing.JPanel {
         this.userLogged = userLogged;
         
         poupulateOrganizationTypes();
+        setDefaultPhoto();
     }
 
     private void poupulateOrganizationTypes() {
@@ -292,7 +293,7 @@ public class CreateNewOrganizationJPanel extends javax.swing.JPanel {
     
     private void setDefaultPhoto() {
         
-        setPhoto(Paths.get(Constants.DEFAULT_ORGANIZATION_IMAGE_PATH).toAbsolutePath().toString());
+        setPhoto(getClass().getResource(Constants.DEFAULT_ORGANIZATION_IMAGE_PATH).getPath());
     }    
     
     private void uploadjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadjButtonActionPerformed
