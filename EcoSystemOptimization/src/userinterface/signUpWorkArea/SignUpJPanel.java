@@ -14,11 +14,14 @@ import businesslogic.helper.EmailHelper;
 import businesslogic.helper.PhoneNoHelper;
 import businesslogic.helper.UserNameHelper;
 import businesslogic.helper.ValidateInputs;
+import businesslogic.mailer.JavaMailUtil;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -137,7 +140,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
                     .addComponent(txtaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtphoneno, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(701, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -151,9 +154,9 @@ public class SignUpJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnattachpic)
                                 .addGap(66, 66, 66)
-                                .addComponent(lblpicpreview, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblpicpreview, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btncreatenewuser))))
-                .addGap(0, 271, Short.MAX_VALUE))
+                .addGap(0, 345, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lbladdress, lblemail, lblname, lblpassword, lblphoneno, lblusername});
@@ -288,7 +291,14 @@ public class SignUpJPanel extends javax.swing.JPanel {
                 txtpassword.getText(), UserRole.Donor, photoPath, new Date(), new Date(), txtname.getText(), txtname.getText());
 
             ecoSystem.getDonorsDirectory().getDonors().add(donor);
-            JOptionPane.showMessageDialog(this, "User successfully added");
+            
+            try {
+                JavaMailUtil.sendMail(txtemail.getText(), txtname.getText());
+            } catch (Exception ex) {
+                Logger.getLogger(SignUpJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            JOptionPane.showMessageDialog(this, "User successfully added and a confirmation Mail is sent to the user");
             resetFields();     
         }
         else{
