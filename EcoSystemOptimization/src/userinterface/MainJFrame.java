@@ -77,7 +77,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         mainJSplitPane.setDividerLocation(150);
 
-        controlJPanel.setBackground(new java.awt.Color(102, 255, 255));
+        controlJPanel.setBackground(new java.awt.Color(0, 102, 102));
         controlJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         userNameJLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
@@ -135,10 +135,9 @@ public class MainJFrame extends javax.swing.JFrame {
         neujLabel.setFont(new java.awt.Font("Lucida Grande", 1, 10)); // NOI18N
         neujLabel.setText("@neu");
 
-        aboutMejButton.setBackground(new java.awt.Color(102, 255, 102));
+        aboutMejButton.setBackground(new java.awt.Color(204, 255, 255));
         aboutMejButton.setText("About Me");
         aboutMejButton.setPreferredSize(new java.awt.Dimension(104, 25));
-        aboutMejButton.setSize(new java.awt.Dimension(90, 25));
         aboutMejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutMejButtonActionPerformed(evt);
