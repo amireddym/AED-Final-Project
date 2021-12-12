@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -38,15 +39,10 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         this.ecoSystem=ecoSystem;
         populateData();
         
-        picHolderjLabel.setSize(126, 139);
-        setDefaultPhoto();
         
     }
     
-    private void setDefaultPhoto() {
-        
-        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
-    }
+
     
      public void populateData(){
                  DefaultTableModel manageCleanersModel = (DefaultTableModel) managecleanerstbl.getModel();
