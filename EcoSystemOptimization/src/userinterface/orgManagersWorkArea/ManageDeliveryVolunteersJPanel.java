@@ -5,6 +5,7 @@
  */
 package userinterface.orgManagersWorkArea;
 
+import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cityOfficial.CityOfficial;
@@ -39,6 +40,17 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
         this.userLogged = userLogged;
         
         populateDeliveryVolunteers();
+        populateCityHeader();
+    }
+    
+    private void populateCityHeader(){
+        for(CityNetwork cn : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
+            for(Organization org : cn.getOrganizationDirectory().getOrganizations()){
+                if(org.getOrganizationName().equals(organization.getOrganizationName())){
+                    lblheadercityName.setText(cn.getCityName().name());
+                }
+            }        
+        }        
     }
 
     public void populateDeliveryVolunteers() {
@@ -83,6 +95,8 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         backButtonjButton = new javax.swing.JButton();
+        lblheadercityTag = new javax.swing.JLabel();
+        lblheadercityName = new javax.swing.JLabel();
 
         headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -150,17 +164,23 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblheadercityTag.setText("City:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(backButtonjButton)
                         .addGap(90, 90, 90)
-                        .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblheadercityTag)
+                        .addGap(34, 34, 34)
+                        .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -180,7 +200,7 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +208,9 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(backButtonjButton)
-                    .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblheadercityTag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(deliveryVolunteerjLabel)
                 .addGap(18, 18, 18)
@@ -263,6 +285,8 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel deliveryVolunteerjLabel;
     private javax.swing.JLabel headerjLabel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblheadercityName;
+    private javax.swing.JLabel lblheadercityTag;
     private javax.swing.JLabel organizationheaderjLabel;
     private javax.swing.JTable tblDeliveryVolunteersList;
     // End of variables declaration//GEN-END:variables

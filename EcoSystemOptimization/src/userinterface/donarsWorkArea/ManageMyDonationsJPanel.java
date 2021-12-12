@@ -74,16 +74,16 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         for(Donation donation:donor.getDonations()) {
             if (donation.getCategory().name().equalsIgnoreCase(donationcategoryjComboBox.getSelectedItem().toString())){
             donationsCount++;
-            Object[] row = new Object[8];
+            Object[] row = new Object[9];
             row[0]=donationsCount;
             row[1]=donation.getDonor().getName();
             row[2]=donation;
             row[3]=donation.getUsageStatus();
             row[4]=donation.getDonationStatus();
-            row[5]=donation.getPickUp();
-            row[6]=donation.getDeliveryVolunteer()==null?"Not yet assigned":donation.getDeliveryVolunteer().getName();
-            row[7]=donation.getOrganization()==null?"Not yet assigned":donation.getOrganization();
-            
+            row[5]=donation.getAddressToPickUp();
+            row[6]=donation.getCityNetwork().getCityName().name();;
+            row[7]=donation.getDeliveryVolunteer()==null?"Not yet assigned":donation.getDeliveryVolunteer().getName();
+            row[8]=donation.getOrganization()==null?"Not yet assigned":donation.getOrganization();
             donationHistory.addRow(row);
             }
         }
@@ -132,13 +132,13 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
 
         tbldonationHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "S.No", "Donor", "Information", "Usage Status", "Status", "Pickup at Home? or FoodBank?", "Delivery Volunteer", "Sent To (Org)"
+                "S.No", "Donor", "Information", "Usage Status", "Status", "To be PickedUp at", "City", "Delivery Volunteer", "Sent To (Org)"
             }
         ));
         jScrollPane1.setViewportView(tbldonationHistory);
@@ -239,12 +239,12 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             return;
         }else {
             Donation selectedDonation = (Donation) tbldonationHistory.getValueAt(selectedRow, 2);
-            if (selectedDonation.getDonationStatus().equals(DonationStatus.ReadyToPickup)){
+            if (!selectedDonation.getDonationStatus().equals(DonationStatus.ReadyToPickup)){
+                JOptionPane.showMessageDialog(this, "!Error! You can only delete when the donation status is Ready for Pickup");
+            }else{
                 donor.getDonations().remove(selectedDonation);
                 JOptionPane.showMessageDialog(this, "Donation request deleted successfully");
                 populateDonationHistoryTable();
-            }else{
-                JOptionPane.showMessageDialog(this, "!Error! You can only delete when the donation status is Ready for Pickup");
             }
         }
     }//GEN-LAST:event_btndeleteActionPerformed

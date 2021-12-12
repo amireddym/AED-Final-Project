@@ -5,17 +5,34 @@
  */
 package userinterface.cityOfficialsWorkArea;
 
+import businesslogic.CityNetwork;
+import businesslogic.EcoSystem;
+import businesslogic.User;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author manojreddy
  */
 public class CityOfficialHomeJPanel extends javax.swing.JPanel {
+    
+    JPanel userProcessContainer;
+    EcoSystem ecoSystem;
+    User userAccount;
+    CityNetwork cityNetwork;
 
     /**
      * Creates new form CityOfficialHomeJPanel
      */
-    public CityOfficialHomeJPanel() {
+    public CityOfficialHomeJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, User userLogged, CityNetwork cityNetwork) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.ecoSystem=ecoSystem;
+        this.userAccount=userLogged;
+        this.cityNetwork=cityNetwork;
+        lblheaderUserName.setText(userAccount.getUserName());
+        lblheadercityName.setText(cityNetwork.getCityName().name());
     }
 
     /**
@@ -27,19 +44,92 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 832, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
-        );
+        createNewBankbtn = new javax.swing.JButton();
+        manageCleanerbtn = new javax.swing.JButton();
+        createNewOrganizationbtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        lblheadercityTag = new javax.swing.JLabel();
+        lblheadercityName = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblheaderUserName = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        createNewBankbtn.setForeground(new java.awt.Color(0, 102, 102));
+        createNewBankbtn.setText("Manage Food Banks");
+        createNewBankbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewBankbtnActionPerformed(evt);
+            }
+        });
+        add(createNewBankbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 270, 60));
+
+        manageCleanerbtn.setForeground(new java.awt.Color(0, 102, 102));
+        manageCleanerbtn.setText("Manage Cleaners");
+        manageCleanerbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageCleanerbtnActionPerformed(evt);
+            }
+        });
+        add(manageCleanerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 240, 270, 60));
+
+        createNewOrganizationbtn.setForeground(new java.awt.Color(0, 102, 102));
+        createNewOrganizationbtn.setText("Manage Organizations");
+        createNewOrganizationbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewOrganizationbtnActionPerformed(evt);
+            }
+        });
+        add(createNewOrganizationbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, 270, 60));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bgimage.jpg"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1070, 480));
+
+        lblheadercityTag.setText("City:");
+        add(lblheadercityTag, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, -1, 30));
+        add(lblheadercityName, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 130, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("City Official Home Page");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 290, 40));
+        add(lblheaderUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createNewBankbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewBankbtnActionPerformed
+        // TODO add your handling code here:
+         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("Create new Food Bank", new ManageFoodBankJPanel(userProcessContainer, userAccount,
+            ecoSystem, cityNetwork));
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_createNewBankbtnActionPerformed
+
+    private void createNewOrganizationbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewOrganizationbtnActionPerformed
+        // TODO add your handling code here:
+         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("Create new Organization", new ManageOrganizationJPanel(userProcessContainer, userAccount,
+            ecoSystem, cityNetwork));
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_createNewOrganizationbtnActionPerformed
+
+    private void manageCleanerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCleanerbtnActionPerformed
+        // TODO add your handling code here:
+         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("Manage Cleaners", new ManageCleanersJPanel(userProcessContainer, userAccount,
+            ecoSystem, cityNetwork));
+        cardLayout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_manageCleanerbtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createNewBankbtn;
+    private javax.swing.JButton createNewOrganizationbtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblheaderUserName;
+    private javax.swing.JLabel lblheadercityName;
+    private javax.swing.JLabel lblheadercityTag;
+    private javax.swing.JButton manageCleanerbtn;
     // End of variables declaration//GEN-END:variables
 }

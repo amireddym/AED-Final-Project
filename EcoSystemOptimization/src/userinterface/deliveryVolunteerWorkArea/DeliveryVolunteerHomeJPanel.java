@@ -34,6 +34,7 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
         this.userLogged = userLogged;
         this.cityNetwork = cityNetwork;
         this.organization = organization;
+        lblheadercityName.setText(cityNetwork.getCityName().name());
     }
 
     /**
@@ -48,6 +49,8 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
         lbltitle = new javax.swing.JLabel();
         btnupdatemyprofile = new javax.swing.JButton();
         btnmanagemydeliveries = new javax.swing.JButton();
+        lblheadercityTag = new javax.swing.JLabel();
+        lblheadercityName = new javax.swing.JLabel();
 
         lbltitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbltitle.setText("Delivery Volunteer Home Page");
@@ -66,6 +69,8 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblheadercityTag.setText("City:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,18 +81,26 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
                         .addGap(56, 56, 56)
                         .addComponent(btnupdatemyprofile)
                         .addGap(171, 171, 171)
-                        .addComponent(btnmanagemydeliveries))
+                        .addComponent(btnmanagemydeliveries)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(145, 145, 145)
-                        .addComponent(lbltitle)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                        .addComponent(lbltitle)
+                        .addGap(42, 42, 42)
+                        .addComponent(lblheadercityTag)
+                        .addGap(34, 34, 34)
+                        .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(lbltitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbltitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblheadercityTag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnupdatemyprofile)
                     .addComponent(btnmanagemydeliveries))
@@ -111,6 +124,8 @@ public class DeliveryVolunteerHomeJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnmanagemydeliveries;
     private javax.swing.JButton btnupdatemyprofile;
+    private javax.swing.JLabel lblheadercityName;
+    private javax.swing.JLabel lblheadercityTag;
     private javax.swing.JLabel lbltitle;
     // End of variables declaration//GEN-END:variables
 }
