@@ -7,6 +7,7 @@ package userinterface.cityOfficialsWorkArea;
 
 import businesslogic.FoodBank;
 import businesslogic.User;
+import businesslogic.helper.ValidateInputs;
 
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -148,10 +149,9 @@ public class UpdateFoodBankJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error! Please enter valid values");
         }
     }//GEN-LAST:event_updatebtnActionPerformed
-        private boolean isDataEnteredValid() {
-        if(nameJTextField.getText().matches("^[a-zA-Z0-9 ']+$") 
-                &&!locationJTextField.getText().isEmpty())  {
-           return true; 
+    private boolean isDataEnteredValid() {
+        if(ValidateInputs.isNameValid(nameJTextField.getText()) && ValidateInputs.isAddressValid(locationJTextField.getText())){
+            return true;
         }
         return false;
     } 

@@ -10,6 +10,7 @@ import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
 import businesslogic.enums.UserRole;
 import businesslogic.helper.Constants;
+import businesslogic.helper.ValidateInputs;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -43,6 +44,7 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
         this.userAccount  = userAccount;
         this.cityNetwork = cityNetwork;
         picHolderjLabel.setSize(126, 139);
+        setDefaultPhoto();
     }
 
     /**
@@ -268,12 +270,10 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordtxtActionPerformed
    
     private boolean isDataEnteredValid() {
-        if(nametxt.getText().matches("^[a-zA-Z0-9 ']+$") && usernametxt.getText().matches("^[a-zA-Z0-9]+$") && 
-                emailIdtxt.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
-                !phoneNumbertxt.getText().isEmpty() && phoneNumbertxt.getText().matches("^[0-9]+$") 
-                && phoneNumbertxt.getText().length()==10 && passwordtxt.getText().matches("^[a-zA-Z0-9]+$")
-                &&!addresstxt.getText().isEmpty())  {
-           return true; 
+        if(ValidateInputs.isNameValid(nametxt.getText()) && ValidateInputs.isUsernameValid(usernametxt.getText()) && 
+                ValidateInputs.isEmailValid(emailIdtxt.getText()) && ValidateInputs.isPhoneNumberValid(phoneNumbertxt.getText())
+                && ValidateInputs.isPasswordValid(passwordtxt.getText()) && ValidateInputs.isAddressValid(addresstxt.getText()))  {
+         return true; 
         }
         return false;
     } 

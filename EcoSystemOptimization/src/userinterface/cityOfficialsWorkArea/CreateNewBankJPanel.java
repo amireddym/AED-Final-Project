@@ -8,6 +8,7 @@ import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.FoodBank;
 import businesslogic.User;
+import businesslogic.helper.ValidateInputs;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Date;
@@ -145,8 +146,7 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_backbtnActionPerformed
       private boolean isDataEnteredValid() {
-        if(!nameJTextField.getText().isEmpty() && nameJTextField.getText().matches("^[a-zA-Z0-9 ]+$") 
-               &&!locationJTextField.getText().isEmpty()){
+        if(ValidateInputs.isNameValid(nameJTextField.getText()) && ValidateInputs.isAddressValid(locationJTextField.getText())){
             return true;
         }
         return false;

@@ -9,6 +9,7 @@ import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.enums.OrganizationType;
 import businesslogic.helper.Constants;
+import businesslogic.helper.ValidateInputs;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -282,9 +283,9 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_orgTypecmbActionPerformed
     private boolean isDataEnteredValid() {
-        if(orgNametxt.getText().matches("^[a-zA-Z0-9 ']+$") && 
-                emailIdtxt.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
-                !phoneNotxt.getText().isEmpty() && phoneNotxt.getText().matches("^[0-9]+$") )  {
+        if(ValidateInputs.isNameValid(orgNametxt.getText()) && 
+                ValidateInputs.isEmailValid(emailIdtxt.getText()) && 
+                ValidateInputs.isPhoneNumberValid(phoneNotxt.getText()))  {
            return true; 
         }
         return false;

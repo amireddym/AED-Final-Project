@@ -10,6 +10,7 @@ import businesslogic.helper.Constants;
 import businesslogic.helper.EmailHelper;
 import businesslogic.helper.PhoneNoHelper;
 import businesslogic.helper.UserNameHelper;
+import businesslogic.helper.ValidateInputs;
 import businesslogic.organization.OrgManager;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -303,11 +304,10 @@ public class UpdateOrgManagerJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_updatejButtonActionPerformed
     private boolean isDataEnteredValid() {
-        if(namejTextField.getText().matches("^[a-zA-Z0-9 ']+$") && userNamejTextField.getText().matches("^[a-zA-Z0-9]+$") && 
-                emailjTextField.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
-                !phoneNojTextField.getText().isEmpty() && phoneNojTextField.getText().matches("^[0-9]+$") 
-                && phoneNojTextField.getText().length()==10 && passwordjTextField.getText().matches("^[a-zA-Z0-9]+$"))  {
-           return true; 
+        if(ValidateInputs.isNameValid(namejTextField.getText()) && ValidateInputs.isUsernameValid(userNamejTextField.getText()) && 
+                ValidateInputs.isEmailValid(emailjTextField.getText()) && ValidateInputs.isPhoneNumberValid(phoneNojTextField.getText())
+                && ValidateInputs.isPasswordValid(passwordjTextField.getText()) && ValidateInputs.isAddressValid(addressjTextField.getText()))  {
+        return true; 
         }
         return false;
     }
