@@ -75,7 +75,7 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
                         donation.getCityNetwork().getCityName().name().equals(cityNetwork.getCityName().name())) {
                     
                     currentOrderCount++;
-                    Object[] row = new Object[7];
+                    Object[] row = new Object[8];
                     row[0] = currentOrderCount;
                     row[1] = donation;
                     row[2] = donation.getDonor().getName();
@@ -89,6 +89,7 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
                     if(donation.getDateofExpiry()!=null) {
                         row[6] = donation.getDateofExpiry();
                     }
+                    row[7] = donation.getDonationStatus().name();
                     
                     currentOrdersModel.addRow(row);
                 }
@@ -148,6 +149,7 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
         totalDonationsAcceptedCountjLabel = new javax.swing.JLabel();
         pendingCountHeaderjLabel = new javax.swing.JLabel();
         availableDonationsCountjLabel = new javax.swing.JLabel();
+        receivedjButton = new javax.swing.JButton();
 
         currentOrdersHeaderjLabel1.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         currentOrdersHeaderjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -198,20 +200,20 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
 
         availableDonationsjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Serial-No", "Information", "Donor Name", "Category", "UsageStatus", "PickUp Address", "Expiry"
+                "Serial-No", "Information", "Donor Name", "Category", "UsageStatus", "PickUp Address", "Expiry", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -245,18 +247,40 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
         availableDonationsCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         availableDonationsCountjLabel.setText("0");
 
+        receivedjButton.setText("Delivery Received");
+        receivedjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                receivedjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pendingCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(availableDonationsCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backButtonjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(188, 188, 188)
+                                .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(pendingCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(availableDonationsCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(totalCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(totalDonationsAcceptedCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(receivedjButton))
+                                    .addComponent(jScrollPane3)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(215, 215, 215)
                         .addComponent(deliveryPersonjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,22 +289,9 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
                         .addGap(43, 43, 43)
                         .addComponent(acceptjButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backButtonjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(188, 188, 188)
-                                .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(totalCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(totalDonationsAcceptedCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(345, 345, 345)
                         .addComponent(currentOrdersHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,8 +318,9 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalCountHeaderjLabel)
-                    .addComponent(totalDonationsAcceptedCountjLabel))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(totalDonationsAcceptedCountjLabel)
+                    .addComponent(receivedjButton))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -343,6 +355,32 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
         populateData();
     }//GEN-LAST:event_acceptjButtonActionPerformed
 
+    private void receivedjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receivedjButtonActionPerformed
+        int selectedIndex = acceptedDonationsjTable.getSelectedRow();
+        if(selectedIndex<0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to close the donation delivery");
+            return;
+        }
+        DefaultTableModel acceptedDonationsModel = (DefaultTableModel) acceptedDonationsjTable.getModel();
+        Donation donation = (Donation) acceptedDonationsModel.getValueAt(selectedIndex, 1);
+        
+        if (donation.getDonationStatus().equals(DonationStatus.Closed)){
+            JOptionPane.showMessageDialog(this, "!Error! This Donation request is already closed");
+            return;
+        }
+        
+        if (donation.getDonationStatus().equals(DonationStatus.PickedUp) || donation.getDonationStatus().equals(DonationStatus.Expired)){
+            donation.setLastUpdatedDate(new Date());
+            donation.setModifiedBy(userLogged.getName());
+            donation.setDonationStatus(DonationStatus.Closed);
+        }else{
+            JOptionPane.showMessageDialog(this, "!Error! This Donation is not yet picked up by delivery volunteer");
+            return;
+        }
+        
+        populateData();
+    }//GEN-LAST:event_receivedjButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable acceptedDonationsjTable;
@@ -357,6 +395,7 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel pendingCountHeaderjLabel;
+    private javax.swing.JButton receivedjButton;
     private javax.swing.JLabel totalCountHeaderjLabel;
     private javax.swing.JLabel totalDonationsAcceptedCountjLabel;
     // End of variables declaration//GEN-END:variables

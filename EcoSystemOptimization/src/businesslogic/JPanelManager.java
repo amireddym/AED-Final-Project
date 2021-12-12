@@ -36,14 +36,14 @@ public class JPanelManager {
         return new OrgManagerHomeJPanel(userProcessJPanel, ecoSystem, cityNetwork, organization, userLogged);
     }
     
-    public static JPanel getDonorHomePanel() {
+    public static JPanel getDonorHomePanel(JPanel userProcessJpanel, EcoSystem ecoSystem, User userLogged) {
         
-        return new DonorHomeJPanel();
+        return new DonorHomeJPanel(userProcessJpanel, ecoSystem, userLogged);
     }
     
-    public static JPanel getDeliveryVolunteerHomePanel() {
+    public static JPanel getDeliveryVolunteerHomePanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         
-        return new DeliveryVolunteerHomeJPanel();
+        return new DeliveryVolunteerHomeJPanel(userProcessJPanel, ecoSystem, cityNetwork, organization, userLogged);
     }
     
     public static JPanel getCleanerHomePanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork,

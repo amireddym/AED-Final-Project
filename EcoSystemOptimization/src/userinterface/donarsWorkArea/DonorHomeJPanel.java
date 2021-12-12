@@ -5,17 +5,37 @@
  */
 package userinterface.donarsWorkArea;
 
+import businesslogic.EcoSystem;
+import businesslogic.User;
+import businesslogic.cleaner.Cleaner;
+import businesslogic.enums.UserRole;
+import businesslogic.helper.Constants;
+import java.awt.CardLayout;
+import java.util.Date;
+import javax.swing.JPanel;
+
 /**
  *
  * @author manojreddy
  */
 public class DonorHomeJPanel extends javax.swing.JPanel {
-
+    
+    private JPanel userProcessJPanel;
+    private EcoSystem ecoSystem;
+    private User userLogged;
+        
+    
     /**
      * Creates new form DonorHomeJPanel
      */
-    public DonorHomeJPanel() {
+    public DonorHomeJPanel(JPanel userProcessJPanel, EcoSystem ecoSystem, User userLogged) {
         initComponents();
+        
+        this.userProcessJPanel = userProcessJPanel;
+        this.ecoSystem = ecoSystem;
+        this.userLogged = userLogged;
+//        Cleaner c = new Cleaner("Michael Murugesh", "8463512357", "mmcleaner@gmail.com", "110 Forest Hills, Boston", "cleaner1", "password", UserRole.Donor, Constants.DEFAULT_PROFILE_IMAGE_PATH, new Date(), new Date(), "Guna", "Guna");
+//        ecoSystem.getCityNetworkDirectory().getCityNetworks().get(1).getCleanersDirectory().getCleaners().add(c);
     }
 
     /**
@@ -27,19 +47,52 @@ public class DonorHomeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        lbltitle = new javax.swing.JLabel();
+        btnupdatemyprofile = new javax.swing.JButton();
+        btnmanagemydonations = new javax.swing.JButton();
+
+        setLayout(null);
+
+        lbltitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbltitle.setText("Donor Home Page");
+        add(lbltitle);
+        lbltitle.setBounds(192, 13, 174, 27);
+
+        btnupdatemyprofile.setText("Update my Profile");
+        btnupdatemyprofile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdatemyprofileActionPerformed(evt);
+            }
+        });
+        add(btnupdatemyprofile);
+        btnupdatemyprofile.setBounds(62, 101, 133, 25);
+
+        btnmanagemydonations.setText("Manage My Donations");
+        btnmanagemydonations.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmanagemydonationsActionPerformed(evt);
+            }
+        });
+        add(btnmanagemydonations);
+        btnmanagemydonations.setBounds(366, 101, 157, 25);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnupdatemyprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdatemyprofileActionPerformed
+        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+        userProcessJPanel.add("UpdateDonorProfileJPanel", new UpdateDonorProfileJPanel(userProcessJPanel,ecoSystem,userLogged));
+        cardLayout.next(userProcessJPanel);
+    }//GEN-LAST:event_btnupdatemyprofileActionPerformed
+
+    private void btnmanagemydonationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanagemydonationsActionPerformed
+        CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
+        userProcessJPanel.add("ManageMyDonationsJPanel", new ManageMyDonationsJPanel(userProcessJPanel,ecoSystem,userLogged));
+        cardLayout.next(userProcessJPanel);
+    }//GEN-LAST:event_btnmanagemydonationsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnmanagemydonations;
+    private javax.swing.JButton btnupdatemyprofile;
+    private javax.swing.JLabel lbltitle;
     // End of variables declaration//GEN-END:variables
 }
