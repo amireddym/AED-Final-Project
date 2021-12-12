@@ -49,6 +49,7 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         this.deliveryVolunteer = (DeliveryVolunteer) userLogged;
         
         populateData();
+        lblheadercityName.setText(cityNetwork.getCityName().name());
     }
     
     public void populateData() {
@@ -135,6 +136,8 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         pendingCountHeaderjLabel = new javax.swing.JLabel();
         availableDonationsCountjLabel = new javax.swing.JLabel();
         backjButton = new javax.swing.JButton();
+        lblheadercityName = new javax.swing.JLabel();
+        lblheadercityTag = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -237,12 +240,12 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         pendingCountHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         pendingCountHeaderjLabel.setText("Count :");
         add(pendingCountHeaderjLabel);
-        pendingCountHeaderjLabel.setBounds(860, 30, 70, 19);
+        pendingCountHeaderjLabel.setBounds(10, 250, 70, 19);
 
         availableDonationsCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         availableDonationsCountjLabel.setText("0");
         add(availableDonationsCountjLabel);
-        availableDonationsCountjLabel.setBounds(940, 30, 30, 19);
+        availableDonationsCountjLabel.setBounds(90, 250, 30, 19);
 
         backjButton.setText("< < Back");
         backjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -252,6 +255,12 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
         });
         add(backjButton);
         backjButton.setBounds(10, 20, 85, 25);
+        add(lblheadercityName);
+        lblheadercityName.setBounds(860, 20, 120, 30);
+
+        lblheadercityTag.setText("City:");
+        add(lblheadercityTag);
+        lblheadercityTag.setBounds(770, 20, 50, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnpcikedupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpcikedupActionPerformed
@@ -290,6 +299,8 @@ public class ManageMyDeliveriesJPanel extends javax.swing.JPanel {
     private javax.swing.JTable donationDeliveryHistoryjTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblheadercityName;
+    private javax.swing.JLabel lblheadercityTag;
     private javax.swing.JLabel pendingCountHeaderjLabel;
     private javax.swing.JLabel totalCountHeaderjLabel;
     private javax.swing.JLabel totalCountjLabel;
