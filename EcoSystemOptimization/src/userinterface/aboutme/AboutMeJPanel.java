@@ -32,7 +32,7 @@ public class AboutMeJPanel extends javax.swing.JPanel {
         manojImagejLabel.setIcon(new ImageIcon(resized));
         
         anshitaImagejLabel.setSize(132, 132);
-        ImageIcon imageIconAnshita = new ImageIcon(getClass().getResource("/icons/manojreddya.jpeg"));
+        ImageIcon imageIconAnshita = new ImageIcon(getClass().getResource("/icons/anshita.jpeg"));
         Image resizedAnshita = imageIconAnshita.getImage().getScaledInstance(anshitaImagejLabel.getWidth(), anshitaImagejLabel.getHeight(), 4);
         anshitaImagejLabel.setIcon(new ImageIcon(resizedAnshita));
         
@@ -74,6 +74,7 @@ public class AboutMeJPanel extends javax.swing.JPanel {
         projectjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         projectjLabel.setText("Project Description");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);

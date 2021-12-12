@@ -25,9 +25,9 @@ public class JPanelManager {
         return new SysAdminHomeJPanel(userProcessJpanel, ecoSystem, userLogged);
     }
     
-    public static JPanel getCityOfficialHomePanel() {
+    public static JPanel getCityOfficialHomePanel(JPanel userProcessContainer, EcoSystem ecoSystem, User userLogged,CityNetwork cityNetwork) {
         
-        return new CityOfficialHomeJPanel();
+        return new CityOfficialHomeJPanel(userProcessContainer, ecoSystem, userLogged,cityNetwork);
     }
         
     public static JPanel getOrgManagerHomePanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork,
