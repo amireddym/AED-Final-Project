@@ -44,6 +44,9 @@ public class CreateOrgManagerJPanel extends javax.swing.JPanel {
         this.ecoSystem = ecoSystem; 
         this.organization = organization;
         this.userLogged = userLogged;
+        
+        picHolderjLabel.setSize(126, 139);
+        setDefaultPhoto();
     }
 
     /**
@@ -215,6 +218,12 @@ public class CreateOrgManagerJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void setDefaultPhoto() {
+        
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
+    }
+    
     private void backjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButtonActionPerformed
         // TODO add your handling code here:
         userProcessJpanel.remove(this);
@@ -251,11 +260,6 @@ public class CreateOrgManagerJPanel extends javax.swing.JPanel {
         addressjTextField.setText("");
         
         setDefaultPhoto();
-    }
-    
-    private void setDefaultPhoto() {
-        
-        setPhoto(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
     }
     
     private void setPhoto(String imagePath) {

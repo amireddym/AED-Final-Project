@@ -8,6 +8,7 @@ package userinterface.cityOfficialsWorkArea;
 
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
+import businesslogic.helper.Constants;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -39,6 +40,8 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         picHolderjLabel.setSize(126, 139);
         populateData();
         
+        setDefaultPhoto();
+        
     }
     private void populateData(){
         nametxt.setText(cleaner.getName());
@@ -59,6 +62,11 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         ImageIcon photo = new ImageIcon(profilePic);
         Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
         picHolderjLabel.setIcon(new ImageIcon(photoResized));
+    }
+      
+    private void setDefaultPhoto() {
+        
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
     }
 
     /** This method is called from within the constructor to
@@ -319,6 +327,8 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         passwordtxt.setText("");
         emailIdtxt.setText("");
         phoneNumbertxt.setText("");
+        
+        setDefaultPhoto();
         
     }
 

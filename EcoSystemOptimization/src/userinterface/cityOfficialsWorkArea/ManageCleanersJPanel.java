@@ -8,6 +8,7 @@ import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
+import businesslogic.helper.Constants;
 import java.awt.CardLayout;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -39,7 +40,16 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         this.ecoSystem=ecoSystem;
         populateData();
         
+        picHolderjLabel.setSize(126, 139);
+        setDefaultPhoto();
+        
     }
+    
+    private void setDefaultPhoto() {
+        
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
+    }
+    
      public void populateData(){
                  DefaultTableModel manageCleanersModel = (DefaultTableModel) managecleanerstbl.getModel();
                  manageCleanersModel.setRowCount(0);

@@ -8,6 +8,7 @@ package userinterface.cityOfficialsWorkArea;
 import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.enums.OrganizationType;
+import businesslogic.helper.Constants;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -40,10 +41,15 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.organization = organization;
-         this.ecoSystem = ecoSystem;
-        
+        this.ecoSystem = ecoSystem;
+        picHolderJlbl.setSize(126, 139);
+        setDefaultPhoto();
         
         populateData();
+    }
+    
+    private void setDefaultPhoto() {
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
     }
     
      private void populateData() {

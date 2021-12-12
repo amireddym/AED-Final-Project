@@ -44,9 +44,13 @@ public class UpdateOrgManagerJPanel extends javax.swing.JPanel {
         this.orgManager = orgManager;
         this.userLogged = userLogged;
         picHolderjLabel.setSize(126, 139);
-        
+        setDefaultPhoto();
         populateData();
     }
+    
+    private void setDefaultPhoto() {
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
+    }   
        private void populateData() {
         
         userNamejTextField.setText(orgManager.getUserName());

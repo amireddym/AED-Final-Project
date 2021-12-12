@@ -9,6 +9,7 @@ import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
 import businesslogic.enums.UserRole;
+import businesslogic.helper.Constants;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -43,6 +44,9 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
         this.userAccount  = userAccount;
         this.cityNetwork = cityNetwork;
         picHolderjLabel.setSize(126, 139);
+        setDefaultPhoto();
+        
+        
     }
 
     /**
@@ -205,6 +209,11 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setDefaultPhoto() {
+        
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
+    }
+    
     private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
         // TODO add your handling code here:
            if(isDataEnteredValid()) {
@@ -281,12 +290,6 @@ public class CreateNewCleanerJPanel extends javax.swing.JPanel {
         
     }
     
-    //have to make changes
-     private void setDefaultPhoto() {
-        
-       // setPhoto(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
-    }
-
     private void setPhoto(String imagePath) {
         ImageIcon photo = new ImageIcon(imagePath);
         Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);

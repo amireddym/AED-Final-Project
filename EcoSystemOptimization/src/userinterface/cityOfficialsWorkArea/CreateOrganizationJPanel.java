@@ -45,9 +45,16 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         poupulateOrganizationTypes();
         
+        picHolderJlbl.setSize(126, 139);
+        setDefaultPhoto();
+        
     }
     
-        private void poupulateOrganizationTypes() {
+    private void setDefaultPhoto() {
+        
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
+    }
+    private void poupulateOrganizationTypes() {
         
         orgTypecmb.removeAllItems();
         
@@ -281,6 +288,8 @@ public class CreateOrganizationJPanel extends javax.swing.JPanel {
        addresstxt.setText("");
        emailIdtxt.setText("");
        phoneNotxt.setText("");
+       
+       setDefaultPhoto();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
