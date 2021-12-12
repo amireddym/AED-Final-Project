@@ -124,6 +124,5 @@ public class Organization extends ModificationInfo{
     public String toString() {
         return organizationName;
     }
-    
-    
+            
 }

@@ -12,6 +12,7 @@ import businesslogic.enums.OrganizationType;
 import businesslogic.helper.Constants;
 import businesslogic.helper.EmailHelper;
 import businesslogic.helper.PhoneNoHelper;
+import businesslogic.helper.ValidateInputs;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -44,6 +45,7 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
         this.ecoSystem = ecoSystem;
         this.organization = organization;
         this.userLogged = userLogged;
+        picHolderjLabel.setSize(126, 139);
         
         picHolderjLabel.setSize(126, 139);
         populateData();
@@ -295,10 +297,10 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_updatejButtonActionPerformed
 
     private boolean isDataEnteredValid() {
-        if(namejTextField.getText().matches("^[a-zA-Z0-9 ']+$") && 
-                emailjTextField.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
-                !phoneNojTextField.getText().isEmpty() && phoneNojTextField.getText().matches("^[0-9]+$") &&
-                phoneNojTextField.getText().length()==10 )  {
+        if(ValidateInputs.isNameValid(namejTextField.getText())
+                && ValidateInputs.isEmailValid(emailjTextField.getText()) 
+                && ValidateInputs.isPhoneNumberValid(phoneNojTextField.getText())
+                && ValidateInputs.isAddressValid(addressjTextField.getText()))  {
            return true; 
         }
         return false;

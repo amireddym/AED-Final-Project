@@ -69,7 +69,7 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                     
                     readyToCleanCount++;
                     Object[] row = new Object[8];
-                    row[0] = cleanedCount;
+                    row[0] = readyToCleanCount;
                     row[1] = donation;
                     row[2] = donation.getDonor().getName();
                     row[3] = donation.getCategory().name();
@@ -80,7 +80,6 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                     }
                     donation.setDonationStatus(DonationStatus.Expired);
                     row[7] = donation.getDonationStatus().name();
-//                    row[7] = donation.getDonationStatus().name();
                     readyToCleanModel.addRow(row);
                 }  
             }
@@ -189,24 +188,24 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
 
         currentDonationsHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         currentDonationsHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        currentDonationsHeaderjLabel.setText("Donations Ready To CleanUp in the City");
+        currentDonationsHeaderjLabel.setText("Donations Ready To Be CleanedUp in the City");
 
         availableDonationsToCleanUpjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Serial-No", "Information", "Donor Name", "Category", "UsageStatus", "PickUp Address", "Expiry"
+                "Serial-No", "Information", "Donor Name", "Category", "UsageStatus", "PickUp Address", "Expiry", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {

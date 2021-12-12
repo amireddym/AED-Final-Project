@@ -75,6 +75,8 @@ public class Donation extends ModificationInfo{
         this.deliveryVolunteer = deliveryVolunteer;
         this.donationStatus = donationStatus;
         this.cleaner = cleaner;
+        
+        this.donor.getDonations().add(this);
     }    
     
     public String getInformation() {
@@ -200,6 +202,5 @@ public class Donation extends ModificationInfo{
     @Override
     public String toString() {
         return information;
-    }
-    
+    }    
 }

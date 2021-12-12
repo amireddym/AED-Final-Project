@@ -13,6 +13,7 @@ import businesslogic.User;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -112,6 +113,12 @@ public class MainJFrame extends javax.swing.JFrame {
         signUpJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUpJButtonActionPerformed(evt);
+            }
+        });
+
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldKeyPressed(evt);
             }
         });
 
@@ -315,7 +322,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 userLogged = ecoSystem.getDonorsDirectory().isUserDonor(userName, password);
                 if(userLogged!=null) {
                     CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                    userProcessJPanel.add("DonorHomePanel",JPanelManager.getDonorHomePanel());
+                    userProcessJPanel.add("DonorHomePanel",JPanelManager.getDonorHomePanel(userProcessJPanel, ecoSystem, userLogged));
                     cardLayout.next(userProcessJPanel);
                     clearLoginPanels();
                     return;
@@ -383,9 +390,12 @@ public class MainJFrame extends javax.swing.JFrame {
                             if(!organization.getDeliveryVolunteerDirectory().getDeliveryVolunteers().isEmpty()) {
                                 
                                 userLogged = organization.getDeliveryVolunteerDirectory().isUserDeliveryVolunteer(userName, password);
+                                CityNetwork cn = cityNetwork;
+                                Organization org = organization;
+                                
                                 if(userLogged!=null) {
                                     CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-                                    userProcessJPanel.add("DeliveryVolunteerHomePanel", JPanelManager.getDeliveryVolunteerHomePanel());
+                                    userProcessJPanel.add("DeliveryVolunteerHomePanel", JPanelManager.getDeliveryVolunteerHomePanel(userProcessJPanel, ecoSystem, cn, org, userLogged));
                                     cardLayout.next(userProcessJPanel);
                                     clearLoginPanels();
                                     return;
@@ -402,14 +412,19 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void signUpJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpJButtonActionPerformed
-        // TODO add your handling code here:
+        signUpJButton.setEnabled(false);
         
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-        userProcessJPanel.add("SignUpPanel", new SignUpJPanel());
+        userProcessJPanel.add("SignUpPanel", new SignUpJPanel(userProcessJPanel, ecoSystem, dB4OUtil));
         cardLayout.next(userProcessJPanel);
         
     }//GEN-LAST:event_signUpJButtonActionPerformed
 
+    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            loginJButton.doClick();
+        }
+    }//GEN-LAST:event_jPasswordFieldKeyPressed
     private void aboutMejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMejButtonActionPerformed
         // TODO add your handling code here:
         
