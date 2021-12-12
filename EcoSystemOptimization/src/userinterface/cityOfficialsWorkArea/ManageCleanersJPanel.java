@@ -224,7 +224,7 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
           int selectedRow=managecleanerstbl.getSelectedRow();
          if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a Cleaner to delete");
+            JOptionPane.showMessageDialog(this, "Please select a Cleaner to update");
             return;
         }else{
         Cleaner selectedCleaner=(Cleaner) managecleanerstbl.getValueAt(selectedRow, 1);

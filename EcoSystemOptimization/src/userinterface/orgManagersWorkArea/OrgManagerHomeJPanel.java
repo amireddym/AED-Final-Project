@@ -149,14 +149,14 @@ public class OrgManagerHomeJPanel extends javax.swing.JPanel {
     private void manageOrganizationInfoJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationInfoJButtonActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-        userProcessJPanel.add("UpdateOrganizationInfo", new UpdateOrganizationInfoJPanel(userProcessJPanel, ecoSystem, organization, userLogged));
+        userProcessJPanel.add("UpdateOrganizationInfo", new UpdateOrganizationInfoJPanel(userProcessJPanel, ecoSystem, cityNetwork,organization, userLogged));
         cardLayout.next(userProcessJPanel);
     }//GEN-LAST:event_manageOrganizationInfoJButtonActionPerformed
 
     private void manageDeliveryVolunteersJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageDeliveryVolunteersJButtonActionPerformed
 
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
-        userProcessJPanel.add("ManageDeliveryVolunteers",new ManageDeliveryVolunteersJPanel(userProcessJPanel, ecoSystem, organization, userLogged));
+        userProcessJPanel.add("ManageDeliveryVolunteers",new ManageDeliveryVolunteersJPanel(userProcessJPanel, ecoSystem, cityNetwork, organization, userLogged));
         cardLayout.next(userProcessJPanel);
     }//GEN-LAST:event_manageDeliveryVolunteersJButtonActionPerformed
 

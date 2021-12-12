@@ -28,14 +28,16 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
+    private CityNetwork cityNetwork;
     private Organization organization;
     private User userLogged;
     
-    public ManageDeliveryVolunteersJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Organization organization, User userLogged) {
+    public ManageDeliveryVolunteersJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         initComponents();
         
         this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
+        this.cityNetwork = cityNetwork;
         this.organization = organization;
         this.userLogged = userLogged;
         
@@ -44,13 +46,8 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
     }
     
     private void populateCityHeader(){
-        for(CityNetwork cn : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
-            for(Organization org : cn.getOrganizationDirectory().getOrganizations()){
-                if(org.getOrganizationName().equals(organization.getOrganizationName())){
-                    lblheadercityName.setText(cn.getCityName().name());
-                }
-            }        
-        }        
+                
+        lblheadercityName.setText(cityNetwork.getCityName().name());                     
     }
 
     public void populateDeliveryVolunteers() {
@@ -245,7 +242,7 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        CreateNewDeliveryVolunteerJPanel panel = new CreateNewDeliveryVolunteerJPanel(userProcessJpanel, ecoSystem, organization, userLogged);
+        CreateNewDeliveryVolunteerJPanel panel = new CreateNewDeliveryVolunteerJPanel(userProcessJpanel, ecoSystem, cityNetwork, organization, userLogged);
         //          userProcessContainer.remove(this);
         userProcessJpanel.add("CreateNewDeliveryVolunteerJPanel", panel);
         CardLayout layout = (CardLayout) userProcessJpanel.getLayout();
@@ -260,7 +257,7 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
             return;
         } else {
             DeliveryVolunteer deliveryVolunteer = (DeliveryVolunteer) tblDeliveryVolunteersList.getValueAt(selectedRow, 1);
-            UpdateDeliveryVolunteerJPanel updateDeliveryVolunteerJPanel = new UpdateDeliveryVolunteerJPanel(userProcessJpanel, ecoSystem, organization, deliveryVolunteer, userLogged);
+            UpdateDeliveryVolunteerJPanel updateDeliveryVolunteerJPanel = new UpdateDeliveryVolunteerJPanel(userProcessJpanel, ecoSystem, cityNetwork, organization, deliveryVolunteer, userLogged);
             userProcessJpanel.add("UpdateDeliveryVolunteerJPanel", updateDeliveryVolunteerJPanel);
             CardLayout layout = (CardLayout) userProcessJpanel.getLayout();
             layout.next(userProcessJpanel);
