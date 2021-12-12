@@ -147,8 +147,15 @@
         <Component class="javax.swing.JTextArea" name="jTextArea1">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="66" red="0" type="rgb"/>
+            </Property>
             <Property name="columns" type="int" value="20"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Lucida Sans" size="13" style="1"/>
+            </Property>
             <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Eco System Optimization is a NetBeans Application which provides a platform for people across several cities to come&#xa;together with Government, Private and Religious Organizations to help people in need.  &#xa;&#xa;Eco System Optimization&apos;s Mission is to contribute towards the welfare of society by optimizing the use of resources and&#xa;Focus on Reusing any resource varying from electronics, food, clothes and any unused or extra products by donating them&#xa;to the needy."/>
           </Properties>
         </Component>
       </SubComponents>
