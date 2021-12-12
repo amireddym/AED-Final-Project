@@ -61,8 +61,8 @@ public class CreateNewDeliveryVolunteerJPanel extends javax.swing.JPanel {
     }
     
     private void populateCityHeader(){
-        
-         lblheadercityName.setText(cityNetwork.getCityName().name());             
+        lblheadercityName.setText(cityNetwork.getCityName().name());       
+
     }
 
     /**

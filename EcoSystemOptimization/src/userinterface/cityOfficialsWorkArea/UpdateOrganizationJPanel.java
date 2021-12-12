@@ -38,16 +38,18 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Organization organization;
     private EcoSystem ecoSystem;
+    private CityNetwork cityNetwork;
     private User userAccount;
     
      private String imagePath;
 
-    public UpdateOrganizationJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, Organization organization, User userAccount) {
+    public UpdateOrganizationJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.organization = organization;
         this.ecoSystem = ecoSystem;
+        this.cityNetwork = cityNetwork;
         picHolderJlbl.setSize(126, 139);
         
         populateData();
@@ -55,13 +57,7 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
     }
     
     private void populateCityHeader(){
-        for(CityNetwork cn : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
-            for(Organization org : cn.getOrganizationDirectory().getOrganizations()){
-                if(org.getOrganizationName().equals(organization.getOrganizationName())){
-                    lblheadercityName.setText(cn.getCityName().name());
-                }
-            }        
-        }        
+        lblheadercityName.setText(cityNetwork.getCityName().name());
     }
     
     private void setDefaultPhoto() {

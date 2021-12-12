@@ -75,8 +75,11 @@ public class AboutMeJPanel extends javax.swing.JPanel {
         projectjLabel.setText("Project Description");
 
         jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(0, 102, 102));
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Lucida Sans", 1, 13)); // NOI18N
         jTextArea1.setRows(5);
+        jTextArea1.setText("Eco System Optimization is a NetBeans Application which provides a platform for people across several cities to come\ntogether with Government, Private and Religious Organizations to help people in need.  \n\nEco System Optimization's Mission is to contribute towards the welfare of society by optimizing the use of resources and\nFocus on Reusing any resource varying from electronics, food, clothes and any unused or extra products by donating them\nto the needy.");
         jScrollPane1.setViewportView(jTextArea1);
 
         developerjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
