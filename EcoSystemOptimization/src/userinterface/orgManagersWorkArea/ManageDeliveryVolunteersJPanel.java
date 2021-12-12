@@ -40,14 +40,14 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
         this.cityNetwork = cityNetwork;
         this.organization = organization;
         this.userLogged = userLogged;
+        this.cityNetwork = cityNetwork;
         
         populateDeliveryVolunteers();
         populateCityHeader();
     }
     
     private void populateCityHeader(){
-                
-        lblheadercityName.setText(cityNetwork.getCityName().name());                     
+        lblheadercityName.setText(cityNetwork.getCityName().name());
     }
 
     public void populateDeliveryVolunteers() {

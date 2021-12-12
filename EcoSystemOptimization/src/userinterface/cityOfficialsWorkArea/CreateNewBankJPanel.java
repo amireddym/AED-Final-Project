@@ -138,12 +138,20 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
         // TODO add your handling code here:
          if(isDataEnteredValid()){
+             
+             for (FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
+                 if (fb.getLocation().equals(locationJTextField.getText())){
+                     JOptionPane.showMessageDialog(this, " !Error! This FoodBank Location is already registered in the system.\nPlease try with another location.");
+                     return;
+                 }
+             }
              cityNetwork.getFoodBankDirectory().getFoodBanks().add(new FoodBank(nameJTextField.getText(),locationJTextField.getText(),
         new Date(), new Date(),userAccount.getName(),userAccount.getName()));
              JOptionPane.showMessageDialog(this, " Added New Food Bank Successfully!");
              resetUi();
          }else{
              JOptionPane.showMessageDialog(this, "Error ! Please input valid values");
+             return;
          }
         
     }//GEN-LAST:event_addbtnActionPerformed
@@ -165,12 +173,10 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
         return false;
     }
       
-        private void resetUi() {
+    private void resetUi() {
         
         nameJTextField.setText("");
         locationJTextField.setText("");
-        
-        
     }
     
 

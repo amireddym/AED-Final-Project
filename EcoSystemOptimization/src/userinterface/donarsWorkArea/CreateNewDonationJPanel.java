@@ -119,7 +119,7 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblselectfoodbank.setText("Select Food Bank:");
+        lblselectfoodbank.setText("Select Bank:");
 
         selectfoodbankjComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -229,7 +229,7 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(410, 410, 410)
                         .addComponent(btncreatedonationrequest, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -458,14 +458,14 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         if (((String) pickupmodejComboBox.getSelectedItem()).equals("FoodBank")){
             selectfoodbankjComboBox.setEnabled(true);
             txtpickupaddress.setText("");
-            txtpickupaddress.setEditable(false);
+            txtpickupaddress.setEnabled(false);
             
             populateFoodBanks();
         }else{
             selectfoodbankjComboBox.removeAllItems();
             
             selectfoodbankjComboBox.setEnabled(false);
-            txtpickupaddress.setEditable(true);
+            txtpickupaddress.setEnabled(true);
         }
     }//GEN-LAST:event_pickupmodejComboBoxActionPerformed
 

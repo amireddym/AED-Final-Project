@@ -78,7 +78,7 @@
                       <Component id="btncreatedonationrequest" min="-2" pref="180" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -188,7 +188,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblselectfoodbank">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Select Food Bank:"/>
+        <Property name="text" type="java.lang.String" value="Select Bank:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="selectfoodbankjComboBox">

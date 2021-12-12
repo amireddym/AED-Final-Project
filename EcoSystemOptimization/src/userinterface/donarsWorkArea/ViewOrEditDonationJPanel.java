@@ -119,7 +119,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblselectfoodbank.setText("Select Food Bank:");
+        lblselectfoodbank.setText("Select Bank:");
 
         lblpickupaddress.setText("PickUp Address:");
 
@@ -484,14 +484,14 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         if (((String) pickupmodejComboBox.getSelectedItem()).equals("FoodBank")){
             selectfoodbankjComboBox.setEnabled(true);
             txtpickupaddress.setText("");
-            txtpickupaddress.setEditable(false);
+            txtpickupaddress.setEnabled(false);
             
             populateFoodBanks();
         }else{
             selectfoodbankjComboBox.removeAllItems();
             
             selectfoodbankjComboBox.setEnabled(false);
-            txtpickupaddress.setEditable(true);
+            txtpickupaddress.setEnabled(true);
         }
     }//GEN-LAST:event_pickupmodejComboBoxActionPerformed
 

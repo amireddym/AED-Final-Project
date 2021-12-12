@@ -39,7 +39,6 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
     private CityNetwork cityNetwork;
     private Organization organization;
     private User userLogged;
-    
     private String imagePath;
     
     public UpdateOrganizationInfoJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
@@ -51,7 +50,6 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
         this.userLogged = userLogged;
         
         picHolderjLabel.setSize(126, 139);
-        setDefaultPhoto();
         populateData();
         populateCityHeader();
     }
@@ -122,19 +120,29 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
         lblheadercityTag = new javax.swing.JLabel();
         lblheadercityName = new javax.swing.JLabel();
 
+        setLayout(null);
+
         organizationTypejComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organizationTypejComboBoxActionPerformed(evt);
             }
         });
+        add(organizationTypejComboBox);
+        organizationTypejComboBox.setBounds(320, 320, 234, 30);
 
         headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headerjLabel.setText("Update Organization");
+        add(headerjLabel);
+        headerjLabel.setBounds(190, 20, 415, 34);
+        add(addressjTextField);
+        addressjTextField.setBounds(320, 270, 234, 30);
 
         emailjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         emailjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         emailjLabel.setText("Email :");
+        add(emailjLabel);
+        emailjLabel.setBounds(161, 176, 125, 18);
 
         backjButton.setText("< < Back");
         backjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -142,10 +150,16 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
                 backjButtonActionPerformed(evt);
             }
         });
+        add(backjButton);
+        backjButton.setBounds(18, 41, 85, 25);
 
         namejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         namejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         namejLabel.setText("Name :");
+        add(namejLabel);
+        namejLabel.setBounds(161, 123, 125, 18);
+        add(phoneNojTextField);
+        phoneNojTextField.setBounds(321, 222, 234, 30);
 
         uploadjButton.setText("upload");
         uploadjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -153,8 +167,12 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
                 uploadjButtonActionPerformed(evt);
             }
         });
+        add(uploadjButton);
+        uploadjButton.setBounds(680, 310, 71, 25);
 
         picHolderjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(picHolderjLabel);
+        picHolderjLabel.setBounds(649, 159, 126, 139);
 
         updatejButton.setText("Update");
         updatejButton.addActionListener(new java.awt.event.ActionListener() {
@@ -162,140 +180,36 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
                 updatejButtonActionPerformed(evt);
             }
         });
+        add(updatejButton);
+        updatejButton.setBounds(350, 380, 73, 25);
+        add(emailjTextField);
+        emailjTextField.setBounds(321, 174, 234, 30);
 
         phoneNojLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         phoneNojLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         phoneNojLabel.setText("Phone No :");
+        add(phoneNojLabel);
+        phoneNojLabel.setBounds(160, 228, 125, 18);
 
         organizationTypejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         organizationTypejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         organizationTypejLabel.setText("Organization Type :");
+        add(organizationTypejLabel);
+        organizationTypejLabel.setBounds(160, 320, 125, 30);
+        add(namejTextField);
+        namejTextField.setBounds(321, 123, 234, 30);
 
         addressjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         addressjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         addressjLabel.setText("Address :");
+        add(addressjLabel);
+        addressjLabel.setBounds(160, 270, 125, 30);
 
         lblheadercityTag.setText("City:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addComponent(updatejButton)
-                .addGap(221, 484, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblheadercityTag)
-                        .addGap(34, 34, 34)
-                        .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backjButton)
-                                .addGap(58, 58, 58)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(48, 48, 48)
-                                        .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(namejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(namejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(emailjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(1, 1, 1)
-                                                .addComponent(addressjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(organizationTypejLabel))
-                                        .addGap(35, 35, 35)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(organizationTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(addressjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(161, 161, 161)
-                                            .addComponent(phoneNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(phoneNojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(69, 69, 69)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(uploadjButton)))))
-                .addGap(70, 70, 70))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addressjLabel, emailjLabel, namejLabel, organizationTypejLabel, phoneNojLabel});
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addressjTextField, emailjTextField, namejTextField, organizationTypejComboBox, phoneNojTextField});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblheadercityTag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(uploadjButton)
-                        .addGap(76, 76, 76))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(backjButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(namejTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                                    .addComponent(namejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(emailjLabel))
-                                    .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(phoneNojLabel)
-                            .addComponent(phoneNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(addressjLabel))
-                            .addComponent(addressjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(organizationTypejLabel))
-                            .addComponent(organizationTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
-                        .addComponent(updatejButton))))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addressjTextField, emailjTextField, namejTextField, organizationTypejComboBox, phoneNojTextField});
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addressjLabel, emailjLabel, namejLabel, organizationTypejLabel, phoneNojLabel});
-
+        add(lblheadercityTag);
+        lblheadercityTag.setBounds(650, 30, 26, 30);
+        add(lblheadercityName);
+        lblheadercityName.setBounds(700, 30, 130, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void organizationTypejComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationTypejComboBoxActionPerformed
