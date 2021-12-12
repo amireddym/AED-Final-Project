@@ -45,7 +45,6 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         createNewBankbtn = new javax.swing.JButton();
         manageCleanerbtn = new javax.swing.JButton();
         createNewOrganizationbtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,11 +76,8 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         });
         add(createNewOrganizationbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, 270, 60));
 
-        jLabel1.setText("<Image>");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 50, 80, 80));
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bgimage.jpg"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 520));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 540));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createNewBankbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewBankbtnActionPerformed
@@ -113,7 +109,6 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createNewBankbtn;
     private javax.swing.JButton createNewOrganizationbtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manageCleanerbtn;
     // End of variables declaration//GEN-END:variables

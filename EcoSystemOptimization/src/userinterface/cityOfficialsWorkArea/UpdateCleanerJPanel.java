@@ -8,7 +8,6 @@ package userinterface.cityOfficialsWorkArea;
 
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
-import businesslogic.helper.Constants;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -40,8 +39,6 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         picHolderjLabel.setSize(126, 139);
         populateData();
         
-        setDefaultPhoto();
-        
     }
     private void populateData(){
         nametxt.setText(cleaner.getName());
@@ -53,20 +50,14 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         imagePath =cleaner.getProfilePic();
         setPhoto(cleaner.getProfilePic());
         
-    
     }
     
-      private void setPhoto(String profilePic) {
+    private void setPhoto(String profilePic) {
         
  
         ImageIcon photo = new ImageIcon(profilePic);
         Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
         picHolderjLabel.setIcon(new ImageIcon(photoResized));
-    }
-      
-    private void setDefaultPhoto() {
-        
-        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
     }
 
     /** This method is called from within the constructor to
@@ -96,6 +87,8 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         updatebtn = new javax.swing.JButton();
         backbtn = new javax.swing.JButton();
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Update Cleaner");
 
         nametxt.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +150,7 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
             }
         });
 
-        backbtn.setText("Back");
+        backbtn.setText("< < Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backbtnActionPerformed(evt);
@@ -171,46 +164,48 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(phoneNumbertxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(updatebtn)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addresstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(usernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(uploadbtn)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(backbtn)
                         .addGap(163, 163, 163)
-                        .addComponent(jLabel1)))
-                .addContainerGap(158, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addGap(59, 59, 59)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(phoneNumbertxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(emailIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addresstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(usernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(78, 78, 78)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(uploadbtn)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addComponent(updatebtn)))))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backbtn))
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -233,15 +228,15 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(updatebtn))
+                            .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(6, 6, 6)
                         .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(uploadbtn)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(updatebtn)
+                .addContainerGap(106, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -250,9 +245,9 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         if(isDataEnteredValid()) {
             cleaner.setName(nametxt.getText());
             cleaner.setPhoneNo(phoneNumbertxt.getText());
-         cleaner.setAddress(addresstxt.getText());
-         cleaner.setEmail(emailIdtxt.getText());
-         cleaner.setPassword(passwordtxt.getText());
+            cleaner.setAddress(addresstxt.getText());
+            cleaner.setEmail(emailIdtxt.getText());
+            cleaner.setPassword(passwordtxt.getText());
             cleaner.setUserName(usernametxt.getText());
             cleaner.setModifiedBy(userAccount.getName());
             cleaner.setLastUpdatedDate(new Date());
@@ -265,7 +260,7 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
 
     private void uploadbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadbtnActionPerformed
         // TODO add your handling code here:
-                JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("/"));
         fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Jpeg format", "jpeg"));
         fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Jpg format", "jpg"));
@@ -280,7 +275,8 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         // TODO add your handling code here:
-         userProcessContainer.remove(this);
+        userProcessContainer.remove(this);
+        
         Component[] components = userProcessContainer.getComponents();
         ManageCleanersJPanel manageCleanersJPanel = (ManageCleanersJPanel) components[components.length-1];
         manageCleanersJPanel.populateData();
@@ -316,20 +312,6 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
            return true; 
         }
         return false;
-    } 
-    
-    
-    private void resetUi() {
-        
-        nametxt.setText("");
-        usernametxt.setText("");
-        addresstxt.setText("");
-        passwordtxt.setText("");
-        emailIdtxt.setText("");
-        phoneNumbertxt.setText("");
-        
-        setDefaultPhoto();
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
