@@ -35,7 +35,7 @@
                   <Component id="txtname" linkSize="8" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
                   <Component id="txtphoneno" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="701" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
@@ -51,13 +51,13 @@
                           <Group type="102" attributes="0">
                               <Component id="btnattachpic" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Component id="lblpicpreview" min="-2" pref="234" max="-2" attributes="0"/>
+                              <Component id="lblpicpreview" min="-2" pref="169" max="-2" attributes="0"/>
                           </Group>
                           <Component id="btncreatenewuser" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="271" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="345" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

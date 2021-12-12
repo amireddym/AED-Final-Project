@@ -417,8 +417,9 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void signUpJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpJButtonActionPerformed
-        signUpJButton.setEnabled(false);
+//        signUpJButton.setEnabled(false);
         
+        userProcessJPanel.removeAll();
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
         userProcessJPanel.add("SignUpPanel", new SignUpJPanel(userProcessJPanel, ecoSystem, dB4OUtil));
         cardLayout.next(userProcessJPanel);
