@@ -333,6 +333,7 @@ public class SysAdminHomeJPanel extends javax.swing.JPanel {
         }
         ecoSystem.getSysAdminsDirectory().getSysAdmins().remove(sysAdmin);
         populateSysAdmins();
+        JOptionPane.showMessageDialog(this, "Successfully deleted SysAdmin");
     }//GEN-LAST:event_deletejButtonActionPerformed
 
     private void updatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatejButtonActionPerformed
