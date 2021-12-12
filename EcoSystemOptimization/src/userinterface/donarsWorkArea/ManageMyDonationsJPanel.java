@@ -119,7 +119,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             }
         });
         add(donationcategoryjComboBox);
-        donationcategoryjComboBox.setBounds(20, 100, 224, 22);
+        donationcategoryjComboBox.setBounds(20, 100, 224, 27);
 
         btnmakenewdonation.setText("Make New Donation >>");
         btnmakenewdonation.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +128,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnmakenewdonation);
-        btnmakenewdonation.setBounds(790, 360, 180, 25);
+        btnmakenewdonation.setBounds(790, 360, 180, 29);
 
         tbldonationHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,16 +149,16 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
         countTotaljLabel.setFont(new java.awt.Font("Lucida Grande", 3, 13)); // NOI18N
         countTotaljLabel.setText("0");
         add(countTotaljLabel);
-        countTotaljLabel.setBounds(70, 370, 7, 18);
+        countTotaljLabel.setBounds(70, 370, 9, 16);
 
         countLablejLabel.setFont(new java.awt.Font("Lucida Grande", 3, 13)); // NOI18N
         countLablejLabel.setText("Count :");
         add(countLablejLabel);
-        countLablejLabel.setBounds(20, 370, 45, 18);
+        countLablejLabel.setBounds(20, 370, 47, 16);
 
         lbldonationCategory1.setText("Donation Category:");
         add(lbldonationCategory1);
-        lbldonationCategory1.setBounds(20, 70, 120, 20);
+        lbldonationCategory1.setBounds(20, 70, 130, 20);
 
         headerjLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         headerjLabel.setText("My Donation History");
@@ -172,7 +172,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnnviewOrUpdate);
-        btnnviewOrUpdate.setBounds(510, 360, 120, 25);
+        btnnviewOrUpdate.setBounds(510, 360, 120, 29);
 
         btndelete.setText("Delete");
         btndelete.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +181,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             }
         });
         add(btndelete);
-        btndelete.setBounds(650, 360, 120, 25);
+        btndelete.setBounds(650, 360, 120, 29);
 
         backjButton2.setText("< < Back");
         backjButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +190,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             }
         });
         add(backjButton2);
-        backjButton2.setBounds(20, 20, 85, 25);
+        backjButton2.setBounds(20, 20, 101, 29);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnmakenewdonationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmakenewdonationActionPerformed

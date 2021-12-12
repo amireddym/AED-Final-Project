@@ -86,12 +86,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="headerjLabel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="backjButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblheadercityTag" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="lblheadercityName" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblheadercityTag" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="lblheadercityName" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="headerjLabel" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="backjButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">

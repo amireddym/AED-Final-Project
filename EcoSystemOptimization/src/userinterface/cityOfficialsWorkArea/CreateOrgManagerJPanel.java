@@ -9,6 +9,9 @@ import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.enums.UserRole;
 import businesslogic.helper.Constants;
+import businesslogic.helper.EmailHelper;
+import businesslogic.helper.PhoneNoHelper;
+import businesslogic.helper.UserNameHelper;
 import businesslogic.helper.ValidateInputs;
 import businesslogic.organization.OrgManager;
 import businesslogic.organization.Organization;
@@ -36,15 +39,17 @@ public class CreateOrgManagerJPanel extends javax.swing.JPanel {
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
     private Organization organization;
+    private CityNetwork cityNetwork;
     private User userLogged;
     
     private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     
-    public CreateOrgManagerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Organization organization, User userLogged) {
+    public CreateOrgManagerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         initComponents();
         this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem; 
         this.organization = organization;
+        this.cityNetwork = cityNetwork;
         this.userLogged = userLogged;
         
         picHolderjLabel.setSize(126, 139);
@@ -196,12 +201,12 @@ public class CreateOrgManagerJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backjButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblheadercityTag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblheadercityTag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backjButton)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
@@ -304,7 +309,20 @@ public class CreateOrgManagerJPanel extends javax.swing.JPanel {
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
-
+            
+            if(UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
+                return;
+            }
+            if(EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
+                return;
+            }
+            if(PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
+                return;
+            }
+            
             String name = namejTextField.getText();
             String userName = userNamejTextField.getText();
             String password = passwordjTextField.getText();

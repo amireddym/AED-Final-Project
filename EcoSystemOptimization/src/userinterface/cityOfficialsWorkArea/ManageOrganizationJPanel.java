@@ -38,7 +38,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         initComponents();
         populateData();
         
-        lblheadercityName.setText(cityNetwork.getCityName().name());        
+        lblheadercityName.setText(cityNetwork.getCityName().name());       
     }
     
     public void populateData(){
@@ -259,7 +259,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             DefaultTableModel organizationsModel = (DefaultTableModel) manageOrgtbl.getModel();
             Organization selectedOrganization = (Organization) organizationsModel.getValueAt(selectedRow, 1);
             CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-            userProcessContainer.add("SysAdminCreateManagerPanel", new CreateOrgManagerJPanel(userProcessContainer, ecoSystem, selectedOrganization, userLogged));
+            userProcessContainer.add("SysAdminCreateManagerPanel", new CreateOrgManagerJPanel(userProcessContainer, ecoSystem, cityNetwork, selectedOrganization, userLogged));
             cardLayout.next(userProcessContainer);
 
         }
@@ -341,7 +341,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         OrgManager orgManager = (OrgManager) organizationManagerModel.getValueAt(selectedManager, 1);
 
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("UpdateOrganizationManagerPanel", new UpdateOrgManagerJPanel(userProcessContainer, ecoSystem, orgManager, userLogged));
+        userProcessContainer.add("UpdateOrganizationManagerPanel", new UpdateOrgManagerJPanel(userProcessContainer, ecoSystem, cityNetwork, orgManager, userLogged));
         cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_updateManagerbtnActionPerformed
 
@@ -353,7 +353,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             return;
         } else {
             Organization selectedOrganization = (Organization) manageOrgtbl.getValueAt(selectedRow, 1);
-            UpdateOrganizationJPanel updateOrganizationJPanel = new UpdateOrganizationJPanel(userProcessContainer, ecoSystem, selectedOrganization, userLogged);
+            UpdateOrganizationJPanel updateOrganizationJPanel = new UpdateOrganizationJPanel(userProcessContainer, ecoSystem, cityNetwork, selectedOrganization, userLogged);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             userProcessContainer.add("UpdateOrganizationPanel", updateOrganizationJPanel);
     

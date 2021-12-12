@@ -40,11 +40,13 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
     private Cleaner cleaner;
     private User userAccount;
     private String imagePath;
+    private CityNetwork citynetwork;
     
-    public UpdateCleanerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, Cleaner cleaner, User userAccount) {
+    public UpdateCleanerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, CityNetwork citynetwork, Cleaner cleaner, User userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecoSystem = ecoSystem;
+        this.citynetwork = citynetwork;
         this.cleaner=cleaner;
         this.userAccount  = userAccount;
         picHolderjLabel.setSize(126, 139);
@@ -54,13 +56,7 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
     }
     
     private void populateCityHeader(){
-        for(CityNetwork cn : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
-            for(Cleaner clnr : cn.getCleanersDirectory().getCleaners()){
-                if(clnr.getName().equals(cleaner.getName())){
-                    lblheadercityName.setText(cn.getCityName().name());
-                }
-            }        
-        }        
+        lblheadercityName.setText(citynetwork.getCityName().name());
     }
     
     private void setDefaultPhoto() {
