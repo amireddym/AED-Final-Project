@@ -19,7 +19,6 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -39,18 +38,20 @@ public class UpdateDeliveryVolunteerJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
+    private CityNetwork cityNetwork;
     private Organization organization;
     private DeliveryVolunteer deliveryVolunteer;
     private User userLogged;
     
     private String imagePath;
     
-    public UpdateDeliveryVolunteerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Organization organization, 
+    public UpdateDeliveryVolunteerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, 
             DeliveryVolunteer deliveryVolunteer, User userLogged ) {
         initComponents();
         
         this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
+        this.cityNetwork = cityNetwork;
         this.organization = organization;
         this.deliveryVolunteer = deliveryVolunteer;
         this.userLogged = userLogged;
@@ -62,13 +63,9 @@ public class UpdateDeliveryVolunteerJPanel extends javax.swing.JPanel {
     }
     
     private void populateCityHeader(){
-        for(CityNetwork cn : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
-            for(Organization org : cn.getOrganizationDirectory().getOrganizations()){
-                if(org.getOrganizationName().equals(organization.getOrganizationName())){
-                    lblheadercityName.setText(cn.getCityName().name());
-                }
-            }        
-        }        
+          
+        lblheadercityName.setText(cityNetwork.getCityName().name());            
+               
     }
     
     private void setDefaultPhoto() {
