@@ -50,6 +50,9 @@ public class CreateNewDeliveryVolunteerJPanel extends javax.swing.JPanel {
         this.ecoSystem = ecoSystem;
         this.organization = organization;
         this.userLogged = userLogged;
+        
+        picHolderjLabel.setSize(126, 139);
+        setDefaultPhoto();
     }
 
     /**
@@ -252,7 +255,7 @@ public class CreateNewDeliveryVolunteerJPanel extends javax.swing.JPanel {
     
     private void setDefaultPhoto() {
         
-        setPhoto(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
     }
 
     private void setPhoto(String imagePath) {

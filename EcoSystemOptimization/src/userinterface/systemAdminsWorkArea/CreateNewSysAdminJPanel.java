@@ -47,6 +47,9 @@ public class CreateNewSysAdminJPanel extends javax.swing.JPanel {
         this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
         this.userLogged = userLogged;
+        
+        picHolderjLabel.setSize(126, 139);
+        setDefaultPhoto();
     }
 
     /**
@@ -290,7 +293,7 @@ public class CreateNewSysAdminJPanel extends javax.swing.JPanel {
     
     private void setDefaultPhoto() {
         
-        setPhoto(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
+        setPhoto(getClass().getResource(imagePath).getPath());
     }
     
     private void uploadjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadjButtonActionPerformed

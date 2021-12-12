@@ -70,7 +70,7 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
     private void setPhoto(String profilePic) {
         
         if(profilePic.equals(Constants.DEFAULT_PROFILE_IMAGE_PATH)) {
-            ImageIcon photo = new ImageIcon(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
+            ImageIcon photo = new ImageIcon(getClass().getResource(profilePic).getPath());
             Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
             picHolderjLabel.setIcon(new ImageIcon(photoResized));
             return;
