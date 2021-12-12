@@ -6,10 +6,17 @@
 package userinterface.cityOfficialsWorkArea;
 
 
+import businesslogic.CityNetwork;
+import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
 import businesslogic.helper.Constants;
+import businesslogic.helper.EmailHelper;
+import businesslogic.helper.PhoneNoHelper;
+import businesslogic.helper.UserNameHelper;
 import businesslogic.helper.ValidateInputs;
+import businesslogic.organization.OrgManager;
+import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -29,18 +36,31 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
 
     /** Creates new form UpdateCleanerJPanel */
     private JPanel userProcessContainer;
+    private EcoSystem ecoSystem;
     private Cleaner cleaner;
     private User userAccount;
     private String imagePath;
     
-    public UpdateCleanerJPanel(JPanel userProcessContainer, Cleaner cleaner, User userAccount) {
+    public UpdateCleanerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, Cleaner cleaner, User userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.ecoSystem = ecoSystem;
         this.cleaner=cleaner;
         this.userAccount  = userAccount;
         picHolderjLabel.setSize(126, 139);
-        setDefaultPhoto();
         populateData();
+        
+        populateCityHeader();
+    }
+    
+    private void populateCityHeader(){
+        for(CityNetwork cn : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
+            for(Cleaner clnr : cn.getCleanersDirectory().getCleaners()){
+                if(clnr.getName().equals(cleaner.getName())){
+                    lblheadercityName.setText(cn.getCityName().name());
+                }
+            }        
+        }        
     }
     
     private void setDefaultPhoto() {
@@ -61,6 +81,12 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
     
     private void setPhoto(String profilePic) {
         
+        if(profilePic.equals(Constants.DEFAULT_PROFILE_IMAGE_PATH)) {
+            ImageIcon photo = new ImageIcon(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
+            Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
+            picHolderjLabel.setIcon(new ImageIcon(photoResized));
+            return;
+        }
  
         ImageIcon photo = new ImageIcon(profilePic);
         Image photoResized = photo.getImage().getScaledInstance(picHolderjLabel.getWidth(), picHolderjLabel.getHeight(),4);
@@ -93,6 +119,8 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
         uploadbtn = new javax.swing.JButton();
         updatebtn = new javax.swing.JButton();
         backbtn = new javax.swing.JButton();
+        lblheadercityName = new javax.swing.JLabel();
+        lblheadercityTag = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -164,6 +192,8 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblheadercityTag.setText("City:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,27 +219,38 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
                                 .addGap(59, 59, 59)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(phoneNumbertxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(emailIdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(addresstxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(usernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(78, 78, 78)
+                                    .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(picHolderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(uploadbtn)))
+                                    .addComponent(uploadbtn)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblheadercityTag)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(94, 94, 94)
                                 .addComponent(updatebtn)))))
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addresstxt, emailIdtxt, nametxt, passwordtxt, phoneNumbertxt, usernametxt});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backbtn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backbtn))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblheadercityTag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -250,6 +291,20 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
+            
+            if(!cleaner.getUserName().equals(usernametxt.getText()) && UserNameHelper.isUserNameAlreadyExisted(ecoSystem, usernametxt.getText())) {
+                JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
+                return;
+            }
+            if(!cleaner.getEmail().equals(emailIdtxt.getText()) && EmailHelper.isEmailAlreadyExisted(ecoSystem, emailIdtxt.getText())) {
+                JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
+                return;
+            }
+            if(!cleaner.getPhoneNo().equals(phoneNumbertxt.getText()) && PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNumbertxt.getText())) {
+                JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
+                return;
+            }
+            
             cleaner.setName(nametxt.getText());
             cleaner.setPhoneNo(phoneNumbertxt.getText());
             cleaner.setAddress(addresstxt.getText());
@@ -330,6 +385,8 @@ public class UpdateCleanerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lblheadercityName;
+    private javax.swing.JLabel lblheadercityTag;
     private javax.swing.JTextField nametxt;
     private javax.swing.JTextField passwordtxt;
     private javax.swing.JTextField phoneNumbertxt;

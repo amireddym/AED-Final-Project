@@ -31,6 +31,8 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         this.ecoSystem=ecoSystem;
         this.userAccount=userLogged;
         this.cityNetwork=cityNetwork;
+        lblheaderUserName.setText(userAccount.getUserName());
+        lblheadercityName.setText(cityNetwork.getCityName().name());
     }
 
     /**
@@ -46,6 +48,10 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         manageCleanerbtn = new javax.swing.JButton();
         createNewOrganizationbtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        lblheadercityTag = new javax.swing.JLabel();
+        lblheadercityName = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblheaderUserName = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -77,7 +83,17 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         add(createNewOrganizationbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, 270, 60));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bgimage.jpg"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 540));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1070, 480));
+
+        lblheadercityTag.setText("City:");
+        add(lblheadercityTag, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, -1, 30));
+        add(lblheadercityName, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 130, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("City Official Home Page");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 290, 40));
+        add(lblheaderUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createNewBankbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewBankbtnActionPerformed
@@ -109,7 +125,11 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createNewBankbtn;
     private javax.swing.JButton createNewOrganizationbtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblheaderUserName;
+    private javax.swing.JLabel lblheadercityName;
+    private javax.swing.JLabel lblheadercityTag;
     private javax.swing.JButton manageCleanerbtn;
     // End of variables declaration//GEN-END:variables
 }

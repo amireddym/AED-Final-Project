@@ -44,6 +44,7 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
         this.userLogged = userLogged;
         
         populateDonations();
+        lblheadercityName.setText(cityNetwork.getCityName().name());
     }
     
     public void populateDonations() {
@@ -62,26 +63,28 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
         for(Donor donor:ecoSystem.getDonorsDirectory().getDonors()) {
             
             for(Donation donation:donor.getDonations()) {
-                
-                if(donation.getPickUp().name().equals(PickUp.FoodBank.name()) && (
-                        donation.getDonationStatus().name().equals(DonationStatus.ReadyToPickup.name()) || donation.getDonationStatus().name().equals(DonationStatus.PickupAwaiting.name())) && 
-                        donation.getDateofExpiry().before(new Date())) {
-                    
-                    readyToCleanCount++;
-                    Object[] row = new Object[8];
-                    row[0] = readyToCleanCount;
-                    row[1] = donation;
-                    row[2] = donation.getDonor().getName();
-                    row[3] = donation.getCategory().name();
-                    row[4] = donation.getUsageStatus().name();
-                    row[5] = donation.getFoodBank().getLocation();
-                    if(donation.getDateofExpiry()!=null) {
-                        row[6] = donation.getDateofExpiry();
+                if (donation.getDateofExpiry()!=null){
+                    if(donation.getPickUp().name().equals(PickUp.FoodBank.name()) && (
+                            donation.getDonationStatus().name().equals(DonationStatus.ReadyToPickup.name()) 
+                             || donation.getDonationStatus().name().equals(DonationStatus.Expired.name())) && 
+                            donation.getDateofExpiry().before(new Date())) {
+                        System.out.println(donation.getDateofExpiry());
+                        readyToCleanCount++;
+                        Object[] row = new Object[8];
+                        row[0] = readyToCleanCount;
+                        row[1] = donation;
+                        row[2] = donation.getDonor().getName();
+                        row[3] = donation.getCategory().name();
+                        row[4] = donation.getUsageStatus().name();
+                        row[5] = donation.getFoodBank().getLocation();
+                        if(donation.getDateofExpiry()!=null) {
+                            row[6] = donation.getDateofExpiry();
+                        }
+                        donation.setDonationStatus(DonationStatus.Expired);
+                        row[7] = donation.getDonationStatus().name();
+                        readyToCleanModel.addRow(row);
                     }
-                    donation.setDonationStatus(DonationStatus.Expired);
-                    row[7] = donation.getDonationStatus().name();
-                    readyToCleanModel.addRow(row);
-                }  
+                }
             }
         }
         
@@ -135,6 +138,8 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
         availableDonationsToCleanUpjTable = new javax.swing.JTable();
         cleanUpjButton = new javax.swing.JButton();
         totalCountHeaderjLabel = new javax.swing.JLabel();
+        lblheadercityTag = new javax.swing.JLabel();
+        lblheadercityName = new javax.swing.JLabel();
 
         cleanedDonationsHeaderjLabel1.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         cleanedDonationsHeaderjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -219,7 +224,7 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
         availableDonationsToCleanUpjTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(availableDonationsToCleanUpjTable);
 
-        cleanUpjButton.setText("Clean this Donation ");
+        cleanUpjButton.setText("Cleaned this Donation Spot");
         cleanUpjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cleanUpjButtonActionPerformed(evt);
@@ -229,54 +234,65 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
         totalCountHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         totalCountHeaderjLabel.setText("Total Count :");
 
+        lblheadercityTag.setText("City:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pendingCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(availableDonationsToCleanUpCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backButtonjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(188, 188, 188)
-                                .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblheadercityTag)
+                                .addGap(34, 34, 34)
+                                .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(totalCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(cleanedDonatonsCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(811, 811, 811)
-                                .addComponent(cleanUpjButton))))
+                                .addComponent(pendingCountHeaderjLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(availableDonationsToCleanUpCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(719, 719, 719)
+                                .addComponent(cleanUpjButton))
+                            .addComponent(jScrollPane3)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(344, 344, 344)
                         .addComponent(cleanedDonationsHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButtonjButton)
-                    .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pendingCountHeaderjLabel)
-                    .addComponent(availableDonationsToCleanUpCountjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(backButtonjButton)
+                            .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblheadercityTag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cleanUpjButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(pendingCountHeaderjLabel)
+                        .addComponent(availableDonationsToCleanUpCountjLabel))
+                    .addComponent(cleanUpjButton))
                 .addGap(22, 22, 22)
                 .addComponent(cleanedDonationsHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -330,6 +346,8 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel currentDonationsHeaderjLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblheadercityName;
+    private javax.swing.JLabel lblheadercityTag;
     private javax.swing.JLabel pendingCountHeaderjLabel;
     private javax.swing.JLabel totalCountHeaderjLabel;
     // End of variables declaration//GEN-END:variables

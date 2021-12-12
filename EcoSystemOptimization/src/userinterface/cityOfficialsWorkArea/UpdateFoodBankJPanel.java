@@ -5,9 +5,12 @@
 package userinterface.cityOfficialsWorkArea;
 
 
+import businesslogic.CityNetwork;
+import businesslogic.EcoSystem;
 import businesslogic.FoodBank;
 import businesslogic.User;
 import businesslogic.helper.ValidateInputs;
+import businesslogic.organization.Organization;
 
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -21,6 +24,7 @@ import javax.swing.JPanel;
  */
 public class UpdateFoodBankJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
+    private EcoSystem ecoSystem;
     private FoodBank foodbank;
     private User userAccount;
     
@@ -28,14 +32,15 @@ public class UpdateFoodBankJPanel extends javax.swing.JPanel {
     /**
      * Creates new form UpdateFoodBankJPanel
      */
-    public UpdateFoodBankJPanel(JPanel userProcessContainer,FoodBank foodbank, User userAccount) {
+    public UpdateFoodBankJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, FoodBank foodbank, User userAccount) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
+        this.ecoSystem = ecoSystem;
         this.foodbank=foodbank;
         this.userAccount  = userAccount;
-
         populateData();
     }
+ 
     
     private void populateData(){
         nameJTextField.setText(foodbank.getName());
@@ -89,7 +94,7 @@ public class UpdateFoodBankJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(backbtn)
-                        .addGap(209, 209, 209)
+                        .addGap(141, 141, 141)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(343, 343, 343)
@@ -103,7 +108,7 @@ public class UpdateFoodBankJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(395, 395, 395)
                         .addComponent(updatebtn)))
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

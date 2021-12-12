@@ -38,17 +38,22 @@
                               </Group>
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="phoneNumbertxt" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Component id="nametxt" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Component id="emailIdtxt" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Component id="addresstxt" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Component id="usernametxt" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                  <Component id="passwordtxt" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="phoneNumbertxt" linkSize="1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="emailIdtxt" linkSize="1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="addresstxt" linkSize="1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="usernametxt" linkSize="1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="passwordtxt" linkSize="1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="nametxt" linkSize="1" min="-2" pref="148" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="picHolderjLabel" min="-2" pref="111" max="-2" attributes="0"/>
                                   <Component id="uploadbtn" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblheadercityTag" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
+                                      <Component id="lblheadercityName" min="-2" pref="130" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -58,7 +63,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="241" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,9 +71,15 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="backbtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="backbtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblheadercityTag" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="lblheadercityName" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -217,6 +228,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backbtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblheadercityName">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblheadercityTag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="City:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

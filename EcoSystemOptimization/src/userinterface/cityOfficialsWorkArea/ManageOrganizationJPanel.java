@@ -37,6 +37,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         this.cityNetwork=cityNetwork;
         initComponents();
         populateData();
+        
+        lblheadercityName.setText(cityNetwork.getCityName().name());        
     }
     
     public void populateData(){
@@ -84,10 +86,16 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         deleteManagerbtn = new javax.swing.JButton();
         backbtn = new javax.swing.JButton();
         managerOrgbtn = new javax.swing.JButton();
+        lblheadercityName = new javax.swing.JLabel();
+        lblheadercityTag = new javax.swing.JLabel();
+
+        setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Organizations ");
+        add(jLabel1);
+        jLabel1.setBounds(310, 18, 301, 29);
 
         manageOrgtbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,12 +111,27 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        manageOrgtbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manageOrgtblMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(manageOrgtbl);
+
+        add(jScrollPane1);
+        jScrollPane1.setBounds(31, 62, 903, 169);
 
         addOrgbtn.setText("Add");
         addOrgbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +139,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 addOrgbtnActionPerformed(evt);
             }
         });
+        add(addOrgbtn);
+        addOrgbtn.setBounds(879, 249, 55, 25);
 
         updateOrgbtn.setText("Update");
         updateOrgbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +148,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 updateOrgbtnActionPerformed(evt);
             }
         });
+        add(updateOrgbtn);
+        updateOrgbtn.setBounds(707, 249, 73, 25);
 
         deleteOrgbtn.setText("Delete");
         deleteOrgbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +157,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 deleteOrgbtnActionPerformed(evt);
             }
         });
+        add(deleteOrgbtn);
+        deleteOrgbtn.setBounds(792, 249, 69, 25);
 
         managerOrgtbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,9 +181,14 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(managerOrgtbl);
 
+        add(jScrollPane2);
+        jScrollPane2.setBounds(31, 359, 903, 180);
+
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Manage Organization Manager");
+        add(jLabel2);
+        jLabel2.setBounds(292, 292, 397, 41);
 
         addManagerbtn.setText("Add");
         addManagerbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +196,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 addManagerbtnActionPerformed(evt);
             }
         });
+        add(addManagerbtn);
+        addManagerbtn.setBounds(879, 557, 55, 25);
 
         updateManagerbtn.setText("Update");
         updateManagerbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +205,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 updateManagerbtnActionPerformed(evt);
             }
         });
+        add(updateManagerbtn);
+        updateManagerbtn.setBounds(707, 557, 73, 25);
 
         deleteManagerbtn.setText("Delete");
         deleteManagerbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +214,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 deleteManagerbtnActionPerformed(evt);
             }
         });
+        add(deleteManagerbtn);
+        deleteManagerbtn.setBounds(798, 557, 69, 25);
 
         backbtn.setText("< < Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +223,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 backbtnActionPerformed(evt);
             }
         });
+        add(backbtn);
+        backbtn.setBounds(31, 24, 85, 25);
 
         managerOrgbtn.setText("Manage Organization Manager");
         managerOrgbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -190,72 +232,14 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 managerOrgbtnActionPerformed(evt);
             }
         });
+        add(managerOrgbtn);
+        managerOrgbtn.setBounds(493, 249, 207, 25);
+        add(lblheadercityName);
+        lblheadercityName.setBounds(800, 20, 130, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backbtn)
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(updateManagerbtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteManagerbtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addManagerbtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(managerOrgbtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(updateOrgbtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(deleteOrgbtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(addOrgbtn))
-                            .addComponent(jScrollPane2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 903, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(242, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backbtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateOrgbtn)
-                    .addComponent(deleteOrgbtn)
-                    .addComponent(managerOrgbtn)
-                    .addComponent(addOrgbtn))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addManagerbtn)
-                    .addComponent(updateManagerbtn)
-                    .addComponent(deleteManagerbtn))
-                .addContainerGap(69, Short.MAX_VALUE))
-        );
+        lblheadercityTag.setText("City:");
+        add(lblheadercityTag);
+        lblheadercityTag.setBounds(750, 20, 60, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
@@ -386,6 +370,10 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_addOrgbtnActionPerformed
 
+    private void manageOrgtblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manageOrgtblMouseClicked
+        managerOrgbtnActionPerformed(null);
+    }//GEN-LAST:event_manageOrgtblMouseClicked
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -398,6 +386,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblheadercityName;
+    private javax.swing.JLabel lblheadercityTag;
     private javax.swing.JTable manageOrgtbl;
     private javax.swing.JButton managerOrgbtn;
     private javax.swing.JTable managerOrgtbl;

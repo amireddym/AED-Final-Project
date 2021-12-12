@@ -37,6 +37,7 @@ public class OrgManagerHomeJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.userLogged = userLogged;
         
+        lblheadercityName.setText(cityNetwork.getCityName().name());
         organizationValuejLabel.setText(organization.getOrganizationName());
     }
 
@@ -55,6 +56,8 @@ public class OrgManagerHomeJPanel extends javax.swing.JPanel {
         manageDonationsJButton = new javax.swing.JButton();
         organizationjLabel = new javax.swing.JLabel();
         organizationValuejLabel = new javax.swing.JLabel();
+        lblheadercityTag = new javax.swing.JLabel();
+        lblheadercityName = new javax.swing.JLabel();
 
         headerjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -87,6 +90,8 @@ public class OrgManagerHomeJPanel extends javax.swing.JPanel {
         organizationValuejLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         organizationValuejLabel.setText("<Value>");
 
+        lblheadercityTag.setText("City:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,6 +113,12 @@ public class OrgManagerHomeJPanel extends javax.swing.JPanel {
                             .addComponent(manageOrganizationInfoJButton)
                             .addComponent(manageDonationsJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(260, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblheadercityTag)
+                .addGap(34, 34, 34)
+                .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(104, 104, 104))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {manageDeliveryVolunteersJButton, manageDonationsJButton, manageOrganizationInfoJButton});
@@ -115,7 +126,11 @@ public class OrgManagerHomeJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblheadercityTag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(headerjLabel)
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -155,6 +170,8 @@ public class OrgManagerHomeJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headerjLabel;
+    private javax.swing.JLabel lblheadercityName;
+    private javax.swing.JLabel lblheadercityTag;
     private javax.swing.JButton manageDeliveryVolunteersJButton;
     private javax.swing.JButton manageDonationsJButton;
     private javax.swing.JButton manageOrganizationInfoJButton;
