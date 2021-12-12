@@ -251,6 +251,8 @@ public class MainJFrame extends javax.swing.JFrame {
         jPasswordField.setText("");
         signUpJButton.setEnabled(true);
         
+        aboutMejButton.setEnabled(true);
+        
         userProcessJPanel.removeAll();
         JPanel blankPanel = new JPanel();
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
@@ -443,6 +445,7 @@ public class MainJFrame extends javax.swing.JFrame {
         logoutJButton.setEnabled(true);
         signUpJButton.setEnabled(false);
         
+        aboutMejButton.setEnabled(false);
     }
     
     /**
