@@ -36,9 +36,9 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
+    private CityNetwork cityNetwork;
     private Organization organization;
     private User userLogged;
-    private CityNetwork cityNetwork;
     private String imagePath;
     
     public UpdateOrganizationInfoJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
@@ -55,9 +55,8 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
     }
     
     private void populateCityHeader(){
-        lblheadercityName.setText(cityNetwork.getCityName().name());        
+        lblheadercityName.setText(cityNetwork.getCityName().name());
     }
-    
     private void setDefaultPhoto() {
         setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
     }

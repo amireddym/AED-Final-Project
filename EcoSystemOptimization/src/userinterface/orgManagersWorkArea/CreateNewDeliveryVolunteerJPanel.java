@@ -51,7 +51,7 @@ public class CreateNewDeliveryVolunteerJPanel extends javax.swing.JPanel {
         
         this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
-        this.cityNetwork=cityNetwork;
+        this.cityNetwork = cityNetwork;
         this.organization = organization;
         this.userLogged = userLogged;
         
@@ -62,6 +62,7 @@ public class CreateNewDeliveryVolunteerJPanel extends javax.swing.JPanel {
     
     private void populateCityHeader(){
         lblheadercityName.setText(cityNetwork.getCityName().name());       
+
     }
 
     /**

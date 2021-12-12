@@ -67,6 +67,11 @@ public class EmailHelper {
                 if(!cityNetwork.getOrganizationDirectory().getOrganizations().isEmpty()) {
                     for(Organization organization:cityNetwork.getOrganizationDirectory().getOrganizations()) {
                         
+                        //Checking organization
+                        if(organization.getEmail().equals(email)){
+                            return true;
+                        }
+                        
                         //Checking orgmanagers directory
                         if(!organization.getOrgManagerDirectory().getOrgManagers().isEmpty()) {
                             for(OrgManager orgManager:organization.getOrgManagerDirectory().getOrgManagers()) {

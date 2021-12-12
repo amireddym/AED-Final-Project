@@ -28,8 +28,8 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
-    private Organization organization;
     private CityNetwork cityNetwork;
+    private Organization organization;
     private User userLogged;
     
     public ManageDeliveryVolunteersJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
@@ -37,6 +37,7 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
         
         this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
+        this.cityNetwork = cityNetwork;
         this.organization = organization;
         this.userLogged = userLogged;
         this.cityNetwork = cityNetwork;
