@@ -39,8 +39,6 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         this.ecoSystem=ecoSystem;
         populateData();
         lblheadercityName.setText(cityNetwork.getCityName().name());
-        
-        
     }
     
 
@@ -229,7 +227,7 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         }else{
         Cleaner selectedCleaner=(Cleaner) managecleanerstbl.getValueAt(selectedRow, 1);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("Update Cleaner", new UpdateCleanerJPanel(userProcessContainer, ecoSystem, selectedCleaner, userAccount));
+        userProcessContainer.add("Update Cleaner", new UpdateCleanerJPanel(userProcessContainer, ecoSystem, cityNetwork, selectedCleaner, userAccount));
         cardLayout.next(userProcessContainer);
          }
         

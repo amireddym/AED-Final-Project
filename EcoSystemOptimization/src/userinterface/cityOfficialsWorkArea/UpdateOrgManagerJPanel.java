@@ -36,31 +36,25 @@ public class UpdateOrgManagerJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
+    private CityNetwork cityNetwork;
     private OrgManager orgManager;
     private User userLogged;    
     private String imagePath;
     
-    public UpdateOrgManagerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, OrgManager orgManager, User userLogged) {
+    public UpdateOrgManagerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, OrgManager orgManager, User userLogged) {
         initComponents();
         this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
         this.orgManager = orgManager;
         this.userLogged = userLogged;
+        this.cityNetwork = cityNetwork;
         picHolderjLabel.setSize(126, 139);
         populateData();
         populateCityHeader();
     }
     
     private void populateCityHeader(){
-        for(CityNetwork cn : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
-            for(Organization org : cn.getOrganizationDirectory().getOrganizations()){
-                for(OrgManager orgmanager : org.getOrgManagerDirectory().getOrgManagers()){
-                    if(orgmanager.getName().equals(orgManager.getName())){
-                        lblheadercityName.setText(cn.getCityName().name());
-                    }
-                }
-            }        
-        }        
+        lblheadercityName.setText(cityNetwork.getCityName().name());
     }
     
     private void setDefaultPhoto() {

@@ -40,16 +40,18 @@ public class CreateNewDeliveryVolunteerJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
+    private CityNetwork cityNetwork;
     private Organization organization;
     private User userLogged;
     
     private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     
-    public CreateNewDeliveryVolunteerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Organization organization, User userLogged) {
+    public CreateNewDeliveryVolunteerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         initComponents();
         
         this.userProcessJpanel = userProcessJpanel;
         this.ecoSystem = ecoSystem;
+        this.cityNetwork=cityNetwork;
         this.organization = organization;
         this.userLogged = userLogged;
         
@@ -59,13 +61,7 @@ public class CreateNewDeliveryVolunteerJPanel extends javax.swing.JPanel {
     }
     
     private void populateCityHeader(){
-        for(CityNetwork cn : ecoSystem.getCityNetworkDirectory().getCityNetworks()){
-            for(Organization org : cn.getOrganizationDirectory().getOrganizations()){
-                if(org.getOrganizationName().equals(organization.getOrganizationName())){
-                    lblheadercityName.setText(cn.getCityName().name());
-                }
-            }        
-        }        
+        lblheadercityName.setText(cityNetwork.getCityName().name());       
     }
 
     /**
