@@ -5,6 +5,7 @@
  */
 package userinterface.donarsWorkArea;
 
+import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cleaner.Cleaner;
@@ -12,6 +13,8 @@ import businesslogic.enums.UserRole;
 import businesslogic.helper.Constants;
 import java.awt.CardLayout;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -23,6 +26,7 @@ public class DonorHomeJPanel extends javax.swing.JPanel {
     private JPanel userProcessJPanel;
     private EcoSystem ecoSystem;
     private User userLogged;
+    private static final Logger logger = Logger.getLogger(DonorHomeJPanel.class.getName()); 
         
     
     /**
@@ -84,6 +88,7 @@ public class DonorHomeJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnupdatemyprofileActionPerformed
 
     private void btnmanagemydonationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanagemydonationsActionPerformed
+        logger.log(Level.INFO, "Entering into Manage My Donations Screen");
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
         userProcessJPanel.add("ManageMyDonationsJPanel", new ManageMyDonationsJPanel(userProcessJPanel,ecoSystem,userLogged));
         cardLayout.next(userProcessJPanel);

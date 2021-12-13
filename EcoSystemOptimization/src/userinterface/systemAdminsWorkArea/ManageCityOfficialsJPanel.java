@@ -10,6 +10,8 @@ import businesslogic.EcoSystem;
 import businesslogic.User;
 import businesslogic.cityOfficial.CityOfficial;
 import java.awt.CardLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +29,7 @@ public class ManageCityOfficialsJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private CityNetwork cityNetwork;
     private User userLogged;
+    private static final Logger logger = Logger.getLogger(ManageCityOfficialsJPanel.class.getName());
     
     public ManageCityOfficialsJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, User userLogged) {
         initComponents();
@@ -229,7 +232,7 @@ public class ManageCityOfficialsJPanel extends javax.swing.JPanel {
 
     private void backButtonjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonjButtonActionPerformed
         // TODO add your handling code here:
-
+        logger.log(Level.INFO, "Back button pressed");
         userProcessJpanel.remove(this);
         CardLayout layout = (CardLayout) userProcessJpanel.getLayout();
         layout.previous(userProcessJpanel);

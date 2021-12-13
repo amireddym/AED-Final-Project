@@ -18,6 +18,8 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -36,7 +38,7 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private Organization organization;
     private User userLogged;
-    
+    private static final Logger logger = Logger.getLogger(UpdateOrganizationJPanel.class.getName());
     private String imagePath = Constants.DEFAULT_ORGANIZATION_IMAGE_PATH;
     
     public UpdateOrganizationJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Organization organization, User userLogged) {
@@ -291,6 +293,7 @@ public class UpdateOrganizationJPanel extends javax.swing.JPanel {
             organization.setOrganizationType(OrganizationType.valueOf((String) organizationTypejComboBox.getSelectedItem()));
 
             JOptionPane.showMessageDialog(this, "Successfully updated Organization");
+            logger.log(Level.INFO, "Organization Saved");
         }else{
             JOptionPane.showMessageDialog(this, "Error updating Organization. Please check DataTypes");
         }

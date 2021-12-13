@@ -21,6 +21,8 @@ import java.awt.Image;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -41,8 +43,8 @@ public class CreateOrganizationManagerJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private Organization organization;
     private User userLogged;
-    
     private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
+    private static final Logger logger = Logger.getLogger(CreateOrganizationManagerJPanel.class.getName());
     
     public CreateOrganizationManagerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Organization organization, User userLogged) {
         initComponents();
@@ -267,6 +269,7 @@ public class CreateOrganizationManagerJPanel extends javax.swing.JPanel {
             organization.getOrgManagerDirectory().getOrgManagers().add(orgManager);
             
             JOptionPane.showMessageDialog(this, "Successfully saved new Organization Manager");
+            logger.log(Level.INFO, "Organization Manager Profile saved");
             resetUi();
         }else{
             JOptionPane.showMessageDialog(this, "Error saving new Organization Manager. Please check DataTypes");

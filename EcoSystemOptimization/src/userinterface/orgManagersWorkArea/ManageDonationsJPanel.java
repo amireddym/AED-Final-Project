@@ -17,6 +17,8 @@ import businesslogic.organization.OrgManager;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +38,7 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
     private CityNetwork cityNetwork;
     private Organization organization;
     private User userLogged;
+    private static final Logger logger = Logger.getLogger(ManageDonationsJPanel.class.getName());
     
     public ManageDonationsJPanel(JPanel userProcessJPanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         initComponents();
@@ -361,6 +364,7 @@ public class ManageDonationsJPanel extends javax.swing.JPanel {
         organization.getDeliveryVolunteerDirectory().getDeliveryVolunteers().get(deliveryVolunteerjComboBox.getSelectedIndex()).getDonations().add(donation);
         
         populateData();
+        logger.log(Level.INFO, "Donation request accepted");
     }//GEN-LAST:event_acceptjButtonActionPerformed
 
     private void receivedjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receivedjButtonActionPerformed

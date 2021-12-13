@@ -19,6 +19,8 @@ import java.awt.Image;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -39,8 +41,8 @@ public class UpdateDonorJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private Donor donor;
     private User userLogged;
-    
     private String imagePath;
+    private static final Logger logger = Logger.getLogger(UpdateDonorJPanel.class.getName());
     
     public UpdateDonorJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, Donor donor, User userLogged) {
         initComponents();
@@ -290,6 +292,7 @@ public class UpdateDonorJPanel extends javax.swing.JPanel {
             donor.setLastUpdatedDate(new Date());
             donor.setModifiedBy(userLogged.getUserName());
             JOptionPane.showMessageDialog(this, "Successfully updated Donor");
+            logger.log(Level.INFO, "Donor Saved");
         }else{
             JOptionPane.showMessageDialog(this, "Error updating Donor. Please check DataTypes");
         }

@@ -13,6 +13,8 @@ import businesslogic.sysAdmin.SysAdmin;
 import java.awt.CardLayout;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -30,6 +32,7 @@ public class SysAdminHomeJPanel extends javax.swing.JPanel {
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
     private User userLogged;
+    private static final Logger logger = Logger.getLogger(SysAdminHomeJPanel.class.getName());
     
     public SysAdminHomeJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, User userLogged) {
         initComponents();
@@ -38,6 +41,7 @@ public class SysAdminHomeJPanel extends javax.swing.JPanel {
         this.userLogged = userLogged;
         populateCities();
         populateSysAdmins();
+        logger.log(Level.INFO, "System administrator Home Screen");
     }
     
     public void populateCities() {
