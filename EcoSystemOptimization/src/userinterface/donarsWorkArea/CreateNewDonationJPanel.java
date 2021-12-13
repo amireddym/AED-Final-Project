@@ -342,7 +342,7 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         String addressToPickUp = null;
         if ((PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString())).equals(PickUp.Home)){
             if (!ValidateInputs.isAddressValid(txtpickupaddress.getText())){
-                JOptionPane.showMessageDialog(this, "!Error! Address cannot be empty for Home Pickup");
+                JOptionPane.showMessageDialog(this, "!Error! Address invalid for Home Pickup");
                 return;
             }else{
                 addressToPickUp = txtpickupaddress.getText();

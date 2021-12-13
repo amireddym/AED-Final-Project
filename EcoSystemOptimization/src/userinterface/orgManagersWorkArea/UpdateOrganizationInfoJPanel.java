@@ -247,12 +247,12 @@ public class UpdateOrganizationInfoJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
 
-            if(EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
+            if(!organization.getEmail().equals(emailjTextField.getText()) && EmailHelper.isEmailAlreadyExisted(ecoSystem, emailjTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
                 return;
             }
 
-            if(PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
+            if(!organization.getPhoneNo().equals(phoneNojTextField.getText()) && PhoneNoHelper.isPhoneNoAlreadyExisted(ecoSystem, phoneNojTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
                 return;
             }
