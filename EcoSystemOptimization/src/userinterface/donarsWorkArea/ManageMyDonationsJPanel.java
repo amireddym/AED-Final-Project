@@ -13,6 +13,8 @@ import businesslogic.donor.Donor;
 import businesslogic.enums.Category;
 import businesslogic.enums.DonationStatus;
 import java.awt.CardLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +33,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private User userLogged;
     private Donor donor;
+    private static final Logger logger = Logger.getLogger(ManageMyDonationsJPanel.class.getName());
     
     public ManageMyDonationsJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, User userLogged) {
         initComponents();
@@ -244,6 +247,7 @@ public class ManageMyDonationsJPanel extends javax.swing.JPanel {
             }else{
                 donor.getDonations().remove(selectedDonation);
                 JOptionPane.showMessageDialog(this, "Donation request deleted successfully");
+                logger.log(Level.INFO, "Donation deleted");
                 populateDonationHistoryTable();
             }
         }
