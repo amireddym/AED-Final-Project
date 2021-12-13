@@ -105,45 +105,73 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         dateofexpiryDATECHOOSER = new com.toedter.calendar.JDateChooser();
         backjButton2 = new javax.swing.JButton();
 
+        setLayout(null);
+
         usageStatusjComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 usageStatusjComboBoxMousePressed(evt);
             }
         });
+        add(usageStatusjComboBox);
+        usageStatusjComboBox.setBounds(148, 158, 179, 33);
 
         lblpickupmode.setText("PickUp Mode:");
+        add(lblpickupmode);
+        lblpickupmode.setBounds(640, 160, 92, 33);
 
         pickupmodejComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pickupmodejComboBoxActionPerformed(evt);
             }
         });
+        add(pickupmodejComboBox);
+        pickupmodejComboBox.setBounds(760, 160, 179, 33);
 
         lblselectfoodbank.setText("Select Bank:");
+        add(lblselectfoodbank);
+        lblselectfoodbank.setBounds(640, 210, 71, 33);
 
         selectfoodbankjComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 selectfoodbankjComboBoxMousePressed(evt);
             }
         });
+        add(selectfoodbankjComboBox);
+        selectfoodbankjComboBox.setBounds(760, 210, 179, 33);
+        add(txtpickupaddress);
+        txtpickupaddress.setBounds(760, 260, 179, 33);
 
         lblpickupaddress.setText("PickUp Address:");
+        add(lblpickupaddress);
+        lblpickupaddress.setBounds(640, 260, 93, 33);
 
         lbldateOfExpiry.setText("Date of Expiry:");
+        add(lbldateOfExpiry);
+        lbldateOfExpiry.setBounds(12, 260, 99, 33);
 
         lblinformation.setText("Information:");
+        add(lblinformation);
+        lblinformation.setBounds(12, 209, 99, 33);
 
         headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headerjLabel.setText("Make New Donation");
+        add(headerjLabel);
+        headerjLabel.setBounds(332, 20, 310, 34);
+        add(txtinformation);
+        txtinformation.setBounds(148, 209, 179, 33);
 
         lblcity.setText("City:");
+        add(lblcity);
+        lblcity.setBounds(640, 110, 93, 33);
 
         donationcategoryjComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 donationcategoryjComboBoxActionPerformed(evt);
             }
         });
+        add(donationcategoryjComboBox);
+        donationcategoryjComboBox.setBounds(148, 106, 179, 33);
 
         btncreatedonationrequest.setText("Create Donation Request");
         btncreatedonationrequest.addActionListener(new java.awt.event.ActionListener() {
@@ -151,12 +179,20 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
                 btncreatedonationrequestActionPerformed(evt);
             }
         });
+        add(btncreatedonationrequest);
+        btncreatedonationrequest.setBounds(410, 369, 180, 33);
 
         lbldonationCategory.setText("Donation Category:");
+        add(lbldonationCategory);
+        lbldonationCategory.setBounds(12, 109, 118, 33);
 
         lblpicHolder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(lblpicHolder);
+        lblpicHolder.setBounds(427, 103, 126, 139);
 
         lblusagestatus.setText("Usage Status:");
+        add(lblusagestatus);
+        lblusagestatus.setBounds(12, 158, 99, 33);
 
         uploadjButton.setText("upload");
         uploadjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -164,12 +200,18 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
                 uploadjButtonActionPerformed(evt);
             }
         });
+        add(uploadjButton);
+        uploadjButton.setBounds(449, 268, 71, 25);
 
         cityjComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cityjComboBoxActionPerformed(evt);
             }
         });
+        add(cityjComboBox);
+        cityjComboBox.setBounds(760, 110, 179, 33);
+        add(dateofexpiryDATECHOOSER);
+        dateofexpiryDATECHOOSER.setBounds(148, 260, 179, 33);
 
         backjButton2.setText("< < Back");
         backjButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -177,116 +219,8 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
                 backjButton2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbldonationCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblusagestatus, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblinformation, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbldateOfExpiry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(37, 37, 37)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtinformation)
-                            .addComponent(donationcategoryjComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(usageStatusjComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dateofexpiryDATECHOOSER, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addComponent(lblpicHolder, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(122, 122, 122)
-                                .addComponent(uploadjButton)))
-                        .addGap(83, 83, 83)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblselectfoodbank)
-                            .addComponent(lblpickupaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblcity, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblpickupmode, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(selectfoodbankjComboBox, 0, 179, Short.MAX_VALUE)
-                            .addComponent(txtpickupaddress)
-                            .addComponent(cityjComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pickupmodejComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(backjButton2)
-                        .addGap(235, 235, 235)
-                        .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(410, 410, 410)
-                        .addComponent(btncreatedonationrequest, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(backjButton2)
-                            .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(lbldonationCategory))
-                            .addComponent(donationcategoryjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblusagestatus)
-                            .addComponent(usageStatusjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtinformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblinformation, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblpicHolder, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblpickupmode)
-                                .addComponent(pickupmodejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(selectfoodbankjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblselectfoodbank))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblpickupaddress)
-                                .addComponent(txtpickupaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dateofexpiryDATECHOOSER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbldateOfExpiry))
-                        .addComponent(uploadjButton))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cityjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblcity)))
-                .addGap(76, 76, 76)
-                .addComponent(btncreatedonationrequest)
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btncreatedonationrequest, cityjComboBox, dateofexpiryDATECHOOSER, donationcategoryjComboBox, lblcity, lbldateOfExpiry, lbldonationCategory, lblinformation, lblpickupaddress, lblpickupmode, lblselectfoodbank, lblusagestatus, pickupmodejComboBox, selectfoodbankjComboBox, txtinformation, txtpickupaddress, usageStatusjComboBox});
-
+        add(backjButton2);
+        backjButton2.setBounds(12, 27, 85, 25);
     }// </editor-fold>//GEN-END:initComponents
 
     private void usageStatusjComboBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usageStatusjComboBoxMousePressed
@@ -381,20 +315,23 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         PickUp pickUp = PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString());
         
         int cityNetworkIndex = cityjComboBox.getSelectedIndex();
+        if (cityNetworkIndex<0){
+            JOptionPane.showMessageDialog(this, "!Error! No City present in the system");
+            return;
+        }
         CityNetwork cityNetwork =  ecoSystem.getCityNetworkDirectory().getCityNetworks().get(cityNetworkIndex);
         
-        String foodBankName = null;
+        int foodBankIndex=-1;
         FoodBank foodBank = null;
         if (!pickupmodejComboBox.getSelectedItem().equals("Home")){
-            foodBankName = selectfoodbankjComboBox.getSelectedItem().toString();
-            if (cityNetwork.getFoodBankDirectory()!=null){
-                for (FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
-                    if (fb.getName().equals(foodBankName)){
-                        foodBank = fb;
-                    }
-                }
+            foodBankIndex = selectfoodbankjComboBox.getSelectedIndex();
+            if(foodBankIndex <0) {
+                JOptionPane.showMessageDialog(this, "!Error! No food banks present. Please select different options.");
+                return;
             }
+            foodBank = cityNetwork.getFoodBankDirectory().getFoodBanks().get(foodBankIndex);
         }
+            
         
         String addressToPickUp = null;
         if ((PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString())).equals(PickUp.Home)){
