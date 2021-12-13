@@ -132,7 +132,6 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
         cleanedDonationsjTable = new javax.swing.JTable();
         pendingCountHeaderjLabel = new javax.swing.JLabel();
         availableDonationsToCleanUpCountjLabel = new javax.swing.JLabel();
-        backButtonjButton = new javax.swing.JButton();
         currentDonationsHeaderjLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         availableDonationsToCleanUpjTable = new javax.swing.JTable();
@@ -183,13 +182,6 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
 
         availableDonationsToCleanUpCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         availableDonationsToCleanUpCountjLabel.setText("0");
-
-        backButtonjButton.setText("< < Back");
-        backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonjButtonActionPerformed(evt);
-            }
-        });
 
         currentDonationsHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         currentDonationsHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -247,8 +239,7 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(backButtonjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(188, 188, 188)
+                                .addGap(273, 273, 273)
                                 .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblheadercityTag)
@@ -276,10 +267,8 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(backButtonjButton)
-                            .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41))
+                        .addComponent(currentDonationsHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,14 +293,6 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backButtonjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonjButtonActionPerformed
-        // TODO add your handling code here:
-
-        userProcessJPanel.remove(this);
-        CardLayout layout = (CardLayout) userProcessJPanel.getLayout();
-        layout.previous(userProcessJPanel);
-    }//GEN-LAST:event_backButtonjButtonActionPerformed
 
     private void cleanUpjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanUpjButtonActionPerformed
         // TODO add your handling code here:
@@ -338,7 +319,6 @@ public class CleanerHomeJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel availableDonationsToCleanUpCountjLabel;
     private javax.swing.JTable availableDonationsToCleanUpjTable;
-    private javax.swing.JButton backButtonjButton;
     private javax.swing.JButton cleanUpjButton;
     private javax.swing.JLabel cleanedDonationsHeaderjLabel1;
     private javax.swing.JTable cleanedDonationsjTable;
