@@ -81,6 +81,8 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         lblheadercityName = new javax.swing.JLabel();
         lblheadercityTag = new javax.swing.JLabel();
 
+        setLayout(null);
+
         managecleanerstbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -102,9 +104,14 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(managecleanerstbl);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(84, 154, 619, 135);
+
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Cleaners");
+        add(jLabel1);
+        jLabel1.setBounds(284, 25, 254, 29);
 
         addBtn.setText("Create >");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +119,8 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
                 addBtnActionPerformed(evt);
             }
         });
+        add(addBtn);
+        addBtn.setBounds(620, 307, 83, 25);
 
         updatebtn.setText("Update");
         updatebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +128,8 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
                 updatebtnActionPerformed(evt);
             }
         });
+        add(updatebtn);
+        updatebtn.setBounds(448, 307, 73, 25);
 
         deletebtn.setText("Delete");
         deletebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +137,8 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
                 deletebtnActionPerformed(evt);
             }
         });
+        add(deletebtn);
+        deletebtn.setBounds(533, 307, 69, 25);
 
         backbtn.setText("< < Back");
         backbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -133,59 +146,14 @@ public class ManageCleanersJPanel extends javax.swing.JPanel {
                 backbtnActionPerformed(evt);
             }
         });
+        add(backbtn);
+        backbtn.setBounds(53, 31, 85, 25);
+        add(lblheadercityName);
+        lblheadercityName.setBounds(630, 30, 110, 30);
 
         lblheadercityTag.setText("City:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(updatebtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deletebtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(addBtn))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(backbtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblheadercityTag)
-                .addGap(34, 34, 34)
-                .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(backbtn))
-                    .addComponent(lblheadercityTag, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblheadercityName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(98, 98, 98)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addBtn)
-                    .addComponent(deletebtn)
-                    .addComponent(updatebtn))
-                .addContainerGap(183, Short.MAX_VALUE))
-        );
+        add(lblheadercityTag);
+        lblheadercityTag.setBounds(590, 30, 26, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed

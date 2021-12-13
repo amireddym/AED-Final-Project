@@ -22,6 +22,8 @@ import java.awt.Image;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -43,8 +45,8 @@ public class CreateNewDeliveryVolunteerJPanel extends javax.swing.JPanel {
     private CityNetwork cityNetwork;
     private Organization organization;
     private User userLogged;
-    
     private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
+    private static final Logger logger = Logger.getLogger(CreateNewDeliveryVolunteerJPanel.class.getName());
     
     public CreateNewDeliveryVolunteerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         initComponents();
@@ -334,6 +336,9 @@ public class CreateNewDeliveryVolunteerJPanel extends javax.swing.JPanel {
 
             JOptionPane.showMessageDialog(this, "Successfully saved new Delivery Volunteer");
             resetUi();
+            
+            logger.log(Level.INFO, "Delivery Volunteer Profile created");
+            
         }else{
             JOptionPane.showMessageDialog(this, "Error saving new Delivery Volunteer. Please check DataTypes");
         }

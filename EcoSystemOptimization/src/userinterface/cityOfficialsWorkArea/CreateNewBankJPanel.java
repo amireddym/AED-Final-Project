@@ -12,6 +12,8 @@ import businesslogic.helper.ValidateInputs;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import javax.swing.JPanel;
@@ -25,6 +27,7 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private CityNetwork cityNetwork;
     private User userAccount;
+    private static final Logger logger = Logger.getLogger(CreateNewBankJPanel.class.getName());
 
     /**
      * Creates new form CreateNewBankJPanel
@@ -148,6 +151,7 @@ public class CreateNewBankJPanel extends javax.swing.JPanel {
              cityNetwork.getFoodBankDirectory().getFoodBanks().add(new FoodBank(nameJTextField.getText(),locationJTextField.getText(),
         new Date(), new Date(),userAccount.getName(),userAccount.getName()));
              JOptionPane.showMessageDialog(this, " Added New Food Bank Successfully!");
+             logger.log(Level.INFO, "Food Bank Saved");
              resetUi();
          }else{
              JOptionPane.showMessageDialog(this, "Error ! Please input valid values");

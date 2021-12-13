@@ -12,6 +12,8 @@ import businesslogic.cityOfficial.CityOfficial;
 import businesslogic.delivery.DeliveryVolunteer;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +33,7 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
     private CityNetwork cityNetwork;
     private Organization organization;
     private User userLogged;
+    private static final Logger logger = Logger.getLogger(ManageDeliveryVolunteersJPanel.class.getName());
     
     public ManageDeliveryVolunteersJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, User userLogged) {
         initComponents();
@@ -235,7 +238,7 @@ public class ManageDeliveryVolunteersJPanel extends javax.swing.JPanel {
             DeliveryVolunteer deliveryVolunteer = (DeliveryVolunteer) tblDeliveryVolunteersList.getValueAt(selectedRow, 1);
             organization.getDeliveryVolunteerDirectory().getDeliveryVolunteers().remove(deliveryVolunteer);
             JOptionPane.showMessageDialog(null, "Delivery Volunteer deleted successfully");
-
+            logger.log(Level.INFO, "Delivery Volunteer Profile deleted");
             populateDeliveryVolunteers();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed

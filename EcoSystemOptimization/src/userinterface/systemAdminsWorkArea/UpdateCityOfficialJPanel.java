@@ -19,6 +19,8 @@ import java.awt.Image;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -41,6 +43,7 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
     private User userLogged;
     
     private String imagePath;
+    private static final Logger logger = Logger.getLogger(UpdateCityOfficialJPanel.class.getName());
     
     public UpdateCityOfficialJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityOfficial cityOfficial, User userLogged) {
         initComponents();
@@ -280,6 +283,7 @@ public class UpdateCityOfficialJPanel extends javax.swing.JPanel {
             cityOfficial.setModifiedBy(userLogged.getUserName());
             
             JOptionPane.showMessageDialog(this, "Successfully updated City Official");
+            logger.log(Level.INFO, "Updated City Official");
         }else{
             JOptionPane.showMessageDialog(this, "Error updating City Official. Please check DataTypes");
         }

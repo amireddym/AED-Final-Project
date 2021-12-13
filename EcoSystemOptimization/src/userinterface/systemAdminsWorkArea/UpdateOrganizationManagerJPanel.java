@@ -19,6 +19,8 @@ import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -39,7 +41,7 @@ public class UpdateOrganizationManagerJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private OrgManager orgManager;
     private User userLogged;
-    
+    private static final Logger logger = Logger.getLogger(UpdateOrganizationManagerJPanel.class.getName());
     private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     
     public UpdateOrganizationManagerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, OrgManager orgManager, User userLogged) {
@@ -266,7 +268,7 @@ public class UpdateOrganizationManagerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_uploadjButtonActionPerformed
 
     private void updatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatejButtonActionPerformed
-        // TODO add your handling code here:
+        logger.log(Level.INFO, "Inside Org Manager Update Screen");
         if(isDataEnteredValid()) {
 
             if(!orgManager.getUserName().equals(userNamejTextField.getText()) && UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {

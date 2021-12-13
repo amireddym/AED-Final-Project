@@ -35,6 +35,8 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -58,6 +60,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
     private String imagePath;
     private Donation donation;
     private CityNetwork cityNetwork;
+    private static final Logger logger = Logger.getLogger(ViewOrEditDonationJPanel.class.getName());
     
     /**
      * Creates new form MakeNewDonationJPanel
@@ -378,7 +381,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         donation.setPicture(imagePath);
         
         JOptionPane.showMessageDialog(this, "Sucessfully updated the Donation request.");
-
+        logger.log(Level.INFO, "Donor request successfully updated.");
     }//GEN-LAST:event_btnupdatedonationrequestActionPerformed
 
     private void uploadjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadjButtonActionPerformed
@@ -398,7 +401,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
 
     private void setPhoto(String imagPath) {
         if(imagPath.equals(Constants.DEFAULT_PROFILE_IMAGE_PATH)) {
-            ImageIcon photo = new ImageIcon(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
+            ImageIcon photo = new ImageIcon(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
             Image photoResized = photo.getImage().getScaledInstance(lblpicHolder.getWidth(), lblpicHolder.getHeight(),4);
             lblpicHolder.setIcon(new ImageIcon(photoResized));
             return;

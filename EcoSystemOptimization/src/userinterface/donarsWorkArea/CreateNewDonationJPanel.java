@@ -72,6 +72,12 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         populateCities();
         populatePickUpMode();
         populateUsageStatus();
+        setDefaultPhoto();
+    }
+    
+    private void setDefaultPhoto() {
+        
+        setPhoto(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
     }
     
     /**
@@ -367,6 +373,7 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         
         txtinformation.setText("");
         txtpickupaddress.setText("");
+        dateofexpiryDATECHOOSER.setDate(null);
 
     }//GEN-LAST:event_btncreatedonationrequestActionPerformed
 
