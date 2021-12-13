@@ -13,6 +13,8 @@ import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.ta.TransparentPersistenceSupport;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,6 +22,7 @@ import java.nio.file.Paths;
  */
 public class DB4OUtil {
     
+    private static final Logger logger = Logger.getLogger(DB4OUtil.class.getName()); 
     private static final String FILENAME = Paths.get("Databank.db4o").toAbsolutePath().toString();// path to the data store
     private static DB4OUtil dB4OUtil;
     
@@ -69,9 +72,11 @@ public class DB4OUtil {
         ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); // Change to the object you want to save
         EcoSystem system;
         if (systems.isEmpty()){
+            logger.log(Level.INFO, "Taking data from Configure System java code");
             system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         }
         else{
+            logger.log(Level.INFO, "Taking data from Db4o database");
             system = systems.get(systems.size() - 1);
         }
         conn.close();
