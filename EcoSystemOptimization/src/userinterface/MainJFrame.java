@@ -14,6 +14,7 @@ import businesslogic.organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -30,6 +31,7 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     
+    private static final Logger logger = Logger.getLogger(MainJFrame.class.getName());
     private EcoSystem ecoSystem;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     
@@ -38,15 +40,6 @@ public class MainJFrame extends javax.swing.JFrame {
 //        setLoveGif();
         ecoSystem = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
-    }
-    
-    private void setLoveGif() {
-        ImageIcon imageIcon = new ImageIcon("images/love.gif");
-        System.out.println(imageIcon.getDescription());
-        System.out.println(lovejLabel.getWidth());
-        System.out.println(lovejLabel.getHeight());
-        Image photoResized = imageIcon.getImage().getScaledInstance(lovejLabel.getWidth(), lovejLabel.getHeight(),4);
-        lovejLabel.setIcon(new ImageIcon(photoResized));
     }
 
     /**
