@@ -312,21 +312,26 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
         UsageStatus usageStatus = UsageStatus.valueOf(usageStatusjComboBox.getSelectedItem().toString());
         PickUp pickUp = PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString());
         
-        String foodBankName = null;
-        FoodBank foodBank = null;
-        if (!pickupmodejComboBox.getSelectedItem().equals("Home")){
-            foodBankName = selectfoodbankjComboBox.getSelectedItem().toString();
-            if (cityNetwork.getFoodBankDirectory()!=null){
-                for (FoodBank fb : cityNetwork.getFoodBankDirectory().getFoodBanks()){
-                    if (fb.getName().equals(foodBankName)){
-                        foodBank = fb;
-                    }
-                }
-            }
-        }
         
         int cityNetworkIndex = cityjComboBox.getSelectedIndex();
+        if (cityNetworkIndex<0){
+            JOptionPane.showMessageDialog(this, "!Error! No City present in the system");
+            return;
+        }        
         CityNetwork cityNetwork =  ecoSystem.getCityNetworkDirectory().getCityNetworks().get(cityNetworkIndex);
+        
+        int foodBankIndex=-1;
+        FoodBank foodBank = null;
+        if (!pickupmodejComboBox.getSelectedItem().equals("Home")){
+            foodBankIndex = selectfoodbankjComboBox.getSelectedIndex();
+            if(foodBankIndex <0) {
+                JOptionPane.showMessageDialog(this, "!Error! No food banks present. Please select different options.");
+                return;
+            }
+            foodBank = cityNetwork.getFoodBankDirectory().getFoodBanks().get(foodBankIndex);
+        }
+        
+
         
         String addressToPickUp = null;
         if ((PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString())).equals(PickUp.Home)){

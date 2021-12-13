@@ -315,6 +315,10 @@ public class CreateNewDonationJPanel extends javax.swing.JPanel {
         PickUp pickUp = PickUp.valueOf(pickupmodejComboBox.getSelectedItem().toString());
         
         int cityNetworkIndex = cityjComboBox.getSelectedIndex();
+        if (cityNetworkIndex<0){
+            JOptionPane.showMessageDialog(this, "!Error! No City present in the system");
+            return;
+        }
         CityNetwork cityNetwork =  ecoSystem.getCityNetworkDirectory().getCityNetworks().get(cityNetworkIndex);
         
         int foodBankIndex=-1;
