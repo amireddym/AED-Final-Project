@@ -50,7 +50,6 @@ public class JavaMailUtil {
             message.setText("Hi " + recepientName + ". Welcome to the family of EcoSystem Optimisers.\nBecome one of the saviours of this planet by helping our community in optimising our resources.");
             return message;
         } catch (Exception e) {
-            Logger.getLogger(JavaMailUtil.class.getName()).log(Level.SEVERE, null, e);
         }
         return null;
     }

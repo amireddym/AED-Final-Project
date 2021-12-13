@@ -9,6 +9,8 @@ import businesslogic.CityNetwork;
 import businesslogic.EcoSystem;
 import businesslogic.User;
 import java.awt.CardLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +23,7 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
     EcoSystem ecoSystem;
     User userAccount;
     CityNetwork cityNetwork;
+    private static final Logger logger = Logger.getLogger(CityOfficialHomeJPanel.class.getName());
 
     /**
      * Creates new form CityOfficialHomeJPanel
@@ -33,6 +36,7 @@ public class CityOfficialHomeJPanel extends javax.swing.JPanel {
         this.cityNetwork=cityNetwork;
         lblheaderUserName.setText(userAccount.getUserName());
         lblheadercityName.setText(cityNetwork.getCityName().name());
+        logger.log(Level.INFO, "Inside CityOfficial Home Page");
     }
 
     /**

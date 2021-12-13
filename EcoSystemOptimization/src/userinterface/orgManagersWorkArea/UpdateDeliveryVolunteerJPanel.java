@@ -20,6 +20,8 @@ import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -42,8 +44,8 @@ public class UpdateDeliveryVolunteerJPanel extends javax.swing.JPanel {
     private Organization organization;
     private DeliveryVolunteer deliveryVolunteer;
     private User userLogged;
-    
     private String imagePath;
+    private static final Logger logger = Logger.getLogger(UpdateDeliveryVolunteerJPanel.class.getName());
     
     public UpdateDeliveryVolunteerJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, CityNetwork cityNetwork, Organization organization, 
             DeliveryVolunteer deliveryVolunteer, User userLogged ) {
@@ -312,6 +314,7 @@ public class UpdateDeliveryVolunteerJPanel extends javax.swing.JPanel {
             deliveryVolunteer.setLastUpdatedDate(new Date());
             deliveryVolunteer.setModifiedBy(userLogged.getUserName());
             JOptionPane.showMessageDialog(this, "Successfully saved Delivery Volunteer");
+            logger.log(Level.INFO, "Delivery Volunteer Profile Updated");
         }else{
             JOptionPane.showMessageDialog(this, "Error saving Delivery Volunteer. Please check DataTypes");
         }

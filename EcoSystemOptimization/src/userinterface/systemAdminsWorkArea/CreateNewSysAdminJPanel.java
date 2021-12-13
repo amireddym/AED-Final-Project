@@ -19,6 +19,8 @@ import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -38,8 +40,8 @@ public class CreateNewSysAdminJPanel extends javax.swing.JPanel {
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
     private User userLogged;
-    
     private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
+    private static final Logger logger = Logger.getLogger(CreateNewSysAdminJPanel.class.getName());
     
     public CreateNewSysAdminJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, User userLogged) {
         initComponents();
@@ -235,7 +237,7 @@ public class CreateNewSysAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backjButtonActionPerformed
 
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
-        // TODO add your handling code here:
+        logger.log(Level.INFO, "Save button pressed");
         if(isDataEnteredValid()) {
 
             if(UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {
