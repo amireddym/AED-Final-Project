@@ -12,10 +12,9 @@ import businesslogic.JPanelManager;
 import businesslogic.User;
 import businesslogic.organization.Organization;
 import java.awt.CardLayout;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.aboutme.AboutMeJPanel;
@@ -237,6 +236,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
         // TODO add your handling code here:
+        
+        logger.log(Level.INFO, "Logout button pressed");
         logoutJButton.setEnabled(false);
         
         loginJButton.setEnabled(true);
@@ -254,12 +255,14 @@ public class MainJFrame extends javax.swing.JFrame {
         userProcessJPanel.add("BlankPanel", blankPanel);
         cardLayout.next(userProcessJPanel);
         
+        logger.log(Level.INFO, "Storing data to Db4o database");
         dB4OUtil.storeSystem(ecoSystem);
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
         // TODO add your handling code here:
         
+        logger.log(Level.INFO, "Login Button pressed");
         String userName = userNameJTextField.getText();
         char[] passwordChars = jPasswordField.getPassword();
         String password = String.valueOf(passwordChars);
@@ -276,6 +279,7 @@ public class MainJFrame extends javax.swing.JFrame {
         
         User userLogged = null;
         
+        logger.log(Level.INFO, "Checking credentials in SysAdmin Directory");
         //SysAdmin login functionality
         if(!ecoSystem.getSysAdminsDirectory().getSysAdmins().isEmpty()){
             
@@ -290,6 +294,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         
         }
         
+        logger.log(Level.INFO, "Checking credentials in CityOfficial Directory");
         //CityOfficial login functionality
         if(userLogged==null) {
             
@@ -311,6 +316,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
         
+        logger.log(Level.INFO, "Checking credentials in Donor Directory");
         //Donor login functionality
         if(userLogged==null) {
             
@@ -327,6 +333,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
         
+        logger.log(Level.INFO, "Checking credentials in Cleaner Directory");
         //Cleaner login functionality
         if(userLogged==null) {
             
@@ -348,6 +355,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
         
+        logger.log(Level.INFO, "Checking credentials in Organization Directory");
         //OrgManager login functionality
         if(userLogged==null) {
             
@@ -375,6 +383,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
 
+        logger.log(Level.INFO, "Checking credentials in Delivery Volunteer Directory");
         //DeliveryVolunteer login functionality
         if(userLogged==null) {
             
@@ -411,6 +420,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void signUpJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpJButtonActionPerformed
 //        signUpJButton.setEnabled(false);
         
+        logger.log(Level.INFO, "Signup button pressed.");
         userProcessJPanel.removeAll();
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
         userProcessJPanel.add("SignUpPanel", new SignUpJPanel(userProcessJPanel, ecoSystem, dB4OUtil));
@@ -426,6 +436,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void aboutMejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMejButtonActionPerformed
         // TODO add your handling code here:
         
+        logger.log(Level.INFO, "Clicked about me button.");
         CardLayout cardLayout = (CardLayout) userProcessJPanel.getLayout();
         userProcessJPanel.add("AboutMePanel", new AboutMeJPanel());
         cardLayout.next(userProcessJPanel);
