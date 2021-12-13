@@ -16,29 +16,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblname" linkSize="6" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbladdress" linkSize="6" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblphoneno" linkSize="6" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblusername" linkSize="6" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblemail" linkSize="6" min="-2" pref="130" max="-2" attributes="0"/>
-                  <Component id="lblpassword" linkSize="6" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtpassword" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="txtemail" linkSize="8" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                  <Component id="txtusername" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="txtaddress" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                  <Component id="txtname" linkSize="8" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
-                  <Component id="txtphoneno" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblname" linkSize="6" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbladdress" linkSize="6" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblphoneno" linkSize="6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblusername" linkSize="6" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblemail" linkSize="6" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="lblpassword" linkSize="6" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtpassword" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="txtemail" linkSize="8" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="txtusername" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="txtaddress" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="txtname" linkSize="8" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
+                          <Component id="txtphoneno" linkSize="8" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
                       <Component id="btnback" min="-2" pref="116" max="-2" attributes="0"/>
@@ -57,7 +56,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

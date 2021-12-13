@@ -18,7 +18,6 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
