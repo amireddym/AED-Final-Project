@@ -18,8 +18,9 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -39,7 +40,7 @@ public class CreateNewDonorJPanel extends javax.swing.JPanel {
     private JPanel userProcessJpanel;
     private EcoSystem ecoSystem;
     private User userLogged;
-    
+    private static final Logger logger = Logger.getLogger(CreateNewDonorJPanel.class.getName());
     private String imagePath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
     
     public CreateNewDonorJPanel(JPanel userProcessJpanel, EcoSystem ecoSystem, User userLogged) {
@@ -263,6 +264,7 @@ public class CreateNewDonorJPanel extends javax.swing.JPanel {
     
     private void backjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButtonActionPerformed
         // TODO add your handling code here:
+        logger.log(Level.INFO, "Back button pressed");
         userProcessJpanel.remove(this);
 
         Component[] components = userProcessJpanel.getComponents();
@@ -275,6 +277,7 @@ public class CreateNewDonorJPanel extends javax.swing.JPanel {
 
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
         // TODO add your handling code here:
+        logger.log(Level.INFO, "Save button pressed");
         if(isDataEnteredValid()) {
 
             if(UserNameHelper.isUserNameAlreadyExisted(ecoSystem, userNamejTextField.getText())) {

@@ -18,7 +18,6 @@ import businesslogic.mailer.JavaMailUtil;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +26,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import userinterface.MainJFrame;
 
 
 
@@ -41,6 +41,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
     private ImageIcon iconPic;
     private DB4OUtil dB4OUtil;
     private String photoPath = Constants.DEFAULT_PROFILE_IMAGE_PATH;
+    private static final Logger logger = Logger.getLogger(SignUpJPanel.class.getName());
     /**
      * Creates new form SignUpJPanel
      */
@@ -216,6 +217,7 @@ public class SignUpJPanel extends javax.swing.JPanel {
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
+        logger.log(Level.INFO, "Back button pressed");
         CardLayout layout = (CardLayout) userProcessJPanel.getLayout();
         userProcessJPanel.remove(this);
         layout.previous(userProcessJPanel);
@@ -293,9 +295,9 @@ public class SignUpJPanel extends javax.swing.JPanel {
             ecoSystem.getDonorsDirectory().getDonors().add(donor);
             
             try {
+                logger.log(Level.INFO, "Sending email to new user");
                 JavaMailUtil.sendMail(txtemail.getText(), txtname.getText());
             } catch (Exception ex) {
-                Logger.getLogger(SignUpJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             JOptionPane.showMessageDialog(this, "User successfully added and a confirmation Mail is sent to the user");
