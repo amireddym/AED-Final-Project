@@ -57,7 +57,7 @@ public class UpdateDeliveryVolunteerJPanel extends javax.swing.JPanel {
         this.userLogged = userLogged;
         
         picHolderjLabel.setSize(126, 139);
-        setDefaultPhoto();
+//        setDefaultPhoto();
         populateData();
         populateCityHeader();
     }

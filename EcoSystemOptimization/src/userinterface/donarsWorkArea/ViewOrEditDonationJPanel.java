@@ -398,7 +398,7 @@ public class ViewOrEditDonationJPanel extends javax.swing.JPanel {
 
     private void setPhoto(String imagPath) {
         if(imagPath.equals(Constants.DEFAULT_PROFILE_IMAGE_PATH)) {
-            ImageIcon photo = new ImageIcon(Paths.get(Constants.DEFAULT_PROFILE_IMAGE_PATH).toAbsolutePath().toString());
+            ImageIcon photo = new ImageIcon(getClass().getResource(Constants.DEFAULT_PROFILE_IMAGE_PATH).getPath());
             Image photoResized = photo.getImage().getScaledInstance(lblpicHolder.getWidth(), lblpicHolder.getHeight(),4);
             lblpicHolder.setIcon(new ImageIcon(photoResized));
             return;
